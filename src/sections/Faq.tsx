@@ -3,31 +3,31 @@ import FaqItem from "@/components/FaqItem/FaqItem";
 const faqData = [
   {
     question: "What is FICCO coin",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
   {
     question: "How do I purchage FICCO coins from the pre-sale",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
   {
     question: "Which blockchain network is FICCO coin on",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
   {
     question: "When can I claim my coins",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
   {
     question: "How can I store and manage my FICCO coins",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
   {
     question: "For what can I use my FICCO coins",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
   {
     question: "Can I sell my FICCO coins",
-    answer: "",
+    answer: "Answer should be placed here.",
   },
 ];
 
