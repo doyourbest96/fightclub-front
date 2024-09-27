@@ -1,3 +1,4 @@
+import HowtoBuy from "@/sections/HowtoBuy";
 import Image from "next/image";
 
 export default function Home() {
@@ -248,12 +249,7 @@ export default function Home() {
         />
       </div>
       <div className="flex justify-center">
-        <Image
-          src={"/assets/images/howtobuy.png"}
-          alt="howtobuy"
-          width={1148}
-          height={468}
-        />
+        <HowtoBuy />
       </div>
       <div className="flex justify-center">
         <Image
