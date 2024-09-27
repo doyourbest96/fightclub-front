@@ -1,4 +1,6 @@
+import Faq from "@/sections/Faq";
 import HowtoBuy from "@/sections/HowtoBuy";
+import Members from "@/sections/Members";
 import Image from "next/image";
 
 export default function Home() {
@@ -252,20 +254,10 @@ export default function Home() {
         <HowtoBuy />
       </div>
       <div className="flex justify-center">
-        <Image
-          src={"/assets/images/founders.png"}
-          alt="founders"
-          width={1131}
-          height={752}
-        />
+        <Members />
       </div>
       <div className="flex justify-center">
-        <Image
-          src={"/assets/images/faq.png"}
-          alt="faq"
-          width={479}
-          height={283}
-        />
+        <Faq />
       </div>
       <div className="mb-10 flex justify-center">
         <Image
