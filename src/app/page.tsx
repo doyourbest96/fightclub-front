@@ -1,4 +1,6 @@
+import Logo from "@/components/Logo/Logo";
 import Faq from "@/sections/Faq";
+import Footer from "@/sections/Footer";
 import HowtoBuy from "@/sections/HowtoBuy";
 import Members from "@/sections/Members";
 import Image from "next/image";
@@ -6,10 +8,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="landing max-w-7xl px-10 flex flex-col gap-10">
-      <div className="p-7 flex flex-row justify-between items-center gap-10">
-        <div className="flex flex-row items-end gap-28 italic uppercase">
-          <span className="text-3xl font-black">fightclub</span>
-          <div className="flex flex-row items-end gap-10 text-xl font-black text-orange-900">
+      <div className="py-7 flex flex-row justify-between items-center gap-4">
+        <div className="flex flex-row items-end gap-14 italic uppercase">
+          <Logo />
+          <div className="flex flex-row items-end gap-8 text-xl font-black text-orange-900">
             <span>about</span>
             <span>buy</span>
             <span>roadmap</span>
@@ -259,13 +261,8 @@ export default function Home() {
       <div className="flex justify-center">
         <Faq />
       </div>
-      <div className="mb-10 flex justify-center">
-        <Image
-          src={"/assets/images/footer.png"}
-          alt="footer"
-          width={1147}
-          height={127}
-        />
+      <div className="flex justify-center">
+        <Footer />
       </div>
     </div>
   );
