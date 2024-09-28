@@ -52,20 +52,19 @@ const data = {
       borderWidth: 1,
     },
   ],
-  options: {
-    plugins: {
-      legend: {
-        display: false,
+};
+
+const options = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      color: "#787871",
+      font: {
+        size: 20,
       },
-      datalabels: {
-        color: "#787871",
-        anchor: "center",
-        align: "center",
-        font: {
-          size: 20,
-        },
-        formatter: (value: string) => (value !== null ? value + "%" : ""),
-      },
+      formatter: (value: string) => (value !== null ? value + "%" : ""),
     },
   },
 };
@@ -75,7 +74,7 @@ const Tokenomics = () => {
     <div className="flex flex-col">
       <p className="text-xl font-black italic uppercase">Tokenomics</p>
       <div className="p-8">
-        <Doughnut data={data} />
+        <Doughnut data={data} options={options} />
       </div>
     </div>
   );

@@ -156,7 +156,7 @@ export default function Home() {
               height={949}
             />
           </div>
-          {/* <div className="rounded-md border">
+          <div className="rounded-md border">
             <table>
               <thead>
                 <tr>
@@ -221,15 +221,15 @@ export default function Home() {
             multiple approvals for any transaction, ensuring robust protection
             against unauthorized access and fraud. For more information please
             download the whitepaper.
-          </p> */}
-          <div>
+          </p>
+          {/* <div>
             <Image
               src={"/assets/images/table.png"}
               alt="table"
               width={511}
               height={836}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex justify-center">
