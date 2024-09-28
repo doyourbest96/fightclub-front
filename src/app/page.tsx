@@ -5,6 +5,7 @@ import HowtoBuy from "@/sections/HowtoBuy";
 import Members from "@/sections/Members";
 import Footer from "@/sections/Footer";
 import Image from "next/image";
+import Tokenomics from "@/sections/Tokenomics";
 
 export default function Home() {
   return (
@@ -118,23 +119,20 @@ export default function Home() {
               community, fostering a vibrant space where talent thrives and
               opportunities flourish.
             </p>
-            <p>
-              <strong>Access and Rewards:</strong>{" "}
-              {`Owning FICCO unlocks
+            <div>
+              <p>
+                <strong>Access and Rewards:</strong>{" "}
+                {`Owning FICCO unlocks
               exclusive benefits within the ecosystem. This includes early
               access to events, voting rights on platform decisions,
               participation in exclusive experiences and potential rewards based
               on the platform's success.`}
+              </p>
               <p className="text-orange-900">Learn more about $FICCO</p>
-            </p>
+            </div>
           </div>
           <div>
-            <Image
-              src={"/assets/images/tokenomics.png"}
-              alt="tokenomics"
-              width={533}
-              height={577}
-            />
+            <Tokenomics />
           </div>
         </div>
         <div className="w-2/5 flex justify-start items-center flex-col gap-16">
