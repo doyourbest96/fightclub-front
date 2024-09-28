@@ -6,6 +6,7 @@ import Members from "@/sections/Members";
 import Footer from "@/sections/Footer";
 import Image from "next/image";
 import Tokenomics from "@/sections/Tokenomics";
+import TokenomicsTable from "@/sections/TokenomicsTable";
 
 export default function Home() {
   return (
@@ -156,79 +157,8 @@ export default function Home() {
               height={949}
             />
           </div>
-          {/* <div className="rounded-md border">
-            <table>
-              <thead>
-                <tr>
-                  <th>Structure</th>
-                  <th>%</th>
-                  <th>Token Allocation</th>
-                  <th>Vesting schedule</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Pre-sale</td> <td>10%</td> <td>10.000.000.000</td>
-                  <td>100% unlocked on TGE</td>
-                </tr>
-                <tr>
-                  <td>Public sale 1</td> <td>15%</td> <td>15.000.000.000</td>
-                  <td>100% unlocked on TGE</td>
-                </tr>
-                <tr>
-                  <td>Public sale 2 </td>
-                  <td>0%</td> <td>10.000.000.000</td>
-                  <td>25% unlocked followed by 25% quarterly unlock</td>
-                </tr>
-                <tr>
-                  <td>Public sale 3</td> <td>5%</td> <td>5.000.000.000</td>
-                  <td>25% unlocked followed by 25% quarterly unlock</td>
-                </tr>
-                <tr>
-                  <td>Development fund</td> <td>20%</td> <td>20.000.000.000</td>
-                  <td>Linear vesting during 48 months</td>
-                </tr>
-                <tr>
-                  <td>Marketing</td> <td>10%</td> <td>10.000.000.000</td>
-                  <td>Linear vesting during 24 months</td>
-                </tr>
-                <tr>
-                  <td>Liquidity</td> <td>5%</td> <td>5.000.000.000</td>
-                  <td>100% unlocked at TGE</td>
-                </tr>
-                <tr>
-                  <td>Community incent.</td> <td>10%</td>{" "}
-                  <td>10.000.000.000</td>
-                  <td>Linear vesting during 48 months</td>
-                </tr>
-                <tr>
-                  <td>Team</td> <td>8%</td> <td>8.000.000.000</td>
-                  <td>6 months cliff followed by 24 months linear vesting</td>
-                </tr>
-                <tr>
-                  <td>Advisors</td> <td>4%</td> <td>4.000.000.000</td>
-                  <td>6 months cliff followed by 12 months linear vesting</td>
-                </tr>
-                <tr>
-                  <td>Reserve</td> <td>3%</td> <td>3.000.000.000</td>
-                  <td>100% unlocked on TGE</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p>
-            FICCO coins are held secure in multi-signature wallets, requiring
-            multiple approvals for any transaction, ensuring robust protection
-            against unauthorized access and fraud. For more information please
-            download the whitepaper.
-          </p> */}
           <div>
-            <Image
-              src={"/assets/images/table.png"}
-              alt="table"
-              width={511}
-              height={836}
-            />
+            <TokenomicsTable />
           </div>
         </div>
       </div>
