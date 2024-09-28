@@ -39,7 +39,9 @@ const memberData = [
 const Members = () => {
   return (
     <div className="flex flex-col gap-6 rounded-md">
-      <p className="text-3xl font-black">Founders | Advisors | Ambarssadors</p>
+      <p className="text-xl font-black italic">
+        Founders | Advisors | Ambarssadors
+      </p>
       <div className="grid grid-cols-3 gap-x-28 gap-y-10">
         {memberData.map((member, idx) => (
           <div key={idx}>

@@ -34,7 +34,7 @@ const faqData = [
 const Faq = () => {
   return (
     <div className="max-w-lg w-full flex flex-col gap-6 rounded-md">
-      <p className="text-3xl font-black text-center italic">FAQ</p>
+      <p className="text-xl font-black text-center italic">FAQ</p>
       <div className="w-full flex flex-col gap-2">
         {faqData.map((faq, idx) => (
           <div key={idx}>
