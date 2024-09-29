@@ -13,6 +13,12 @@ import TokenSaleS from "@/sections/TokenSaleS";
 import FuelRevolution from "@/sections/FuelRevolution";
 import Supply from "@/sections/Supply";
 import Bander from "@/sections/Bander";
+import TokenomicsTable from "@/sections/TokenomicsTable";
+import Tokenomics from "@/sections/Tokenomics";
+import HowtoBuy from "@/sections/HowtoBuy";
+import Members from "@/sections/Members";
+import Faq from "@/sections/Faq";
+import Footer from "@/sections/Footer";
 
 export default function Home() {
   return (
