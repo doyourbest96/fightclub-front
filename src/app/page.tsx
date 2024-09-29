@@ -35,7 +35,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row-reverse">
-          <div className="w-full lg:w-2/5">
+          <div className="w-full lg:w-2/5  lg:relative lg:-top-36">
             <PreSaleInterface />
           </div>
           <div className="w-full lg:w-3/5">
@@ -43,21 +43,21 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <div className="hidden lg:block lg:w-3/5 relative -top-48">
+          <div className="hidden lg:block lg:w-3/5 lg:relative lg:-top-48">
             <FuelRevolution />
           </div>
         </div>
         <div className="flex flex-col lg:flex-row">
-          <div className="w-full lg:w-3/5 relative -top-48">
+          <div className="w-full lg:w-3/5 lg:relative lg:-top-48">
             <Tokenomics />
           </div>
-          <div className="w-full lg:w-2/5 relative -top-96">
+          <div className="w-full lg:w-2/5 lg:relative lg:-top-96">
             <TokenomicsTable />
           </div>
         </div>
         <div className="w-full lg:w-2/5 flex justify-start items-center flex-col gap-16"></div>
       </div>
-      <div className="flex flex-col gap-4 relative -top-48">
+      <div className="flex flex-col gap-4 lg:relative lg:-top-48">
         <Bander />
         <Roadmap />
         <HowtoBuy />
