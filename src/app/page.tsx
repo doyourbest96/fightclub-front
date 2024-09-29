@@ -7,6 +7,7 @@ import Footer from "@/sections/Footer";
 import Image from "next/image";
 import Tokenomics from "@/sections/Tokenomics";
 import TokenomicsTable from "@/sections/TokenomicsTable";
+import Roadmap from "@/sections/Roadmap";
 
 export default function Home() {
   return (
@@ -171,12 +172,7 @@ export default function Home() {
         />
       </div>
       <div className="flex justify-center">
-        <Image
-          src={"/assets/images/roadmap.png"}
-          alt="roadmap"
-          width={1140}
-          height={658}
-        />
+        <Roadmap />
       </div>
       <div className="flex justify-center">
         <HowtoBuy />
