@@ -25,25 +25,50 @@ export default function Home() {
     <div className="landing max-w-7xl px-10 flex flex-col gap-10 w-full">
       <Header />
       <Branding />
-      <div className="flex flex-row gap-10">
-        <div className="w-3/5 flex flex-col gap-12">
-          <About />
-          <TokenSaleS />
-          <FuelRevolution />
-          <Tokenomics />
+      <div className="flex flex-col gap-4 md:gap-10 items-center">
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-3/5">
+            <About />
+          </div>
+          <div className="w-full lg:w-2/5">
+            <Supply />
+          </div>
         </div>
-        <div className="w-2/5 flex justify-start items-center flex-col gap-16">
-          <Supply />
-          <PreSaleInterface />
-          <TokenomicsTable />
+        <div className="flex flex-col lg:flex-row-reverse">
+          <div className="w-full lg:w-2/5">
+            <PreSaleInterface />
+          </div>
+          <div className="w-full lg:w-3/5">
+            <TokenSaleS />
+          </div>
+        </div>
+        <div>
+          <div className="hidden lg:block lg:w-3/5 relative -top-48">
+            <FuelRevolution />
+          </div>
+        </div>
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-3/5 relative -top-48">
+            <Tokenomics />
+          </div>
+          <div className="w-full lg:w-2/5 relative -top-96">
+            <TokenomicsTable />
+          </div>
+        </div>
+        <div className="w-full lg:w-2/5 flex justify-start items-center flex-col gap-16"></div>
+      </div>
+      <div className="flex flex-col gap-4 relative -top-48">
+        <Bander />
+        <Roadmap />
+        <HowtoBuy />
+        <Members />
+        <div className="relative top-24">
+          <Faq />
+        </div>
+        <div className="relative top-48">
+          <Footer />
         </div>
       </div>
-      <Bander />
-      <Roadmap />
-      <HowtoBuy />
-      <Members />
-      <Faq />
-      <Footer />
     </div>
   );
 }

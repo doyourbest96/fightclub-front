@@ -71,12 +71,17 @@ const options = {
 
 const Tokenomics = () => {
   return (
-    <div className="flex flex-col">
-      <p className="text-xl font-black italic uppercase">Tokenomics</p>
-      <div className="p-8">
-        <Doughnut data={data} options={options} />
+    <>
+      <div className="block lg:hidden">
+        <h1>Mobile tokenomics</h1>
       </div>
-    </div>
+      <div className="flex flex-col">
+        <p className="text-xl font-black italic uppercase">Tokenomics</p>
+        <div className="p-8">
+          <Doughnut data={data} options={options} />
+        </div>
+      </div>
+    </>
   );
 };
 

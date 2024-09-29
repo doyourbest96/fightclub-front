@@ -81,7 +81,7 @@ const tableData = [
 const TokenomicsTable = () => {
   return (
     <>
-      <div className="rounded-md bg-[#353731]">
+      <div className="hidden lg:block rounded-md bg-[#353731]">
         <table>
           <thead>
             <tr>
