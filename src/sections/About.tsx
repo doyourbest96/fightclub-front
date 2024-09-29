@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4">
       <p className="text-xl font-black italic">ABOUT FIGHTCLUB</p>
       <p>
         {`Fight Club envisions a world where martial arts transcend

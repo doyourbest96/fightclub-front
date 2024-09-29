@@ -22,11 +22,11 @@ import Footer from "@/sections/Footer";
 
 export default function Home() {
   return (
-    <div className="landing max-w-7xl px-10 flex flex-col gap-10 w-full">
+    <div className="landing max-w-7xl px-10 flex flex-col gap-16 w-full">
       <Header />
       <Branding />
-      <div className="flex flex-col gap-4 md:gap-10 items-center">
-        <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col gap-16 md:gap-10 items-center">
+        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row">
           <div className="w-full lg:w-3/5">
             <About />
           </div>
@@ -34,7 +34,7 @@ export default function Home() {
             <Supply />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row-reverse">
+        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row-reverse">
           <div className="w-full lg:w-2/5  lg:relative lg:-top-36">
             <PreSaleInterface />
           </div>
@@ -57,7 +57,7 @@ export default function Home() {
         </div>
         <div className="w-full lg:w-2/5 flex justify-start items-center flex-col gap-16"></div>
       </div>
-      <div className="flex flex-col gap-4 lg:relative lg:-top-48">
+      {/* <div className="flex flex-col gap-4 lg:relative lg:-top-48">
         <Bander />
         <Roadmap />
         <HowtoBuy />
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="relative top-48">
           <Footer />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

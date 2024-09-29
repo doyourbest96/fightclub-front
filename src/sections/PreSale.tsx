@@ -52,9 +52,9 @@ const PreSaleInterface: React.FC = () => {
   };
 
   return (
-    <div className="text-white flex items-center justify-center">
-      <div className="border border-orange-900 rounded-lg shadow-lg">
-        <div className="w-full max-w-md bg-[#131511] rounded-lg p-6 text-center">
+    <div className="text-white flex items-center justify-center sm:px-8 md:px-12 lg:px-4">
+      <div className="border border-orange-900 rounded-lg shadow-lg w-full">
+        <div className="w-full bg-[#131511] rounded-lg text-center p-4 sm:p-8">
           <h1 className="text-2xl font-bold mb-4 italic">PRE SALE 1</h1>
 
           <div className="mb-4">

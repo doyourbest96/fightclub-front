@@ -75,10 +75,14 @@ const Tokenomics = () => {
       <div className="block lg:hidden">
         <h1>Mobile tokenomics</h1>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col item items-center lg:items-start">
         <p className="text-xl font-black italic uppercase">Tokenomics</p>
-        <div className="p-8">
-          <Doughnut data={data} options={options} />
+        <div className="p-8 w-full flex flex-col items-center justify-center">
+          <Doughnut
+            data={data}
+            options={options}
+            className="xs:!w-[240px] xs:!h-[240px] sm:!w-[360px] sm:!h-[360px]  md:!w-[440px] md:!h-[440px]"
+          />
         </div>
       </div>
     </>

@@ -2,11 +2,11 @@ import Stage from "./Stagge";
 
 const TokenSaleS = () => {
   return (
-    <div className="flex flex-col gap-2">
-      <p className="w-1/2 text-xl font-black italic">
+    <div className="flex flex-col gap-2 items-center lg:justify-start sm:px-8 md:px-12 lg:px-4">
+      <p className="w-1/2 text-xl font-black italic text-center lg:text-left">
         Exclusive FICCO Token SaleS with Guaranteed AND MYSTERY ALLOCATION
       </p>
-      <div className="py-4 flex justify-center items-center">
+      <div className="py-4 flex justify-center items-center w-full">
         <Stage />
       </div>
       <p>
