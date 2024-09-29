@@ -108,7 +108,11 @@ const Roadmap = () => {
 
         <RoadmapItem item={roadmapData[0]} />
         <RoadmapItem item={roadmapData[1]} />
-        <div className="h-20 bg-slate-600"></div>
+        <div className="h-20 bg-black flex flex-col items-center justify-center">
+          <div className="h-4 w-full bg-[#AEA194] relative top-8"></div>
+          <div className=" m-auto h-6 w-6 bg-[#AEA194] rotate-45 relative -top-1"></div>
+          <div className="rounded-full w-2 h-2  relative -top-9 bg-black" />
+        </div>
         <RoadmapItem item={roadmapData[2]} />
         <RoadmapItem item={roadmapData[3]} />
       </div>

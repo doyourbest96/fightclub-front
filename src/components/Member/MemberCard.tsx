@@ -9,8 +9,8 @@ interface MemberCardProps {
 
 const MemberCard = ({ member }: { member: MemberCardProps }) => {
   return (
-    <div className="flex flex-col gap-1 w-full">
-      <div className="h-52 flex justify-center items-end rounded-md bg-[#131511]">
+    <div className="w-72 flex flex-col gap-1">
+      <div className="bg-[#131511]bg-[#353731]">
         <Image src={member.avatar} alt="avatar" width={140} height={200} />
       </div>
       <p className="px-4 font-bold">{member.name}</p>

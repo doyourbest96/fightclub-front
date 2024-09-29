@@ -33,10 +33,21 @@ table {
 
 th {
   padding: 4px 16px;
-  text-wrap: nowrap;
+  /* text-wrap: nowrap; */
   background-color: #7c2d12;
 }
 
 td {
   padding: 4px 16px;
+}
+
+.center {
+  position: absolute;
+}
+
+.brander {
+  background-image: url("/assets/images/training-fighters.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }

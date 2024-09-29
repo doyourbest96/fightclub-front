@@ -6,7 +6,6 @@ import Branding from "@/components/Brading";
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
-import Roadmap from "@/sections/Roadmap";
 import PreSaleInterface from "@/sections/PreSale";
 import About from "@/sections/About";
 import TokenSaleS from "@/sections/TokenSaleS";
@@ -19,6 +18,7 @@ import HowtoBuy from "@/sections/HowtoBuy";
 import Members from "@/sections/Members";
 import Faq from "@/sections/Faq";
 import Footer from "@/sections/Footer";
+import Roadmap from "@/components/roadmap/Roadmap";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
       <Header />
       <Branding />
       <div className="flex flex-col gap-16 md:gap-10 items-center">
-        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row">
+        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row items-center">
           <div className="w-full lg:w-3/5">
             <About />
           </div>
@@ -34,41 +34,44 @@ export default function Home() {
             <Supply />
           </div>
         </div>
-        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row-reverse">
-          <div className="w-full lg:w-2/5  lg:relative lg:-top-36">
+        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row-reverse w-full">
+          <div className="w-full lg:min-w-[480px] lg:max-w-[480px]  lg:relative">
             <PreSaleInterface />
           </div>
-          <div className="w-full lg:w-3/5">
+          <div className="overflow-auto">
             <TokenSaleS />
           </div>
         </div>
-        <div>
-          <div className="hidden lg:block lg:w-3/5 lg:relative lg:-top-48">
+        <div className="flex">
+          <div className="hidden lg:block lg:relative lg:-top-32">
             <FuelRevolution />
           </div>
+          <div className="min-w-[560px]" />
         </div>
-        <div className="flex flex-col lg:flex-row">
-          <div className="w-full lg:w-3/5 lg:relative lg:-top-48">
+        <div className="flex flex-col lg:flex-row w-full">
+          <div className="w-full   lg:relative lg:-top-36">
             <Tokenomics />
           </div>
-          <div className="w-full lg:w-2/5 lg:relative lg:-top-96">
+
+          <div className="w-full  lg:relative lg:-top-[300px] lg:min-w-[560px] lg:max-w-[560px]">
             <TokenomicsTable />
           </div>
         </div>
         <div className="w-full lg:w-2/5 flex justify-start items-center flex-col gap-16"></div>
       </div>
-      {/* <div className="flex flex-col gap-4 lg:relative lg:-top-48">
+      <div className="flex flex-col gap-16 lg:relative lg:-top-48">
         <Bander />
         <Roadmap />
         <HowtoBuy />
         <Members />
-        <div className="relative top-24">
+        <Bander />
+        <div className="relative">
           <Faq />
         </div>
-        <div className="relative top-48">
+        <div className="relative">
           <Footer />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
