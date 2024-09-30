@@ -26,10 +26,10 @@ const Branding = () => {
     <>
       <div className="relative w-full">
         <div className="absolute -top-12 w-full max-w-[580px] text-center">
-          <p className="text-[136px] text-stroke">FIGHT</p>
+          <p className="text-[136px] text-stroke-8">FIGHT</p>
         </div>
         <div className="absolute top-32 w-full max-w-[580px] text-center">
-          <p className="text-7xl text-stroke text-orange-900">CLUB</p>
+          <p className="text-4xl text-stroke-4 text-orange-900">C L U B</p>
         </div>
         <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full text-xl font-light">
           <p className="">

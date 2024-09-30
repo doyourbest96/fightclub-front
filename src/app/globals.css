@@ -53,7 +53,10 @@ td {
 }
 
 @supports (-webkit-text-stroke: 4px) {
-  .text-stroke {
+  .text-stroke-8 {
     -webkit-text-stroke: 8px;
+  }
+  .text-stroke-4 {
+    -webkit-text-stroke: 4px;
   }
 }
