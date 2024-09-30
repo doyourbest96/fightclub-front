@@ -76,16 +76,16 @@ const Stage = () => {
     <>
       <div className="flex flex-col justify-center gap-2 w-full">
         <div
-          className="w-full flex gap-4 overflow-x-hidden sm:px-8 md:px-46 lg:px-24"
+          className="w-full flex gap-4 overflow-x-hidden sm:px-8 md:px-46 lg:px-2"
           ref={scrollRef}
         >
-          <div className="min-w-24 h-2" />
+          <div className="min-w-24 h-2 lg:hidden" />
           {stageData.map((item, id) => (
             <StageItem key={id} data={item} />
           ))}
-          <div className="min-w-24 h-2" />
+          <div className="min-w-24 h-2 lg:hidden" />
         </div>
-        <div className="flex m-auto gap-4 ">
+        <div className="flex m-auto gap-4 lg:hidden">
           {Array.from({ length: 4 }).map((item, id) => (
             <div
               key={id}

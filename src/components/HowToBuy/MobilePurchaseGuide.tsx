@@ -34,18 +34,16 @@ export default function MobilePurchaseGuide() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-white p-8">
-      <div className="w-full max-w-md space-y-8">
-        <h1 className="text-lg font-revoluti text-center mb-6">
-          HOW TO BUY FICCO
-        </h1>
+      <div className="w-full max-w-md">
+        <h1 className="text-lg font-revoluti text-center">HOW TO BUY FICCO</h1>
         <p className="mt-2 text-lg font-revoluti text-center text-[#854b3d]">
           GET STARTED
         </p>
-        <p className="mt-4 text-lg font-helvetica text-center text-[#854b3d]">
+        <p className="my-4 text-lg font-helvetica text-center text-[#854b3d]">
           Follow these easy steps to purchase FICCO tokens and embrace on our
           journey
         </p>
-        <div className="bg-[#353731] p-6 rounded-lg shadow-lg font-helvetica">
+        <div className="h-[240px] bg-[#353731] p-6 rounded-lg shadow-lg font-helvetica">
           <Image
             src={steps[currentStep].icon}
             alt="icon"

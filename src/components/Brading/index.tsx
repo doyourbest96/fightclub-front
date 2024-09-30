@@ -2,7 +2,6 @@
 
 import { classNames } from "@/utils/classNames";
 import { useEffect, useRef, useState } from "react";
-import { IoDocumentTextOutline } from "react-icons/io5";
 
 const Branding = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -24,25 +23,6 @@ const Branding = () => {
   };
   return (
     <>
-      <div className="relative w-full">
-        <div className="absolute -top-12 w-full max-w-[580px] text-center">
-          <p className="text-[136px] text-stroke-8">FIGHT</p>
-        </div>
-        <div className="absolute top-32 w-full max-w-[580px] text-center">
-          <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
-        </div>
-        <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full font-light">
-          <p className="font-helvetica text-xl font-light">
-            Empowering martial artists, engaging fans and connecting industry
-            leaders for a financially rewarding experience with the FIght Club
-            platform.
-          </p>
-          <button className="my-14 px-4 py-1 flex justify-center items-center gap-4 font-light rounded-sm  bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
-            <IoDocumentTextOutline aria-hidden="true" className="h-6 w-6" />
-            Whitepaper
-          </button>
-        </div>
-      </div>
       <div className="flex flex-col gap-2">
         <div
           className="px-20 py-10 flex flex-row gap-10 font-helvetica bg-[linear-gradient(to_right,_#0000000f,_#824b3d,_#824b3d,_#824b3d,_#0000000f)] overflow-x-hidden"

@@ -4,9 +4,10 @@ export const tokenomicsOption = {
       display: false,
     },
     datalabels: {
-      color: "#787871",
+      color: "#85827A",
       font: {
-        size: 16,
+        size: 18,
+        weight: 700,
       },
       formatter: (value: string) => (value !== null ? value + "%" : ""),
     },

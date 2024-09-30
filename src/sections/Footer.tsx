@@ -6,7 +6,7 @@ import { RxSlash } from "react-icons/rx";
 
 const Footer = () => {
   return (
-    <footer className=" text-gray-400 py-4 px-6  border-t">
+    <footer className=" text-gray-400 py-4 px-6 w-full border-t">
       <div className="container mx-auto flex flex-col lg:flex-row gap-4 items-center px-2 justify-between">
         <div className="flex items-center mb-4 md:mb-0 mx-4">
           <div className="flex flex-row items-center">
@@ -27,7 +27,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="max-w-2xl font-helvetica text-center lg:text-left">
+        <div className="max-w-5xl font-helvetica text-center lg:text-left">
           <p>
             Please review this legal disclaimer carefully. Seek professional
             advice for any doubt. The information provided is not exhaustive and

@@ -1,7 +1,7 @@
 const Bander = () => {
   return (
     <>
-      <div className="h-36 brander" />
+      <div className="w-full h-56 brander" />
     </>
   );
 };

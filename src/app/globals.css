@@ -21,13 +21,21 @@ body {
   }
 }
 
-.landing {
-  background-image: url("/assets/images/bg.jpg");
+.advertisement {
+  background-image: url("/assets/images/bg-add.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .brander {
-  background-image: url("/assets/images/training-fighters.png");
+  background-image: url("/assets/images/band.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.brander2 {
+  background-image: url("/assets/images/band2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { FaEthereum, FaCopy } from "react-icons/fa";
-import { SiTether } from "react-icons/si";
-import { IoLogoUsd } from "react-icons/io";
+import { FaCopy } from "react-icons/fa";
+
+import Image from "next/image";
 
 const PreSaleInterface: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -52,14 +52,16 @@ const PreSaleInterface: React.FC = () => {
   };
 
   return (
-    <div className="text-white flex items-center justify-center sm:px-8 md:px-12 lg:px-4">
-      <div className="border border-orange-900 rounded-lg shadow-lg w-full">
-        <div className="w-full bg-[#131511] rounded-lg text-center p-4 sm:p-8">
-          <h1 className="text-2xl font-revoluti mb-4">PRE SALE 1</h1>
-          <div className="mb-4">
-            <div className="w-full bg-gray-700 rounded-full h-2.5">
+    <div className="text-white flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-md min-w-md">
+      <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
+        <div className="w-full bg-[#131511] rounded-lg text-center p-4 ">
+          <h1 className="text-2xl font-revoluti font-bold mb-4 italic">
+            PRE SALE 1
+          </h1>
+          <div className="mb-4 items-center">
+            <div className="w-full bg-[#787871]  border-[#824B3D] border-2 rounded-xl h-8">
               <div
-                className="bg-orange-900 h-2.5 rounded-full"
+                className="bg-[#824B3D] h-7 rounded-l-lg"
                 style={{ width: `${(progress / 1000000) * 100}%` }}
               ></div>
             </div>
@@ -70,113 +72,155 @@ const PreSaleInterface: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <p className="text-sm text-[#824b3d]">
+            <p className="text-sm font-bold text-[#824b3d]">
               Current maximum price: $ 0.0001
             </p>
-            <p className="text-sm">Sale 2 maximum price: $ 0.0004</p>
+            <p className="text-sm font-bold">Sale 2 maximum price: $ 0.0004</p>
           </div>
 
           <div className="mb-4">
-            <p className="text-xl font-revoluti">TIME LEFT</p>
+            <p className="font-bold font-revoluti text-2xl">TIME LEFT</p>
           </div>
 
           <div className="grid grid-cols-4 gap-2 mb-6">
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.days}</div>
-              <div className="text-xs">days</div>
+              <div className="text-sm">days</div>
             </div>
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.hours}</div>
-              <div className="text-xs">hours</div>
+              <div className="text-sm">hours</div>
             </div>
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.minutes}</div>
-              <div className="text-xs">minutes</div>
+              <div className="text-sm">minutes</div>
             </div>
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.seconds}</div>
-              <div className="text-xs">seconds</div>
+              <div className="text-sm">seconds</div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2 mb-4">
             <button
-              className={`bg-[#212121] border ${
-                paymentType === "ETH" ? "border-orange-900" : "border-gray-600"
-              } p-2 rounded-md flex items-center justify-center`}
+              className={`bg-[#353535] border ${
+                paymentType === "ETH"
+                  ? "border-orange-900 border-2"
+                  : "border-gray-600"
+              } p-2 pl-9 rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("ETH")}
             >
-              <FaEthereum className="mr-2" /> Pay with ETH
+              <Image
+                src={"/assets/icons/eth.png"}
+                alt="icon"
+                width={24}
+                height={24}
+                className="mr-2 rounded-full"
+              />{" "}
+              Pay with ETH
             </button>
             <button
-              className={`bg-[#212121] border ${
-                paymentType === "USDT" ? "border-orange-900" : "border-gray-600"
-              } p-2 rounded-md flex items-center justify-center`}
+              className={`bg-[#353535] border ${
+                paymentType === "USDT"
+                  ? "border-orange-900 border-2"
+                  : "border-gray-600"
+              } p-2 pl-7 rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("USDT")}
             >
-              <SiTether className="mr-2" /> Pay with USDT
+              <Image
+                src={"/assets/icons/usdt.png"}
+                alt="icon"
+                width={24}
+                height={24}
+                className="mr-2 rounded-full"
+              />{" "}
+              Pay with USDT
             </button>
             <button
-              className={`bg-[#212121] border ${
-                paymentType === "SOL" ? "border-orange-900" : "border-gray-600"
-              } p-2 rounded-md flex items-center justify-center`}
-              onClick={() => setPaymentType("SOL")}
+              className={`bg-[#353535] border ${
+                paymentType === "BNB"
+                  ? "border-orange-900 border-2"
+                  : "border-gray-600"
+              } p-2 pl-9 rounded-md flex items-center text-sm font-bold`}
+              onClick={() => setPaymentType("BNB")}
             >
-              <IoLogoUsd className="mr-2" /> Pay with SOL
+              <Image
+                src={"/assets/icons/bnb.png"}
+                alt="icon"
+                width={24}
+                height={24}
+                className="mr-2 rounded-full"
+              />{" "}
+              Pay with BNB
             </button>
             <button
-              className={`bg-[#212121] border ${
-                paymentType === "Card" ? "border-orange-900" : "border-gray-600"
-              } p-2 rounded-md flex items-center justify-center`}
+              className={`bg-[#353535] border ${
+                paymentType === "Card"
+                  ? "border-orange-900 border-2"
+                  : "border-gray-600"
+              } p-2 pl-7 rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("Card")}
             >
-              <SiTether className="mr-2" /> Pay with Card
+              <Image
+                src={"/assets/icons/card.png"}
+                alt="icon"
+                width={24}
+                height={24}
+                className="mr-2 rounded-full bg-white"
+              />{" "}
+              Pay with Card
             </button>
           </div>
 
           <div className="grid grid-cols-2 gap-2 mb-4">
             <div className="text-left">
-              <label className="block text-sm mb-1">AMOUNT (ETH)</label>
+              <label className="block text-sm mb-1 font-bold">
+                AMOUNT (ETH)
+              </label>
               <input
                 type="number"
                 value={amountETH}
                 onChange={(e) => setAmountETH(e.target.value)}
-                className="bg-[#212121] rounded p-2 text-white w-full"
+                className="bg-[#353535] rounded p-2 text-white w-full"
               />
             </div>
             <div className="text-left">
-              <label className="block text-sm mb-1">GET AMOUNT (FICCO)</label>
+              <label className="block text-sm mb-1 font-bold">
+                GET AMOUNT (FICCO)
+              </label>
               <input
                 type="number"
                 value={getAmount}
                 onChange={(e) => setGetAmount(e.target.value)}
-                className="bg-[#212121] rounded p-2 text-white w-full"
+                className="bg-[#353535] rounded p-2 text-white w-full"
               />
             </div>
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm mb-1">CURRENT MYSTERY FICCO</label>
+            <label className="block text-sm mb-1 font-bold">
+              CURRENT MYSTERY FICCO
+            </label>
             <input
               type="number"
               value="0.0"
               readOnly
-              className="bg-[#212121] rounded p-2 text-white w-[50%]"
+              className="bg-[#353535] rounded p-2 text-white w-[50%]"
             />
           </div>
 
-          <button className="w-[70%] bg-orange-900 p-3 rounded font-bold mb-4">
+          <button className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4">
             CONNECT WALLET
           </button>
 
           <div className="">
-            <p className="text-sm">Your current holdings:</p>
+            <p className="text-sm font-bold">Your current holdings:</p>
             <p className="text-sm mb-2">0 USDT</p>
-            <p className="text-sm">Balance PICCO</p>
+            <p className="text-sm font-bold">Balance PICCO</p>
             <p className="text-sm">0</p>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-between bg-[#212121] border-t border-orange-900 p-2 rounded-b-lg">
+        <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
           <span className="text-xs font-bold">Contract address:</span>
           <div className="flex items-center gap-2 mt-1 justify-center w-[90%]">
             <span className="text-xs">

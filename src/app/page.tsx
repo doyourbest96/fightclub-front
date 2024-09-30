@@ -14,57 +14,50 @@ import Members from "@/sections/Members";
 import Faq from "@/sections/Faq";
 import Footer from "@/sections/Footer";
 import Roadmap from "@/components/roadmap/Roadmap";
+import TokenomicsTableMobile from "@/sections/TokenomicsTableMobile";
+import Bander2 from "@/sections/Bander2";
 
 export default function Home() {
   return (
-    <div className="landing max-w-7xl px-2 md:px-4 lg:px-6 xl:px-8 flex flex-col gap-16 w-full">
+    <div className="landing px-2 md:px-4 lg:px-6 xl:px-8 flex flex-col gap-16 w-full">
       <Header />
       <Branding />
-      <div className="flex flex-col gap-16 md:gap-10 items-center">
-        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row items-center">
-          <div className="w-full lg:w-3/5">
-            <About />
-          </div>
-          <div className="w-full lg:w-2/5">
-            <Supply />
-          </div>
-        </div>
-        <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row-reverse w-full">
-          <div className="w-full lg:min-w-[480px] lg:max-w-[480px] lg:relative">
-            <PreSaleInterface />
-          </div>
-          <div className="overflow-auto">
-            <TokenSaleS />
-          </div>
-        </div>
-        <div className="flex">
-          <div className="hidden lg:block lg:relative lg:-top-32">
-            <FuelRevolution />
-          </div>
-          <div className="min-w-[560px]" />
-        </div>
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-8 w-full">
-          <div className="w-full lg:relative lg:-top-36">
-            <Tokenomics />
-          </div>
 
-          <div className="w-full lg:relative lg:-top-[300px] lg:min-w-[560px] lg:max-w-[560px]">
-            <TokenomicsTable />
-          </div>
+      {/* desktop for splitting */}
+      <div className="hidden lg:flex gap-16 ">
+        <div className="w-3/5 flex flex-col gap-16 items-center">
+          <About />
+          <TokenSaleS />
+          <FuelRevolution />
+          <Tokenomics />
+        </div>
+        <div className="w-2/5 flex flex-col gap-8 items-center">
+          <Supply />
+          <PreSaleInterface />
+          <TokenomicsTable />
         </div>
       </div>
-      <div className="flex flex-col gap-16 lg:relative lg:-top-48">
+
+      {/* mobile  */}
+      <div className="flex flex-col lg:hidden items-center gap-8">
+        <About />
+        <Supply />
+        <PreSaleInterface />
+        <TokenSaleS />
+        <TokenomicsTableMobile />
+        <Tokenomics />
+      </div>
+
+      {/* Bottom section */}
+      <div className="flex flex-col gap-16 items-center">
+        {/* Bander 2 */}
         <Bander />
         <Roadmap />
         <HowtoBuy />
         <Members />
-        <Bander />
-        <div className="relative">
-          <Faq />
-        </div>
-        <div className="relative">
-          <Footer />
-        </div>
+        <Bander2 />
+        <Faq />
+        <Footer />
       </div>
     </div>
   );
