@@ -7,10 +7,10 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 
 const navigation = [
-  { name: "about", href: "#" },
-  { name: "buy", href: "#" },
-  { name: "roadmap", href: "#" },
-  { name: "faq", href: "#" },
+  { name: "about", href: "#about" },
+  { name: "buy", href: "#buy" },
+  { name: "roadmap", href: "#roadmap" },
+  { name: "faq", href: "#faq" },
 ];
 
 const Header = () => {
@@ -75,6 +75,7 @@ const Header = () => {
                     key={item.name}
                     href={item.href}
                     className="hover:bg-orange-400 w-full p-2 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </a>

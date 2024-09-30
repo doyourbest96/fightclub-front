@@ -24,8 +24,14 @@ const Branding = () => {
   };
   return (
     <>
-      <div className="mt-72 w-full">
-        <div className="max-w-[580px] px-8 flex flex-col items-center text-center w-full text-xl font-light">
+      <div className="relative w-full">
+        <div className="absolute -top-12 w-full max-w-[580px] text-center">
+          <p className="text-[136px] text-stroke">FIGHT</p>
+        </div>
+        <div className="absolute top-32 w-full max-w-[580px] text-center">
+          <p className="text-7xl text-stroke text-orange-900">CLUB</p>
+        </div>
+        <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full text-xl font-light">
           <p className="">
             Empowering martial artists, engaging fans and connecting industry
             leaders for a financially rewarding experience with the FIght Club

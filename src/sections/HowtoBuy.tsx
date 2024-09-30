@@ -3,7 +3,7 @@ import MobilePurchaseGuide from "@/components/HowToBuy/MobilePurchaseGuide";
 
 const HowtoBuy = () => {
   return (
-    <div>
+    <div id="buy">
       <div className="hidden lg:block">
         <DesktopPurchaseGuide />
       </div>
