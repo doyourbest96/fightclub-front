@@ -17,7 +17,7 @@ import Roadmap from "@/components/roadmap/Roadmap";
 
 export default function Home() {
   return (
-    <div className="landing max-w-7xl px-10 flex flex-col gap-16 w-full">
+    <div className="landing max-w-7xl px-2 md:px-4 lg:px-6 xl:px-8 flex flex-col gap-16 w-full">
       <Header />
       <Branding />
       <div className="flex flex-col gap-16 md:gap-10 items-center">

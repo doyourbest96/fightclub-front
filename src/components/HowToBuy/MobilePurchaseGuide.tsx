@@ -38,7 +38,7 @@ export default function MobilePurchaseGuide() {
         <h1 className="text-2xl font-bold text-center mb-6 italic">
           HOW TO BUY FICCO
         </h1>
-        <p className="mt-2 text-xl text-red-500 font-semibold italic">
+        <p className="mt-2 text-xl text-red-500 font-semibold text-center italic">
           GET STARTED
         </p>
         <p className="mt-4 text-gray-400">

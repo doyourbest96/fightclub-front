@@ -8,7 +8,7 @@ const Logo = () => {
   return (
     <div className="flex flex-row items-center">
       <Link href={"/"} className="text-2xl font-black italic">
-        FIGHTCLUB
+        IRONWILL
       </Link>
       <RxSlash className="w-6 h-6" />
       <Link href={"/"}>

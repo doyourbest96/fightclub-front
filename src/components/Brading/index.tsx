@@ -88,11 +88,21 @@ const Branding = () => {
           <div
             className={classNames(
               "rounded-full w-6 h-6  hover:cursor-pointer hover:bg-gray-100",
-              selectedIntroView === 3 ? "bg-gray-200" : "bg-gray-400 "
+              selectedIntroView === 2 ? "bg-gray-200" : "bg-gray-400 "
             )}
             onClick={() => {
-              scrollToElement(3);
-              setSelectedIntroView(3);
+              scrollToElement(2);
+              setSelectedIntroView(2);
+            }}
+          ></div>
+          <div
+            className={classNames(
+              "rounded-full w-6 h-6 hover:cursor-pointer hover:bg-gray-100",
+              selectedIntroView === 4 ? "bg-gray-200" : "bg-gray-400 "
+            )}
+            onClick={() => {
+              scrollToElement(4);
+              setSelectedIntroView(4);
             }}
           ></div>
           <div

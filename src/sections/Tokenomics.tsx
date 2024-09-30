@@ -17,8 +17,8 @@ const Tokenomics = () => {
       <div className="flex flex-col gap-8 justify-center">
         <p className="text-xl font-black italic uppercase">Tokenomics</p>
         <div className="lg:hidden">
-          <div className="rounded-md bg-[#353731] overflow-hidden">
-            <table className="w-full">
+          <div className="rounded-md bg-[#814b3d] overflow-auto">
+            <table className="w-full overflow-scroll bg-[#353731]">
               <thead>
                 <tr>
                   <th>Structure</th>
@@ -42,7 +42,7 @@ const Tokenomics = () => {
               </tbody>
             </table>
             <button
-              className="w-full p-2 text-center bg-[#814b3d]"
+              className="min-w-full p-2 text-center"
               onClick={() => setViewAll(!viewAll)}
             >
               {viewAll ? "View few allocations" : "View all allocations"}
