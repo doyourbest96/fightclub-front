@@ -3,7 +3,7 @@ import { roboto } from "@/utils/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FIGHTCLUB",
+  title: "IRONWILL",
   description:
     "Fight Club envisions a world where martial arts transcend barriers, empowers individuals and unites communities.",
 };

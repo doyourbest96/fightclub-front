@@ -6,7 +6,7 @@ export const tokenomicsOption = {
     datalabels: {
       color: "#787871",
       font: {
-        size: 20,
+        size: 16,
       },
       formatter: (value: string) => (value !== null ? value + "%" : ""),
     },
