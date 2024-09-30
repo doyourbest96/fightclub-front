@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col gap-16 lg:gap-8 lg:flex-row-reverse w-full">
-          <div className="w-full lg:min-w-[480px] lg:max-w-[480px]  lg:relative">
+          <div className="w-full lg:min-w-[480px] lg:max-w-[480px] lg:relative">
             <PreSaleInterface />
           </div>
           <div className="overflow-auto">
@@ -43,16 +43,15 @@ export default function Home() {
           </div>
           <div className="min-w-[560px]" />
         </div>
-        <div className="flex flex-col lg:flex-row w-full">
-          <div className="w-full   lg:relative lg:-top-36">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-8 w-full">
+          <div className="w-full lg:relative lg:-top-36">
             <Tokenomics />
           </div>
 
-          <div className="w-full  lg:relative lg:-top-[300px] lg:min-w-[560px] lg:max-w-[560px]">
+          <div className="w-full lg:relative lg:-top-[300px] lg:min-w-[560px] lg:max-w-[560px]">
             <TokenomicsTable />
           </div>
         </div>
-        <div className="w-full lg:w-2/5 flex justify-start items-center flex-col gap-16"></div>
       </div>
       <div className="flex flex-col gap-16 lg:relative lg:-top-48">
         <Bander />

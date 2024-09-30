@@ -18,6 +18,7 @@ const config: Config = {
       fontFamily: {
         // space_grotesk: ["var(--font-space-grotesk)", "sans-serif"], // Added fallback font
         roboto: ["var(--font-roboto)", "sans-serif"],
+        helvetica: ['"Helvetica Neue"', "Arial", "sans-serif"],
       },
     },
   },
