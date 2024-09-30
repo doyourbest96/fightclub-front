@@ -33,15 +33,15 @@ const Footer = () => {
           <p>
             Please review this legal disclaimer carefully. Seek professional
             advice for any doubt. The information provided is not exhaustive and
-            doesn't constitute part of a contractual agreement. While we strive
-            for accuracy, the information, services, and timelines are subject
-            to change without notice. This disclaimer doesn't obligate anyone to
-            enter a contract or binding commitment. By using this information,
-            you acknowledge that it doesn't contravene applicable laws,
-            regulatory requirements, or regulations. Cryptocurrency may be
-            unregulated in your jurisdiction. The value of cryptocurrencies may
-            fluctuate. Profits may be subject to capital gains or other taxes
-            applicable in your jurisdiction.
+            doesn&apos;t constitute part of a contractual agreement. While we
+            strive for accuracy, the information, services, and timelines are
+            subject to change without notice. This disclaimer doesn&apos;t
+            obligate anyone to enter a contract or binding commitment. By using
+            this information, you acknowledge that it doesn&apos;t contravene
+            applicable laws, regulatory requirements, or regulations.
+            Cryptocurrency may be unregulated in your jurisdiction. The value of
+            cryptocurrencies may fluctuate. Profits may be subject to capital
+            gains or other taxes applicable in your jurisdiction.
             <span className="mt-2 text-xm font-bold">
               © Fight Club. All rights reserved.
             </span>

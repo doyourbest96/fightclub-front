@@ -11,7 +11,7 @@ const PreSaleInterface: React.FC = () => {
     minutes: 40,
     seconds: 60,
   });
-  const [progress, setProgress] = useState(90000.24);
+  const [progress] = useState(90000.24);
   const [amountETH, setAmountETH] = useState("0.0");
   const [getAmount, setGetAmount] = useState("0.0");
   const [paymentType, setPaymentType] = useState("ETH");

@@ -1,4 +1,4 @@
-import RoadmapItem from "./RoadmapItem";
+import RoadmapItem from "@/components/roadmap/RoadmapItem";
 import Image from "next/image";
 
 const roadmapData = [

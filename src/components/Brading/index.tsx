@@ -1,6 +1,6 @@
 "use client";
 
-import { classNames } from "@/app/page";
+import { classNames } from "@/utils/classNames";
 import { useEffect, useRef, useState } from "react";
 import { IoDocumentTextOutline } from "react-icons/io5";
 

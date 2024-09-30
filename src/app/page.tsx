@@ -1,11 +1,6 @@
 "use client";
-
 import Header from "@/components/header";
 import Branding from "@/components/Brading";
-
-export function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 import PreSaleInterface from "@/sections/PreSale";
 import About from "@/sections/About";
 import TokenSaleS from "@/sections/TokenSaleS";

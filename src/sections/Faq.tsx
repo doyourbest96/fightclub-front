@@ -1,14 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
-import Image from "next/image";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import {
-  MinusCircleIcon,
-  MinusIcon,
-  PlusIcon,
-} from "@heroicons/react/20/solid";
-import Bander from "./Bander";
+import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 
 interface FAQItem {
   question: string;
