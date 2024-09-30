@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { space_grotesk, roboto } from "@/utils/fonts";
+import { roboto } from "@/utils/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {

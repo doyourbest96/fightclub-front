@@ -1,4 +1,4 @@
-import { classNames } from "@/app/page";
+import { classNames } from "@/utils/classNames";
 import StageItem from "@/components/StageItem/StageItem";
 import { useEffect, useRef, useState } from "react";
 
