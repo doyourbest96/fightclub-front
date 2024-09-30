@@ -9,7 +9,10 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 const Tokenomics = () => {
   return (
     <>
-      <p className="w-full text-lg font-revoluti text-center lg:text-left uppercase sm:px-8 md:px-12 lg:px-4 ">
+      <p
+        id="tokenomics"
+        className="w-full text-lg font-revoluti text-center lg:text-left uppercase sm:px-8 md:px-12 lg:px-4 "
+      >
         Tokenomics
       </p>
       <div className="flex flex-col gap-8 justify-center w-3/4">

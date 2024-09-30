@@ -21,10 +21,10 @@ const Header = () => {
   return (
     <>
       <div className="advertisement flex flex-col gap-16">
-        <div className="py-7 flex flex-row justify-between items-center gap-4">
-          <div className="flex flex-row items-center gap-12 uppercase">
+        <div className="py-7 flex flex-row items-center gap-4">
+          <div className="flex flex-1 flex-row items-center gap-12 uppercase">
             <Logo />
-            <div className="hidden lg:flex flex-row items-end gap-6 font-revoluti text-sm text-[#824b3d] tracking-tighter">
+            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-6 font-revoluti text-sm text-[#824b3d] bg-black/70 tracking-tighter">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -52,9 +52,9 @@ const Header = () => {
         </div>
         <div className="relative w-full">
           <div className="absolute -top-12 w-full max-w-[580px] text-center">
-            <p className="text-[136px] text-stroke-8">FIGHT</p>
+            <p className="text-[164px] text-stroke-8">FIGHT</p>
           </div>
-          <div className="absolute top-32 w-full max-w-[580px] text-center">
+          <div className="absolute top-40 w-full max-w-[580px] text-center">
             <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
           </div>
           <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full font-light">
