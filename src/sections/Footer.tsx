@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
-import { FaRegEnvelope } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { RxSlash } from "react-icons/rx";
 
 const Footer = () => {
@@ -23,7 +23,7 @@ const Footer = () => {
             </Link>
             <RxSlash className="w-5 h-5" />
             <Link href={"/"}>
-              <FaRegEnvelope className="w-5 h-5" />
+              <FaInstagram className="w-5 h-5" />
             </Link>
           </div>
         </div>

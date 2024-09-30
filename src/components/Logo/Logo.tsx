@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
-import { FaRegEnvelope } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { RxSlash } from "react-icons/rx";
 
 const Logo = () => {
@@ -20,7 +20,7 @@ const Logo = () => {
       </Link>
       <RxSlash className="w-6 h-6" />
       <Link href={"/"}>
-        <FaRegEnvelope className="w-6 h-6" />
+        <FaInstagram className="w-6 h-6" />
       </Link>
     </div>
   );
