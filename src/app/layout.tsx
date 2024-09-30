@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { roboto } from "@/utils/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,10 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto}>
-        <div className="font-roboto w-full flex flex-col items-center">
-          {children}
-        </div>
+      <body className="font-helvetica">
+        <div className="w-full flex flex-col items-center">{children}</div>
       </body>
     </html>
   );

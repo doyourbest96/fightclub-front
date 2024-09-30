@@ -10,7 +10,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   display: flex;
   justify-content: center;
 }
@@ -24,25 +24,6 @@ body {
 .landing {
   background-image: url("/assets/images/bg.jpg");
   background-repeat: no-repeat;
-}
-
-table {
-  padding: 4px 20px;
-  text-align: left;
-}
-
-th {
-  padding: 4px 16px;
-  /* text-wrap: nowrap; */
-  background-color: #7c2d12;
-}
-
-td {
-  padding: 4px 16px;
-}
-
-.center {
-  position: absolute;
 }
 
 .brander {
@@ -59,4 +40,12 @@ td {
   .text-stroke-4 {
     -webkit-text-stroke: 4px;
   }
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: local('Helvetica Neue'), local('Helvetica'),
+    url('/assets/fonts/helvetica/HelveticaNeueLight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

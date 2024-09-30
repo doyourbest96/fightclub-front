@@ -20,11 +20,11 @@ const Tokenomics = () => {
           <div className="rounded-md bg-[#814b3d] overflow-auto">
             <table className="w-full overflow-scroll bg-[#353731]">
               <thead>
-                <tr>
-                  <th>Structure</th>
-                  <th>%</th>
-                  <th>Token Allocation</th>
-                  <th>Vesting schedule</th>
+                <tr className="text-left bg-[#814b3d]">
+                  <th className="p-2">Structure</th>
+                  <th className="p-2">%</th>
+                  <th className="p-2">Token Allocation</th>
+                  <th className="p-2">Vesting schedule</th>
                 </tr>
               </thead>
               <tbody>
@@ -32,10 +32,14 @@ const Tokenomics = () => {
                   (row, idx) =>
                     (viewAll || idx < 3) && (
                       <tr key={idx}>
-                        <td style={{ color: row.color }}>{row.structure}</td>
-                        <td>{row.percent}</td>
-                        <td>{row.allocation}</td>
-                        <td>{row.schedule}</td>
+                        <td className="px-2" style={{ color: row.color }}>
+                          {row.structure}
+                        </td>
+                        <td className="px-2">{row.percent}</td>
+                        <td className="px-2">
+                          {row.allocation.replace(",000,000,000", " billion")}
+                        </td>
+                        <td className="px-2">{row.schedule}</td>
                       </tr>
                     )
                 )}
