@@ -9,7 +9,9 @@ import { Bars3Icon } from "@heroicons/react/20/solid";
 const navigation = [
   { name: "about", href: "#about" },
   { name: "buy", href: "#buy" },
+  { name: "tokenomics", href: "#tokenomics" },
   { name: "roadmap", href: "#roadmap" },
+  { name: "founders", href: "#founders" },
   { name: "faq", href: "#faq" },
 ];
 
@@ -18,9 +20,9 @@ const Header = () => {
   return (
     <>
       <div className="py-7 flex flex-row justify-between items-center gap-4">
-        <div className="flex flex-row items-end gap-14 italic uppercase">
+        <div className="flex flex-row items-center gap-12 uppercase">
           <Logo />
-          <div className="hidden lg:flex flex-row items-end gap-8 text-lg font-black text-orange-900">
+          <div className="hidden lg:flex flex-row items-end gap-6 font-revoluti text-sm text-[#824b3d] tracking-tighter">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -63,13 +65,13 @@ const Header = () => {
               <span className="sr-only">Close menu</span>
               <XMarkIcon
                 aria-hidden="true"
-                className="h-6 w-6 text-orange-900 hover:bg-orange-400"
+                className="h-6 w-6 text-[#824b3d] hover:bg-orange-400"
               />
             </button>
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="flex flex-col items-start gap-2 text-lg font-black text-orange-900 uppercase">
+              <div className="flex flex-col items-start gap-2 text-lg font-black text-[#824b3d] uppercase">
                 {navigation.map((item) => (
                   <a
                     key={item.name}

@@ -16,9 +16,8 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        // space_grotesk: ["var(--font-space-grotesk)", "sans-serif"], // Added fallback font
-        roboto: ["var(--font-roboto)", "sans-serif"],
-        helvetica: ['"Helvetica Neue"', "Arial", "sans-serif"],
+        helvetica: ["Helvetica Neue", "sans-serif"],
+        revoluti: ['"Revoluti"', "sans-serif"],
       },
     },
   },

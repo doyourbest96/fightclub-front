@@ -3,7 +3,7 @@ import { tokenomicsTableData } from "@/data/tokenomics.table";
 const TokenomicsTable = () => {
   return (
     <>
-      <div className="hidden lg:block font-thin rounded-md bg-[#353731] overflow-hidden">
+      <div className="hidden lg:block font-helvetica font-thin rounded-md bg-[#353731] overflow-hidden">
         <table>
           <thead>
             <tr className="text-left bg-[#814b3d]">

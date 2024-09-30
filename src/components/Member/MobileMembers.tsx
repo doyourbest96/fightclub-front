@@ -84,7 +84,7 @@ function CoFounderShowCase() {
         <div className="p-4">
           <h2 className="text-xl font-bold">{member.name}</h2>
           <p className="text-gray-400">{member.title}</p>
-          <p className="mt-2 text-sm">{member.description}</p>
+          <p className="mt-2">{member.description}</p>
         </div>
       </div>
     );
@@ -124,7 +124,7 @@ function AdvisorShowCase() {
         <div className="p-4">
           {/* <h2 className="text-xl font-bold">{member.name}</h2> */}
           <p className="text-gray-400">{member.title}</p>
-          <p className="mt-2 text-sm">{member.description}</p>
+          <p className="mt-2">{member.description}</p>
         </div>
       </div>
     );
@@ -164,7 +164,7 @@ function AmbassadorShowCase() {
         <div className="p-4">
           {/* <h2 className="text-xl font-bold">{member.name}</h2> */}
           <p className="text-gray-400">{member.title}</p>
-          <p className="mt-2 text-sm">{member.description}</p>
+          <p className="mt-2">{member.description}</p>
         </div>
       </div>
     );
@@ -193,7 +193,7 @@ function AmbassadorShowCase() {
 
 export default function MobileMembers() {
   return (
-    <div>
+    <div className="font-helvetica">
       <CoFounderShowCase />
       <AdvisorShowCase />
       <AmbassadorShowCase />

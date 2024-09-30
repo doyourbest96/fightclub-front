@@ -55,8 +55,7 @@ const PreSaleInterface: React.FC = () => {
     <div className="text-white flex items-center justify-center sm:px-8 md:px-12 lg:px-4">
       <div className="border border-orange-900 rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center p-4 sm:p-8">
-          <h1 className="text-2xl font-bold mb-4 italic">PRE SALE 1</h1>
-
+          <h1 className="text-2xl font-revoluti mb-4">PRE SALE 1</h1>
           <div className="mb-4">
             <div className="w-full bg-gray-700 rounded-full h-2.5">
               <div
@@ -71,35 +70,31 @@ const PreSaleInterface: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <p className="text-sm text-orange-900">
+            <p className="text-sm text-[#824b3d]">
               Current maximum price: $ 0.0001
             </p>
             <p className="text-sm">Sale 2 maximum price: $ 0.0004</p>
           </div>
 
           <div className="mb-4">
-            <p className="font-bold italic text-2xl">TIME LEFT</p>
+            <p className="text-xl font-revoluti">TIME LEFT</p>
           </div>
 
           <div className="grid grid-cols-4 gap-2 mb-6">
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
-              <div className="text-2xl font-bold italic">{timeLeft.days}</div>
+              <div className="text-2xl font-revoluti">{timeLeft.days}</div>
               <div className="text-xs">days</div>
             </div>
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
-              <div className="text-2xl font-bold italic">{timeLeft.hours}</div>
+              <div className="text-2xl font-revoluti">{timeLeft.hours}</div>
               <div className="text-xs">hours</div>
             </div>
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
-              <div className="text-2xl font-bold italic">
-                {timeLeft.minutes}
-              </div>
+              <div className="text-2xl font-revoluti">{timeLeft.minutes}</div>
               <div className="text-xs">minutes</div>
             </div>
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
-              <div className="text-2xl font-bold italic">
-                {timeLeft.seconds}
-              </div>
+              <div className="text-2xl font-revoluti">{timeLeft.seconds}</div>
               <div className="text-xs">seconds</div>
             </div>
           </div>

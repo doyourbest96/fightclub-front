@@ -15,8 +15,8 @@ const Tokenomics = () => {
   return (
     <>
       <div className="flex flex-col gap-8 justify-center">
-        <p className="text-xl font-black italic uppercase">Tokenomics</p>
-        <div className="lg:hidden">
+        <p className="text-lg font-revoluti uppercase">Tokenomics</p>
+        <div className="lg:hidden font-helvetica font-thin">
           <div className="rounded-md bg-[#814b3d] overflow-auto">
             <table className="w-full overflow-scroll bg-[#353731]">
               <thead>

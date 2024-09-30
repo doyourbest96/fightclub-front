@@ -28,15 +28,13 @@ const StageItem = ({
     <>
       <div className="relative  w-full min-w-[180px]">
         <div className="absolute left-0 top-0 -z-10 rotate-3 w-full h-48 bg-[#787871]" />
-        <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] font-mono rounded-lg shadow-lg">
+        <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] rounded-lg shadow-lg">
           <div className="p-3">
             <div
-              className={`text-xl font-black italic mb-4 ${
-                running && "text-orange-900"
-              }`}
+              className={`font-revoluti mb-4 ${running && "text-[#824b3d]"}`}
             >
               {type === "public" ? <p>PUBLIC</p> : <p>PRE</p>} <p>SALE</p>
-              <p className="text-3xl not-italic">{id}</p>
+              <p className="text-5xl font-helvetica font-medium">{id}</p>
             </div>
             <div className="text-xs font-bold mb-2">{value}</div>
             {maxPrice === "tba" ? (
@@ -53,8 +51,8 @@ const StageItem = ({
             <p className="text-xs font-bold uppercase">{period}</p>
           </div>
           <div
-            className={`py-2 flex items-center justify-center text-2xl font-bold uppercase italic bg-[linear-gradient(to_right,_#131511,_#333333,_#131511)] ${
-              running && "text-orange-900"
+            className={`py-2 flex items-center justify-center text-lg font-revoluti uppercase bg-[linear-gradient(to_right,_#131511,_#333333,_#131511)] ${
+              running && "text-[#824b3d]"
             }`}
           >
             {status}

@@ -33,19 +33,19 @@ export default function MobilePurchaseGuide() {
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-[#131511] text-white p-4">
+    <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-white p-8">
       <div className="w-full max-w-md space-y-8">
-        <h1 className="text-2xl font-bold text-center mb-6 italic">
+        <h1 className="text-lg font-revoluti text-center mb-6">
           HOW TO BUY FICCO
         </h1>
-        <p className="mt-2 text-xl text-red-500 font-semibold text-center italic">
+        <p className="mt-2 text-lg font-revoluti text-center text-[#854b3d]">
           GET STARTED
         </p>
-        <p className="mt-4 text-gray-400">
+        <p className="mt-4 text-lg font-helvetica text-center text-[#854b3d]">
           Follow these easy steps to purchase FICCO tokens and embrace on our
           journey
         </p>
-        <div className="bg-[#353731] p-6 rounded-lg shadow-lg">
+        <div className="bg-[#353731] p-6 rounded-lg shadow-lg font-helvetica">
           <Image
             src={steps[currentStep].icon}
             alt="icon"
@@ -56,11 +56,9 @@ export default function MobilePurchaseGuide() {
           <h2 className="text-xl font-semibold mb-2">
             {steps[currentStep].title}
           </h2>
-          <p className="text-gray-400 text-sm">
-            {steps[currentStep].description}
-          </p>
+          <p className="text-gray-400">{steps[currentStep].description}</p>
         </div>
-        <div className="flex justify-center space-x-2 mt-6">
+        <div className="flex justify-center space-x-2 mt-6 font-helvetica">
           {steps.map((_, index) => (
             <button
               key={index}

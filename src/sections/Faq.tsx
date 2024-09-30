@@ -53,8 +53,10 @@ export default function FiccoFAQ() {
   return (
     <div id="faq" className=" text-white p-4 md:p-8">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-4">
+        <h2 className="text-lg font-revoluti text-center mb-6">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4 font-helvetica">
           {faqItems.map((item, index) => (
             <div key={index} className="border-b border-gray-700">
               <button
