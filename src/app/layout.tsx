@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-helvetica">
+      <body>
         <div className="w-full flex flex-col items-center">{children}</div>
       </body>
     </html>

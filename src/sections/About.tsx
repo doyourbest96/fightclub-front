@@ -1,8 +1,8 @@
 const About = () => {
   return (
     <div id="about" className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4">
-      <p className="text-xl font-black italic">ABOUT IRONWILL</p>
-      <p>
+      <p className="font-revoluti text-lg">ABOUT IRONWILL</p>
+      <p className="font-helvetica font-thin">
         {`Fight Club envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
               this, we're building a decentralized platform, powered by our
@@ -14,7 +14,9 @@ const About = () => {
               athletes and invest in their success, fostering a more equitable
               and rewarding future for the world of combat sports.`}
       </p>
-      <p className="text-orange-900">Read the whole story</p>
+      <p className="font-helvetica font-thin text-[#824b3d]">
+        Read the whole story
+      </p>
     </div>
   );
 };

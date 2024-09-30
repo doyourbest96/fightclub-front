@@ -7,7 +7,7 @@ import { RxSlash } from "react-icons/rx";
 const Logo = () => {
   return (
     <div className="flex flex-row items-center">
-      <Link href={"/"} className="text-2xl font-black italic">
+      <Link href={"/"} className="font-revoluti text-2xl tracking-tighter">
         IRONWILL
       </Link>
       <RxSlash className="w-6 h-6" />

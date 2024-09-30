@@ -57,7 +57,7 @@ const placeholders: Placeholder[] = [
 
 export default function DesktopMembers() {
   return (
-    <div className="text-white p-8">
+    <div className="text-white p-8 font-helvetica">
       <div className="mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
@@ -73,7 +73,7 @@ export default function DesktopMembers() {
               <div className="p-4">
                 <h2 className="text-xl font-bold">{member.name}</h2>
                 <p className="text-gray-400">{member.title}</p>
-                <p className="mt-2 text-sm">{member.description}</p>
+                <p className="mt-2">{member.description}</p>
               </div>
             </div>
           ))}

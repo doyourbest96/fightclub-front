@@ -29,15 +29,15 @@ const Branding = () => {
           <p className="text-[136px] text-stroke-8">FIGHT</p>
         </div>
         <div className="absolute top-32 w-full max-w-[580px] text-center">
-          <p className="text-4xl text-stroke-4 text-orange-900">C L U B</p>
+          <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
         </div>
-        <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full text-xl font-light">
-          <p className="">
+        <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full font-light">
+          <p className="font-helvetica text-xl font-light">
             Empowering martial artists, engaging fans and connecting industry
             leaders for a financially rewarding experience with the FIght Club
             platform.
           </p>
-          <button className="my-14 px-4 py-2 flex justify-center items-center gap-4 text-lg font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
+          <button className="my-14 px-4 py-1 flex justify-center items-center gap-4 font-light rounded-sm  bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
             <IoDocumentTextOutline aria-hidden="true" className="h-6 w-6" />
             Whitepaper
           </button>
@@ -45,19 +45,19 @@ const Branding = () => {
       </div>
       <div className="flex flex-col gap-2">
         <div
-          className="px-20 py-10 flex flex-row gap-10 bg-[linear-gradient(to_right,_#0000000f,_#824b3d,_#824b3d,_#824b3d,_#0000000f)] overflow-x-hidden"
+          className="px-20 py-10 flex flex-row gap-10 font-helvetica bg-[linear-gradient(to_right,_#0000000f,_#824b3d,_#824b3d,_#824b3d,_#0000000f)] overflow-x-hidden"
           ref={scrollRef}
         >
           <span></span>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-semibold">Empower</p>
+            <p className="font-black">Empower</p>
             <p className="font-light">
               Get control over your career and be seen by millions of people
               worldwide.
             </p>
           </div>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-semibold">Revenue</p>
+            <p className="font-black">Revenue</p>
             <p className="font-light">
               Whether you are a fighter, fan or club, our platform offers income
               models for everyone.
@@ -65,14 +65,14 @@ const Branding = () => {
           </div>
           <span></span>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-semibold">Connect</p>
+            <p className="font-black">Connect</p>
             <p className="font-light">
               Build your empire and get in touch with everyone, from fans to
               industry leaders.
             </p>
           </div>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-semibold">Transparency</p>
+            <p className="font-black">Transparency</p>
             <p className="font-light">
               By leveraging blockchain nothing can be hidden. Its easy to use
               and fool proof.

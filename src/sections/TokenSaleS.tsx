@@ -3,13 +3,13 @@ import Stage from "./Stagge";
 const TokenSaleS = () => {
   return (
     <div className="flex flex-col gap-2 items-center lg:items-start sm:px-8 md:px-12 lg:px-4 w-full overflow-auto">
-      <p className="max-w-md text-xl font-black italic text-center lg:text-left uppercase">
+      <p className="max-w-md text-lg font-revoluti text-center lg:text-left uppercase">
         Exclusive FICCO Token SaleS with Guaranteed AND MYSTERY ALLOCATION
       </p>
       <div className="py-4 w-full">
         <Stage />
       </div>
-      <p>
+      <p className="font-helvetica font-thin">
         {`Fight Club's native token, FICCO, is set to launch with a total
               maximum supply of 100 billion tokens. The initial price for the
               pre sale of 10 billion tokens will be set at a maximum of 0.00010
@@ -21,7 +21,9 @@ const TokenSaleS = () => {
               the price per FICCO coin down while increasing the quantity you
               receive. Terms apply.`}
       </p>
-      <p className="text-orange-900">More information</p>
+      <p className="font-helvetica font-thin text-[#824b3d]">
+        More information
+      </p>
     </div>
   );
 };

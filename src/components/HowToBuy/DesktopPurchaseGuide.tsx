@@ -29,21 +29,24 @@ const steps: Step[] = [
 
 export default function DesktopPurchaseGuide() {
   return (
-    <div className="w-full flex items-center justify-center bg-[#131511] text-white p-8">
+    <div className="w-full flex items-center justify-center rounded-md bg-[#131511] text-white p-8">
       <div className="max-w-6xl w-full space-y-8">
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold tracking-wider">
-            HOW TO BUY FICCO
-          </h2>
-          <p className="mt-2 text-xl text-red-500 font-semibold">GET STARTED</p>
-          <p className="mt-4 text-gray-400">
+        <div className="flex flex-col justify-center items-center">
+          <h2 className="text-lg font-revoluti">HOW TO BUY FICCO</h2>
+          <p className="mt-2 text-lg font-revoluti text-[#854b3d]">
+            GET STARTED
+          </p>
+          <p className="max-w-md mt-4 text-lg font-helvetica text-center text-[#854b3d]">
             Follow these easy steps to purchase FICCO tokens and embrace on our
             journey
           </p>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {steps.map((step, index) => (
-            <div key={index} className="bg-[#353731] p-6 rounded-lg shadow-lg">
+            <div
+              key={index}
+              className="font-helvetica bg-[#353731] p-6 rounded-lg shadow-lg"
+            >
               <Image
                 src={step.icon}
                 alt="icon"
@@ -51,8 +54,8 @@ export default function DesktopPurchaseGuide() {
                 height={60}
                 className="my-4"
               />
-              <h3 className="text-lg font-medium">{step.title}</h3>
-              <p className="mt-2 text-sm text-gray-400">{step.description}</p>
+              <h3 className="text-lg font-bold">{step.title}</h3>
+              <p className="mt-2 text-gray-400">{step.description}</p>
             </div>
           ))}
         </div>
