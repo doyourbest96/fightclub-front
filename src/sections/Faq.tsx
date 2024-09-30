@@ -53,14 +53,12 @@ export default function FiccoFAQ() {
   return (
     <div id="faq" className=" text-white p-4 md:p-8">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-lg font-revoluti text-center mb-6">
-          Frequently Asked Questions
-        </h2>
+        <h2 className="text-lg font-revoluti text-center mb-6">FAQ</h2>
         <div className="space-y-4 font-helvetica">
           {faqItems.map((item, index) => (
-            <div key={index} className="border-b border-gray-700">
+            <div key={index}>
               <button
-                className="flex justify-between items-center w-full py-4 text-left focus:outline-none group"
+                className="flex justify-between items-center w-full py-1 text-left focus:outline-none group"
                 onClick={() => toggleFAQ(index)}
                 aria-expanded={openIndex === index}
               >
@@ -82,7 +80,7 @@ export default function FiccoFAQ() {
                   openIndex === index ? "max-h-96" : "max-h-0"
                 }`}
               >
-                <div className="pb-4 text-gray-300">
+                <div className="py-2 pl-4 text-gray-300 ">
                   <p>{item.answer}</p>
                 </div>
               </div>

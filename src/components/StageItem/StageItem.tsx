@@ -26,10 +26,10 @@ const StageItem = ({
   } = data;
   return (
     <>
-      <div className="relative  w-full min-w-[180px]">
+      <div className="relative  w-full min-w-[124px]">
         <div className="absolute left-0 top-0 -z-10 rotate-3 w-full h-48 bg-[#787871]" />
         <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] rounded-lg shadow-lg">
-          <div className="p-3">
+          <div className="tracking-tighter">
             <div
               className={`font-revoluti mb-4 ${running && "text-[#824b3d]"}`}
             >

@@ -19,7 +19,7 @@ const teamMembers: TeamMember[] = [
     title: "Co-founder",
     description:
       "Former world champion kickboxing, owner of Andy Souwer Kickboxing University and WKS.",
-    imageSrc: "/assets/avatars/Andy.png",
+    imageSrc: "/assets/avatars/Andy.jpg",
   },
   {
     name: "Niels Strijbos",
@@ -33,7 +33,7 @@ const teamMembers: TeamMember[] = [
     title: "Co-founder",
     description:
       "Hebei university of technology, Former full stack developer at DESO, RubyExchange and Freebit.",
-    imageSrc: "/assets/avatars/Steven.png",
+    imageSrc: "/assets/avatars/Steven.jpg",
   },
 ];
 
@@ -57,34 +57,36 @@ const placeholders: Placeholder[] = [
 
 export default function DesktopMembers() {
   return (
-    <div className="text-white p-8 font-helvetica">
+    <div className="text-white p-8 font-helvetica max-w-6xl">
       <div className="mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
-            <div key={index} className="bg-gray-900 rounded-lg overflow-hidden">
-              <div className="h-52 flex justify-center items-end rounded-md bg-[#131511]">
+            <div key={index} className="rounded-lg overflow-hidden">
+              <div className="flex justify-center items-end">
                 <Image
                   src={member.imageSrc}
                   alt="avatar"
                   width={140}
-                  height={200}
+                  height={140}
+                  className="rounded-full"
                 />
               </div>
               <div className="p-4">
                 <h2 className="text-xl font-bold">{member.name}</h2>
                 <p className="text-gray-400">{member.title}</p>
-                <p className="mt-2">{member.description}</p>
+                <p className="mt-2 text-sm">{member.description}</p>
               </div>
             </div>
           ))}
           {placeholders.map((placeholder, index) => (
-            <div key={index} className="bg-gray-900 rounded-lg overflow-hidden">
-              <div className="h-52 flex justify-center items-end rounded-md bg-[#131511]">
+            <div key={index} className="rounded-lg overflow-hidden">
+              <div className="flex justify-center items-end">
                 <Image
                   src={placeholder.iconSrc}
                   alt="avatar"
                   width={140}
-                  height={200}
+                  height={140}
+                  className="rounded-full"
                 />
               </div>
               <div className="p-4">

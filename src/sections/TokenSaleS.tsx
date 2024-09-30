@@ -1,4 +1,4 @@
-import Stage from "./Stagge";
+import Stage from "./Stage";
 
 const TokenSaleS = () => {
   return (
@@ -9,7 +9,7 @@ const TokenSaleS = () => {
       <div className="py-4 w-full">
         <Stage />
       </div>
-      <p className="font-helvetica font-thin">
+      <p className="font-helvetica font-thin text-lg">
         {`Fight Club's native token, FICCO, is set to launch with a total
               maximum supply of 100 billion tokens. The initial price for the
               pre sale of 10 billion tokens will be set at a maximum of 0.00010
@@ -21,7 +21,7 @@ const TokenSaleS = () => {
               the price per FICCO coin down while increasing the quantity you
               receive. Terms apply.`}
       </p>
-      <p className="font-helvetica font-thin text-[#824b3d]">
+      <p className="font-helvetica font-thin text-lg text-[#824b3d]">
         More information
       </p>
     </div>
