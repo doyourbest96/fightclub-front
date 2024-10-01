@@ -21,10 +21,10 @@ const Header = () => {
   return (
     <>
       <div className="flex flex-col gap-2 lg:gap-12 pb-8 branding">
-        <div className="py-7 flex flex-row items-center gap-4 px-1 lg:px-2 xl:px-4">
+        <div className="py-7 flex flex-row  items-center gap-4 px-1 lg:px-2 xl:px-4">
           <div className="flex flex-row flex-1 items-center gap-4 uppercase">
             <Logo />
-            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-2 lg:gap-4 font-revoluti lg:text-[14px] text-[#824b3d] bg-black/70 tracking-tighter">
+            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-2 lg:gap-4 font-revoluti justify-around lg:text-[14px] text-[#824b3d] bg-black/70 tracking-tighter">
               {navigation.map((item) => (
                 <a
                   key={item.name}
