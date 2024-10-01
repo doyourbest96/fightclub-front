@@ -3,12 +3,12 @@ import TrackImg from "@/components/trackImg";
 const FuelRevolution = () => {
   return (
     <div className="flex flex-col gap-6 font-helvetica sm:px-8 md:px-12 lg:px-4 w-full">
-      <p className="text-lg font-revoluti text-[#dbdbcf]">
+      <div className="text-lg font-revoluti text-[#dbdbcf]">
         <span className="relative">
           FUEL THE REVOLUTION
           <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 -z-10  w-[240px] h-[240px]" />
         </span>
-      </p>
+      </div>
       <p className="font-thin text-lg text-[#dbdbcf]">
         <span className="font-bold text-[#dbdbcf]">
           Ownership and Empowerment:

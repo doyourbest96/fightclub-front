@@ -6,12 +6,12 @@ const About = () => {
       id="about"
       className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4 relative"
     >
-      <p className="font-revoluti text-base text-[#dbdbcf] my-5">
+      <div className="font-revoluti text-base text-[#dbdbcf] my-5">
         <span className="relative">
           ABOUT IRONWILL
           <TrackImg className="absolute top-0 translate-x-24 -translate-y-24 w-[240px] h-[240px] -z-10" />
         </span>
-      </p>
+      </div>
       <p className="stretched-font-stretch font-helvetica font-thin text-md text-[#dbdbcf] scale-x-95 scale-y-110 -ml-3">
         {`Fight Club envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
