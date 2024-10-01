@@ -8,7 +8,7 @@ const stageData = [
     type: "pre",
     value: "10,000,000,000",
     maxPrice: "$0.00010",
-    softcap: "$1000,000",
+    softcap: "$100,000",
     hardcap: "$1,000,000",
     period: "12-0-24 to 23-22-23",
     status: "open",

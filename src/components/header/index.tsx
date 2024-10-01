@@ -38,7 +38,7 @@ const Header = () => {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                className="inline-flex items-center justify-center rounded-md p-2.5 text-[#dbdbcf]"
               >
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -60,7 +60,7 @@ const Header = () => {
             />
             <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
-              leaders for a financially rewarding experience with the FIght Club{" "}
+              leaders for a financially rewarding experience with the IRONWILL{" "}
               <br />
               platform.
             </p>
