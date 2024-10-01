@@ -19,8 +19,8 @@ const Tokenomics = () => {
           <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 -z-10  w-[240px] h-[240px]" />
         </span>
       </p>
-      <div className="flex flex-col justify-center md:w-[60%] lg:w-[70%]">
-        <div className="p-2 md:p-8 w-full flex flex-col items-center justify-center">
+      <div className="flex flex-col justify-center md:w-[60%] lg:w-[80%]">
+        <div className="px-2 md:px-8 w-full flex flex-col items-center justify-center">
           <Doughnut
             data={tokenomicsData}
             options={tokenomicsOption}

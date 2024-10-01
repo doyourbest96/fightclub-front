@@ -90,7 +90,7 @@ const Stage = () => {
             <div
               key={id}
               className={classNames(
-                "rounded-full w-6 h-6 hover:cursor-pointer hover:bg-gray-100",
+                "rounded-full w-6 h-6 hover:cursor-pointer hover:bg-gray-100 ",
                 selectedIntroView === id + 1 ? "bg-gray-200" : "bg-gray-400 "
               )}
               onClick={() => {

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { FaCopy } from "react-icons/fa";
 
 import Image from "next/image";
 
@@ -55,18 +54,22 @@ const PreSaleInterface: React.FC = () => {
     <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-md min-w-md">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center p-4 ">
-          <h1 className="text-2xl font-revoluti font-bold mb-4 italic">
-            PRE SALE 1
-          </h1>
+          <h1 className="text-2xl font-revoluti font-bold mb-4">PRE SALE 1</h1>
           <div className="mb-4 items-center">
             <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-xl h-8">
               <div
-                className="bg-[#824B3D] h-7 rounded-l-lg"
+                className="relative bg-[#824B3D] h-7 rounded-l-lg flex justify-end"
                 style={{ width: `${(progress / 1000000) * 100}%` }}
-              ></div>
+              >
+                <div className="absolute top-10 transform translate-x-1/2">
+                  <div className="relative inline-block bg-[#e8e6d9] text-[#824B3D] font-bold font-revoluti py-1 px-2 rounded">
+                    <div className="absolute left-1/2 -top-1 w-2 h-2 bg-[#e8e6d9] transform -translate-x-1/2 rotate-45"></div>
+                    {"$" + progress}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between text-lg font-bold font-revoluti mt-1 text-[#dbdbcf]">
-              <span>${progress}</span>
+            <div className="flex justify-end text-lg font-bold font-revoluti mt-3 text-[#dbdbcf]">
               <span>$1000000</span>
             </div>
           </div>
@@ -75,11 +78,15 @@ const PreSaleInterface: React.FC = () => {
             <p className="text-sm font-bold text-[#824b3d]">
               Current maximum price: $ 0.0001
             </p>
-            <p className="text-sm font-bold text-[#dbdbcf]" >Sale 2 maximum price: $ 0.0004</p>
+            <p className="text-sm font-bold text-[#dbdbcf]">
+              Sale 2 maximum price: $ 0.0004
+            </p>
           </div>
 
           <div className="mb-4">
-            <p className="font-bold font-revoluti text-2xl text-[#dbdbcf]">TIME LEFT</p>
+            <p className="font-bold font-revoluti text-2xl text-[#dbdbcf]">
+              TIME LEFT
+            </p>
           </div>
 
           <div className="grid grid-cols-4 gap-2 mb-6">
@@ -227,11 +234,12 @@ const PreSaleInterface: React.FC = () => {
               0x5384545c3190474713bdc48c3371fdbccd2b8e9
             </span>
             <button
+              className="px-2 py-0.5 text-xs rounded-md bg-[#824B3D] hover:focus:bg-orange-800"
               onClick={() =>
                 copyToClipboard("0x5384545c3190474713bdc48c3371fdbccd2b8e9")
               }
             >
-              <FaCopy />
+              COPY
             </button>
           </div>
         </div>

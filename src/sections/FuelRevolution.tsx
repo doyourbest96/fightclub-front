@@ -34,7 +34,7 @@ const FuelRevolution = () => {
               participation in exclusive experiences and potential rewards based
               on the platform's success.`}
         </p>
-        <p className="text-[#824b3d]">Learn more about $FICCO</p>
+        <p className="text-[#824b3d] pt-1">Learn more about $FICCO</p>
       </div>
     </div>
   );
