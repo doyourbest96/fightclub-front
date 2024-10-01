@@ -1,3 +1,4 @@
+import TrackImg from "../trackImg";
 import RoadmapItem from "./RoadmapItem";
 import Image from "next/image";
 
@@ -70,9 +71,14 @@ const roadmapData = [
 
 const Roadmap = () => {
   return (
-    <div className="flex flex-col lg:gap-6 rounded-md font-helvetica">
-      <div className="relative flex items-center justify-between top-0 right-0 w-full h-[15vh] lg:h-full overflow-hidden">
-        <p className="text-lg font-revoluti z-10 text-[#dbdbcf]">Roadmap</p>
+    <div className="flex flex-col lg:gap-6 rounded-md font-helvetica relative">
+      <div className="flex items-center justify-between w-full h-[15vh] lg:h-full overflow-visible">
+        <p className="text-lg font-revoluti -z-10 text-[#dbdbcf]">
+          <span className="relative">
+            Roadmap
+            <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 -z-10  w-[240px] h-[240px]" />
+          </span>
+        </p>
         <div className="lg:hidden absolute top-0 right-0 w-1/2 h-full">
           <Image
             src={"/assets/images/smart.png"}
