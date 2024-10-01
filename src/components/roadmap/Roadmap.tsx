@@ -76,9 +76,9 @@ const roadmapData = [
 const Roadmap = () => {
   return (
     <div className="flex flex-col lg:gap-6 rounded-md font-helvetica relative">
-      <div className="flex items-center justify-between w-full h-[15vh] lg:h-full overflow-visible">
+      <div className="relative flex items-center justify-between w-full h-[15vh] lg:h-full overflow-visible">
         <div className="text-lg font-revoluti -z-10 text-[#dbdbcf]">
-          <span className="relative">
+          <span className="relative uppercase">
             Roadmap
             <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 -z-10  w-[240px] h-[240px]" />
           </span>

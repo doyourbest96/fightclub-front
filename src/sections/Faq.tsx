@@ -57,7 +57,7 @@ export default function FiccoFAQ() {
         <h2 className="text-lg font-revoluti text-center mb-6">
           <span className="relative">
             FAQ
-            <TrackImg className="absolute top-0 translate-x-52 -translate-y-16 -z-10  w-[240px] h-[240px]" />
+            <TrackImg className="absolute top-0 md:translate-x-52 -translate-y-16 -z-10  w-[240px] h-[240px]" />
           </span>
         </h2>
         <div className="font-roboto-bold">
