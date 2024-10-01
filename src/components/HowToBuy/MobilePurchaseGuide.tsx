@@ -33,7 +33,7 @@ export default function MobilePurchaseGuide() {
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-[#dbdbcf] p-8">
+    <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-[#dbdbcf] p-4 md:p-8">
       <div className="w-full max-w-md">
         <h1 className="text-lg font-revoluti text-center text-[#dbdbcf]">
           HOW TO BUY FICCO
@@ -66,7 +66,7 @@ export default function MobilePurchaseGuide() {
               key={index}
               onClick={() => setCurrentStep(index)}
               className={`w-12 h-10 rounded ${
-                index === currentStep ? "bg-yellow-600" : "bg-gray-700"
+                index === currentStep ? "bg-[#824B3D]" : "bg-[#824B3D]/50"
               } text-[#dbdbcf] font-semibold transition-colors duration-200`}
               aria-label={`Step ${index + 1}`}
             >
