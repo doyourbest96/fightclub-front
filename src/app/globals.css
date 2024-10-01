@@ -21,6 +21,21 @@ body {
   }
 }
 
+/* .landing {
+  background-image: url("/assets/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+  } */
+  
+.branding {
+    
+  background-image: url("/assets/images/bg-add.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+}
+
 .advertisement {
   background-image: url("/assets/images/bg-add.jpg");
   background-repeat: no-repeat;

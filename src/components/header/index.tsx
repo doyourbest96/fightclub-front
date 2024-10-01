@@ -20,11 +20,11 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <>
-      <div className="advertisement flex flex-col gap-16">
-        <div className="py-7 flex flex-row items-center gap-4">
-          <div className="flex flex-1 flex-row items-center gap-4 xl:gap-12 2xl:gap-28 uppercase">
+      <div className="flex flex-col gap-2 lg:gap-16 bg-gray-400 pb-8 branding">
+        <div className="py-7 flex flex-row items-center gap-4   px-1 lg:px-2 xl:px-4">
+          <div className="flex flex-row flex-1 items-center gap-4 uppercase">
             <Logo />
-            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-2 xl:gap-6 2xl:gap-16 font-revoluti text-sm text-[#824b3d] bg-black/70 tracking-tighter">
+            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-2 lg:gap-3 font-revoluti text-sm text-[#824b3d] bg-black/70 tracking-tighter">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -40,7 +40,7 @@ const Header = () => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -50,20 +50,21 @@ const Header = () => {
             whitepaper
           </button>
         </div>
-        <div className="relative w-full">
-          <div className="absolute -top-12 w-full max-w-[580px] text-center">
-            <p className="text-[110px] md:text-[140px] lg:text-[180px] text-stroke-8">FIGHT</p>
+        <div className="relative w-full lg:pl-20">
+          <div className="text-[#824b3d] text-center font-bold text-md sm:hidden">PRESALE LIVE - PRESALE LIVE - PRESALE LIVE</div>
+          <div className="absolute -top-6 w-full max-w-[580px] text-center">
+            <p className="text-[140px] md:text-[160px] lg:text-[200px] text-stroke-8">FIGHT</p>
           </div>
-          <div className="absolute top-28 md:top-32 lg:top-44 w-full max-w-[580px] text-center">
+          <div className="absolute top-40 md:top-44 lg:top-60 w-full max-w-[580px] text-center">
             <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
           </div>
-          <div className="mt-40 md:mt-48 lg:mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full font-light">
-            <p className="font-helvetica text-xl font-light">
+          <div className="mt-48 md:mt-64 lg:mt-[22rem] max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+            <p className="font-helvetica text-[1.4rem] md:text-2xl font-light">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the FIght Club
               platform.
             </p>
-            <button className="my-14 px-4 py-1 flex justify-center items-center gap-4 font-light rounded-sm  bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
+            <button className="my-16 px-4 py-1 flex justify-center items-center gap-4 font-light rounded-sm  bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
               <IoDocumentTextOutline aria-hidden="true" className="h-6 w-6" />
               Whitepaper
             </button>
