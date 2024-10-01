@@ -6,28 +6,28 @@ import { RxSlash } from "react-icons/rx";
 
 const Footer = () => {
   return (
-    <footer className=" text-gray-400 py-4 px-6 w-full border-t">
+    <footer className="py-4 px-6 w-full border-t">
       <div className="container mx-auto flex flex-col lg:flex-row gap-4 items-center px-2 justify-between">
         <div className="flex items-center mb-4 md:mb-0 mx-4">
           <div className="flex flex-row items-center">
-            <Link href={"/"} className="font-revoluti text-xl tracking-tighter">
+            <Link href={"/"} className="font-revoluti text-xl tracking-tighter text-[#dbdbcf]">
               IRONWILL
             </Link>
-            <RxSlash className="w-5 h-5" />
+            <RxSlash className="w-5 h-5 stroke-[#dbdbcf]" />
             <Link href={"/"}>
-              <FaXTwitter className="w-5 h-5" />
+              <FaXTwitter className="w-5 h-5 stroke-[#dbdbcf]" />
             </Link>
-            <RxSlash className="w-5 h-5" />
+            <RxSlash className="w-5 h-5 stroke-[#dbdbcf]" />
             <Link href={"/"}>
-              <FaTelegramPlane className="w-5 h-5" />
+              <FaTelegramPlane className="w-5 h-5 stroke-[#dbdbcf]" />
             </Link>
-            <RxSlash className="w-5 h-5" />
+            <RxSlash className="w-5 h-5 stroke-[#dbdbcf]" />
             <Link href={"/"}>
-              <FaInstagram className="w-5 h-5" />
+              <FaInstagram className="w-5 h-5 stroke-[#dbdbcf]" />
             </Link>
           </div>
         </div>
-        <div className="max-w-5xl font-helvetica text-center lg:text-left">
+        <div className="max-w-5xl font-helvetica text-center lg:text-left text-[#dbdbcf]">
           <p>
             Please review this legal disclaimer carefully. Seek professional
             advice for any doubt. The information provided is not exhaustive and
@@ -40,7 +40,7 @@ const Footer = () => {
             Cryptocurrency may be unregulated in your jurisdiction. The value of
             cryptocurrencies may fluctuate. Profits may be subject to capital
             gains or other taxes applicable in your jurisdiction.
-            <span className="mt-2 text-xm font-bold">
+            <span className="mt-2 text-xm font-bold stroke-[#dbdbcf]">
               © Fight Club. All rights reserved.
             </span>
           </p>

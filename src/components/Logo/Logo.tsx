@@ -9,21 +9,21 @@ const Logo = () => {
     <div className="flex flex-row items-center">
       <Link
         href={"/"}
-        className="font-revoluti text-lg md::text-2xl xl:text-3xl tracking-tighter"
+        className="font-revoluti text-[#d3d3c7] text-lg md::text-2xl xl:text-[24px] tracking-tighter"
       >
         IRONWILL
       </Link>
-      <RxSlash className="w-6 h-6" />
+      <RxSlash className="w-6 h-6 stroke-[#d3d3c7]" />
       <Link href={"/"}>
-        <FaXTwitter className="w-6 h-6" />
+        <FaXTwitter className="w-6 h-6 stroke-[#d3d3c7]" />
       </Link>
-      <RxSlash className="w-6 h-6" />
+      <RxSlash className="w-6 h-6 stroke-[#d3d3c7]" />
       <Link href={"/"}>
-        <FaTelegramPlane className="w-6 h-6" />
+        <FaTelegramPlane className="w-6 h-6 stroke-[#d3d3c7]" />
       </Link>
-      <RxSlash className="w-6 h-6" />
+      <RxSlash className="w-6 h-6 stroke-[#d3d3c7]" />
       <Link href={"/"}>
-        <FaInstagram className="w-6 h-6" />
+        <FaInstagram className="w-6 h-6 stroke-[#d3d3c7]" />
       </Link>
     </div>
   );

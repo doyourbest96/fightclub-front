@@ -52,22 +52,22 @@ const PreSaleInterface: React.FC = () => {
   };
 
   return (
-    <div className="text-white flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-md min-w-md">
+    <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-md min-w-md">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center p-4 ">
           <h1 className="text-2xl font-revoluti font-bold mb-4 italic">
             PRE SALE 1
           </h1>
           <div className="mb-4 items-center">
-            <div className="w-full bg-[#787871]  border-[#824B3D] border-2 rounded-xl h-8">
+            <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-xl h-8">
               <div
                 className="bg-[#824B3D] h-7 rounded-l-lg"
                 style={{ width: `${(progress / 1000000) * 100}%` }}
               ></div>
             </div>
-            <div className="flex justify-between text-lg font-bold mt-1 italic">
+            <div className="flex justify-between text-lg font-bold font-revoluti mt-1 text-[#dbdbcf]">
               <span>${progress}</span>
-              <span>$1,000,000</span>
+              <span>$1000000</span>
             </div>
           </div>
 
@@ -75,11 +75,11 @@ const PreSaleInterface: React.FC = () => {
             <p className="text-sm font-bold text-[#824b3d]">
               Current maximum price: $ 0.0001
             </p>
-            <p className="text-sm font-bold">Sale 2 maximum price: $ 0.0004</p>
+            <p className="text-sm font-bold text-[#dbdbcf]" >Sale 2 maximum price: $ 0.0004</p>
           </div>
 
           <div className="mb-4">
-            <p className="font-bold font-revoluti text-2xl">TIME LEFT</p>
+            <p className="font-bold font-revoluti text-2xl text-[#dbdbcf]">TIME LEFT</p>
           </div>
 
           <div className="grid grid-cols-4 gap-2 mb-6">
@@ -181,7 +181,7 @@ const PreSaleInterface: React.FC = () => {
                 type="number"
                 value={amountETH}
                 onChange={(e) => setAmountETH(e.target.value)}
-                className="bg-[#353535] rounded p-2 text-white w-full"
+                className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
               />
             </div>
             <div className="text-left">
@@ -192,7 +192,7 @@ const PreSaleInterface: React.FC = () => {
                 type="number"
                 value={getAmount}
                 onChange={(e) => setGetAmount(e.target.value)}
-                className="bg-[#353535] rounded p-2 text-white w-full"
+                className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
               />
             </div>
           </div>
@@ -205,7 +205,7 @@ const PreSaleInterface: React.FC = () => {
               type="number"
               value="0.0"
               readOnly
-              className="bg-[#353535] rounded p-2 text-white w-[50%]"
+              className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-[50%]"
             />
           </div>
 

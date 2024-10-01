@@ -11,7 +11,7 @@ const Tokenomics = () => {
     <>
       <p
         id="tokenomics"
-        className="w-full text-lg font-revoluti text-center lg:text-left uppercase sm:px-8 md:px-12 lg:px-4 "
+        className="w-full text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase sm:px-8 md:px-12 lg:px-4 "
       >
         Tokenomics
       </p>

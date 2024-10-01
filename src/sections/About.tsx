@@ -1,8 +1,8 @@
 const About = () => {
   return (
     <div id="about" className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4">
-      <p className="font-revoluti text-lg">ABOUT IRONWILL</p>
-      <p className="font-helvetica font-thin text-md">
+      <p className="font-revoluti text-lg text-[#dbdbcf]">ABOUT IRONWILL</p>
+      <p className="font-helvetica font-thin text-md text-[#dbdbcf]">
         {`Fight Club envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
               this, we're building a decentralized platform, powered by our

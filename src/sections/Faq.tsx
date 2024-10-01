@@ -51,7 +51,7 @@ export default function FiccoFAQ() {
   };
 
   return (
-    <div id="faq" className=" text-white p-4 md:p-8">
+    <div id="faq" className=" text-[#dbdbcf] p-4 md:p-8">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-lg font-revoluti text-center mb-6">FAQ</h2>
         <div className="space-y-4 font-helvetica">
@@ -62,10 +62,10 @@ export default function FiccoFAQ() {
                 onClick={() => toggleFAQ(index)}
                 aria-expanded={openIndex === index}
               >
-                <span className="text-lg font-medium pr-8">
+                <span className="text-lg font-helvetica pr-8">
                   {item.question}
                 </span>
-                <span className="text-gray-400 transition-transform duration-200 ease-in-out group-hover:text-white">
+                <span className="text-[#dbdbcf]transition-transform duration-200 ease-in-out group-hover:text-white">
                   {openIndex === index ? (
                     // <Minus className="w-6 h-6" />
                     <MinusIcon className="w-6 h-6" />
@@ -80,7 +80,7 @@ export default function FiccoFAQ() {
                   openIndex === index ? "max-h-96" : "max-h-0"
                 }`}
               >
-                <div className="py-2 pl-4 text-gray-300 ">
+                <div className="py-2 pl-4 text-[#dbdbcf] font-helvetica">
                   <p>{item.answer}</p>
                 </div>
               </div>
