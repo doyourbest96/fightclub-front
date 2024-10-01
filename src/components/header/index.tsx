@@ -24,7 +24,7 @@ const Header = () => {
         <div className="py-7 flex flex-row items-center gap-4 px-1 lg:px-2 xl:px-4">
           <div className="flex flex-row flex-1 items-center gap-4 uppercase">
             <Logo />
-            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-2 lg:gap-4 font-revoluti lg:text-[14px] text-[#824b3d] bg-black/70 tracking-tighter">
+            <div className="hidden p-3 lg:flex flex-1 flex-row justify-around items-end gap-2 lg:gap-4 font-revoluti lg:text-[14px] text-[#824b3d] bg-black/70 tracking-tighter">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -51,21 +51,18 @@ const Header = () => {
           </button>
         </div>
         <div className="relative w-full lg:pl-20">
-          {/* <div className="text-[#824b3d] text-center font-bold text-md sm:hidden">PRESALE LIVE - PRESALE LIVE - PRESALE LIVE</div>
-          <div className="absolute -top-6 w-full max-w-[580px] text-center">
-            <p className="text-[140px] md:text-[160px] lg:text-[200px] text-stroke-8 ">FIGHT</p>
-          </div>
-          <div className="absolute top-40 md:top-44 lg:top-60 w-full max-w-[580px] text-center">
-            <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
-          </div> */}
           <div className="mt-48 md:mt-64 lg:mt-80 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
             <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
-              leaders for a financially rewarding experience with the FIght Club <br />
+              leaders for a financially rewarding experience with the FIght Club{" "}
+              <br />
               platform.
             </p>
             <button className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
-              <IoDocumentTextOutline aria-hidden="true" className="h-6 w-6 border-black" />
+              <IoDocumentTextOutline
+                aria-hidden="true"
+                className="h-6 w-6 border-black"
+              />
               Whitepaper
             </button>
           </div>

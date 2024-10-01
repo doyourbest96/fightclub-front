@@ -31,12 +31,10 @@ const StageItem = ({
         <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] shadow-lg">
           <div className="tracking-tighter py-3">
             <div
-              className={`font-revoluti text-md mb-4 ${
-                running && "text-[#824b3d]"
-              }`}
+              className={`font-revoluti text-sm ${running && "text-[#824b3d]"}`}
             >
               {type === "public" ? <p>PUBLIC</p> : <p>PRE</p>} <p>SALE</p>
-              <p className="text-5xl font-helvetica font-medium">{id}</p>
+              <p className="text-4xl font-helvetica font-medium">{id}</p>
             </div>
             <div className={`text-sm ${running && "text-[#c9c9bf]"}`}>
               {value}
@@ -65,7 +63,7 @@ const StageItem = ({
             </p>
           </div>
           <div
-            className={`py-2 flex items-center justify-center text-lg font-revoluti uppercase bg-[linear-gradient(to_right,_#131511,_#333333,_#131511)] ${
+            className={`py-2 flex items-center justify-center text-base font-revoluti uppercase bg-[linear-gradient(to_right,_#131511,_#333333,_#131511)] ${
               running && "text-[#824b3d]"
             }`}
           >
