@@ -76,7 +76,7 @@ const Roadmap = () => {
   return (
     <div id="roadmap" className="flex flex-col lg:gap-6 rounded-md">
       <div className="relative flex items-center justify-between top-0 right-0 w-full h-[15vh] lg:h-full overflow-hidden">
-        <p className="text-3xl font-black italic text-[#dbdbcf] z-10">Roadmap</p>
+        <p className="text-3xl font-black italic text-[#dbdbcf] uppercase z-10">Roadmap</p>
         <div className="lg:hidden absolute top-0 right-0 w-1/2 h-full">
           <Image
             src={"/assets/images/smart.png"}
