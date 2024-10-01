@@ -52,12 +52,12 @@ const Header = () => {
         </div>
         <div className="relative w-full">
           <div className="absolute -top-12 w-full max-w-[580px] text-center">
-            <p className="text-[180px] text-stroke-8">FIGHT</p>
+            <p className="text-[110px] md:text-[140px] lg:text-[180px] text-stroke-8">FIGHT</p>
           </div>
-          <div className="absolute top-44 w-full max-w-[580px] text-center">
+          <div className="absolute top-28 md:top-32 lg:top-44 w-full max-w-[580px] text-center">
             <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
           </div>
-          <div className="mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full font-light">
+          <div className="mt-40 md:mt-48 lg:mt-64 max-w-[580px] px-8 flex flex-col items-center text-center w-full font-light">
             <p className="font-helvetica text-xl font-light">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the FIght Club

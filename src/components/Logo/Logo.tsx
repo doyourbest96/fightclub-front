@@ -9,7 +9,7 @@ const Logo = () => {
     <div className="flex flex-row items-center">
       <Link
         href={"/"}
-        className="font-revoluti text-2xl xl:text-3xl tracking-tighter"
+        className="font-revoluti text-lg md::text-2xl xl:text-3xl tracking-tighter"
       >
         IRONWILL
       </Link>

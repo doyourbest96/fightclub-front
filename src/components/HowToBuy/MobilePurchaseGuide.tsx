@@ -43,13 +43,13 @@ export default function MobilePurchaseGuide() {
           Follow these easy steps to purchase FICCO tokens and embrace on our
           journey
         </p>
-        <div className="h-[240px] bg-[#353731] p-6 rounded-lg shadow-lg font-helvetica">
+        <div className="h-[250px] sm:h-[240px] bg-[#353731] p-4 sm:p-6 rounded-lg shadow-lg font-helvetica">
           <Image
             src={steps[currentStep].icon}
             alt="icon"
             width={60}
             height={60}
-            className="my-4"
+            className="my-1 sm:my-4"
           />
           <h2 className="text-xl font-semibold mb-2">
             {steps[currentStep].title}
