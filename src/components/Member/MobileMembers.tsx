@@ -11,7 +11,7 @@ interface CoFounder {
   description: string;
   imageSrc: string;
   socialLink: string;
-  href: string
+  href: string;
 }
 
 interface Advisor {
@@ -34,7 +34,7 @@ const coFounders: CoFounder[] = [
       "Former world champion kickboxing, owner of Andy Souwer Kickboxing University and WKS.",
     imageSrc: "/assets/avatars/Andy.jpg",
     socialLink: "Instagram",
-    href: "/"
+    href: "/",
   },
   {
     name: "Niels Strijbos",
@@ -43,7 +43,7 @@ const coFounders: CoFounder[] = [
       "Creator of consumer brands, former co-owner at Bos Group Suant and Dutch Etail Network",
     imageSrc: "/assets/avatars/Niels.png",
     socialLink: "Instagram",
-    href: "/"
+    href: "/",
   },
   {
     name: "Steven Piao",
@@ -52,7 +52,7 @@ const coFounders: CoFounder[] = [
       "Hebei university of technology, Former full stack developer at DESO, RubyExchange and Freebit.",
     imageSrc: "/assets/avatars/Steven.jpg",
     socialLink: "Linkedin",
-    href: "/"
+    href: "/",
   },
 ];
 
@@ -88,7 +88,7 @@ function CoFounderShowCase() {
   const renderCard = (index: number) => {
     const member = coFounders[index];
     return (
-      <div className="bg-gray-900 rounded-lg overflow-hidden">
+      <div className="rounded-lg overflow-hidden">
         <div className="h-40 flex justify-center items-end">
           <Image
             src={member.imageSrc}
@@ -99,12 +99,14 @@ function CoFounderShowCase() {
           />
         </div>
         <div className="p-4">
-          <div className="flex items-center text-[#dbdbcf]">
+          <div className="flex justify-center items-center text-[#dbdbcf]">
             <h2 className="text-xl font-bold mr-2">{member.name}</h2>
             <Link href={member.href}>
-              {
-                member.socialLink == "Instagram" ? <FaInstagram className="w-6 h-6" /> : <FaLinkedinIn className="w-5 h-5" />
-              }
+              {member.socialLink == "Instagram" ? (
+                <FaInstagram className="w-6 h-6" />
+              ) : (
+                <FaLinkedinIn className="w-5 h-5" />
+              )}
             </Link>
           </div>
           <p className="text-[#dbdbcf]">{member.title}</p>
@@ -122,8 +124,9 @@ function CoFounderShowCase() {
           {Array.from({ length: coFounders.length }).map((_, index) => (
             <button
               key={index}
-              className={`w-5 h-5 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-600"
-                }`}
+              className={`w-5 h-5 rounded-full ${
+                index === currentIndex ? "bg-white" : "bg-gray-600"
+              }`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -140,9 +143,15 @@ function AdvisorShowCase() {
   const renderCard = (index: number) => {
     const member = advisors[index];
     return (
-      <div className="bg-gray-900 rounded-lg overflow-hidden">
+      <div className="rounded-lg overflow-hidden">
         <div className="h-40 flex justify-center items-end ">
-          <Image src={member.iconSrc} alt="avatar" width={140} height={200} className="rounded-full" />
+          <Image
+            src={member.iconSrc}
+            alt="avatar"
+            width={140}
+            height={200}
+            className="rounded-full"
+          />
         </div>
         <div className="p-4">
           {/* <h2 className="text-xl font-bold">{member.name}</h2> */}
@@ -161,8 +170,9 @@ function AdvisorShowCase() {
           {Array.from({ length: advisors.length }).map((_, index) => (
             <button
               key={index}
-              className={`w-5 h-5 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-600"
-                }`}
+              className={`w-5 h-5 rounded-full ${
+                index === currentIndex ? "bg-white" : "bg-gray-600"
+              }`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -179,9 +189,15 @@ function AmbassadorShowCase() {
   const renderCard = (index: number) => {
     const member = ambassadors[index];
     return (
-      <div className="bg-gray-900 rounded-lg overflow-hidden text-[#dbdbcf]">
+      <div className="rounded-lg overflow-hidden text-[#dbdbcf]">
         <div className="h-40 flex justify-center items-end ">
-          <Image src={member.iconSrc} alt="avatar" width={140} height={200} className="rounded-full" />
+          <Image
+            src={member.iconSrc}
+            alt="avatar"
+            width={140}
+            height={200}
+            className="rounded-full"
+          />
         </div>
         <div className="p-4">
           {/* <h2 className="text-xl font-bold">{member.name}</h2> */}
@@ -200,8 +216,9 @@ function AmbassadorShowCase() {
           {Array.from({ length: ambassadors.length }).map((_, index) => (
             <button
               key={index}
-              className={`w-5 h-5 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-600"
-                }`}
+              className={`w-5 h-5 rounded-full ${
+                index === currentIndex ? "bg-white" : "bg-gray-600"
+              }`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -214,7 +231,7 @@ function AmbassadorShowCase() {
 
 export default function MobileMembers() {
   return (
-    <div>
+    <div className="text-center">
       <CoFounderShowCase />
       <AdvisorShowCase />
       <AmbassadorShowCase />
