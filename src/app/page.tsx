@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-16 px-1 lg:px-2 xl:px-4">
         {/* desktop for splitting */}
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex gap-1">
           <div className="w-3/5 xl:px-16 flex flex-col gap-8 lg:gap-12 items-center">
             <About />
             <TokenSaleS />
@@ -36,7 +36,7 @@ export default function Home() {
           <div className="w-2/5 flex flex-col gap-4 items-center">
             <Supply />
             <PreSaleInterface />
-            <TokenomicsTable /> 
+            <TokenomicsTable />
           </div>
         </div>
 
