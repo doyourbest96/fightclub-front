@@ -2,7 +2,6 @@
 
 import { classNames } from "@/utils/classNames";
 import { useEffect, useRef, useState } from "react";
-import BackImage from "./BackImage";
 
 const Branding = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
