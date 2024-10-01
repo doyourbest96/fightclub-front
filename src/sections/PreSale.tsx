@@ -56,21 +56,25 @@ const PreSaleInterface: React.FC = () => {
         <div className="w-full bg-[#131511] rounded-lg text-center p-4 ">
           <h1 className="text-2xl font-revoluti font-bold mb-4">PRE SALE 1</h1>
           <div className="mb-4 items-center">
-            <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-xl h-8">
+            <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-lg h-8">
               <div
                 className="relative bg-[#824B3D] h-7 rounded-l-lg flex justify-end"
                 style={{ width: `${(progress / 1000000) * 100}%` }}
               >
                 <div className="absolute top-10 transform translate-x-1/2">
-                  <div className="relative inline-block bg-[#e8e6d9] text-[#824B3D] font-bold font-revoluti py-1 px-2 rounded">
+                  <div className="relative inline-block bg-[#e8e6d9] py-1 px-2 rounded">
                     <div className="absolute left-1/2 -top-1 w-2 h-2 bg-[#e8e6d9] transform -translate-x-1/2 rotate-45"></div>
-                    {"$" + progress}
+                    <span className="text-base text-[#824B3D] font-bold font-revoluti">
+                      {"$" + progress}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex justify-end text-lg font-bold font-revoluti mt-3 text-[#dbdbcf]">
-              <span>$1000000</span>
+            <div className="flex justify-end mt-3 ">
+              <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
+                $1000000
+              </span>
             </div>
           </div>
 
@@ -84,12 +88,12 @@ const PreSaleInterface: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <p className="font-bold font-revoluti text-2xl text-[#dbdbcf]">
+            <p className="font-bold font-revoluti text-xl text-[#dbdbcf]">
               TIME LEFT
             </p>
           </div>
 
-          <div className="grid grid-cols-4 gap-2 mb-6">
+          <div className="grid grid-cols-4 gap-3 mb-10">
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.days}</div>
               <div className="text-sm">days</div>
@@ -108,7 +112,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="grid grid-cols-2 gap-3 mb-10">
             <button
               className={`bg-[#353535] border ${
                 paymentType === "ETH"
@@ -156,7 +160,7 @@ const PreSaleInterface: React.FC = () => {
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-1 sm:mr-3 rounded-full"
+                className="mr-1 lg:mr-2 rounded-full"
               />{" "}
               Pay with BNB
             </button>
@@ -179,7 +183,7 @@ const PreSaleInterface: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="text-left">
               <label className="block text-sm mb-1 sm:font-bold">
                 AMOUNT (ETH)
