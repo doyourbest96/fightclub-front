@@ -52,7 +52,7 @@ export default function FiccoFAQ() {
   };
 
   return (
-    <div id="faq" className=" text-[#dbdbcf] p-2 md:p-8">
+    <div id="faq" className=" text-[#dbdbcf] p-2">
       <div className="max-w-xl mx-auto">
         <h2 className="text-lg font-revoluti text-center mb-6">
           <span className="relative">
