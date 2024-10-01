@@ -107,7 +107,7 @@ const PreSaleInterface: React.FC = () => {
                 paymentType === "ETH"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
-              } p-2 pl-9 rounded-md flex items-center text-sm font-bold`}
+              } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("ETH")}
             >
               <Image
@@ -115,7 +115,7 @@ const PreSaleInterface: React.FC = () => {
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-2 rounded-full"
+                className="mr-1 sm:mr-4 rounded-full"
               />{" "}
               Pay with ETH
             </button>
@@ -124,7 +124,7 @@ const PreSaleInterface: React.FC = () => {
                 paymentType === "USDT"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
-              } p-2 pl-7 rounded-md flex items-center text-sm font-bold`}
+              } pl-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("USDT")}
             >
               <Image
@@ -132,7 +132,7 @@ const PreSaleInterface: React.FC = () => {
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-2 rounded-full"
+                className="mr-1 lg:mr-2 rounded-full"
               />{" "}
               Pay with USDT
             </button>
@@ -141,7 +141,7 @@ const PreSaleInterface: React.FC = () => {
                 paymentType === "BNB"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
-              } p-2 pl-9 rounded-md flex items-center text-sm font-bold`}
+              }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("BNB")}
             >
               <Image
@@ -149,7 +149,7 @@ const PreSaleInterface: React.FC = () => {
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-2 rounded-full"
+                className="mr-1 sm:mr-3 rounded-full"
               />{" "}
               Pay with BNB
             </button>
@@ -158,7 +158,7 @@ const PreSaleInterface: React.FC = () => {
                 paymentType === "Card"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
-              } p-2 pl-7 rounded-md flex items-center text-sm font-bold`}
+              }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("Card")}
             >
               <Image
@@ -166,7 +166,7 @@ const PreSaleInterface: React.FC = () => {
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-2 rounded-full bg-white"
+                className="mr-1 lg:mr-2 rounded-full bg-white"
               />{" "}
               Pay with Card
             </button>
@@ -174,7 +174,7 @@ const PreSaleInterface: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-2 mb-4">
             <div className="text-left">
-              <label className="block text-sm mb-1 font-bold">
+              <label className="block text-sm mb-1 sm:font-bold">
                 AMOUNT (ETH)
               </label>
               <input
@@ -185,8 +185,8 @@ const PreSaleInterface: React.FC = () => {
               />
             </div>
             <div className="text-left">
-              <label className="block text-sm mb-1 font-bold">
-                GET AMOUNT (FICCO)
+              <label className="block text-sm mb-1 sm:font-bold">
+                GET AMOUNT(FICCO)
               </label>
               <input
                 type="number"
@@ -198,7 +198,7 @@ const PreSaleInterface: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm mb-1 font-bold">
+            <label className="block text-sm mb-1 sm:font-bold">
               CURRENT MYSTERY FICCO
             </label>
             <input
@@ -209,7 +209,7 @@ const PreSaleInterface: React.FC = () => {
             />
           </div>
 
-          <button className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4">
+          <button className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4 focus:bg-orange-800">
             CONNECT WALLET
           </button>
 

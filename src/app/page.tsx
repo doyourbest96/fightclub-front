@@ -24,8 +24,8 @@ export default function Home() {
       <Branding />
 
       {/* desktop for splitting */}
-      <div className="hidden lg:flex gap-4 xl:gap-16 ">
-        <div className="w-3/5 xl:px-16 flex flex-col gap-16 items-center">
+      <div className="hidden lg:flex gap-4">
+        <div className="w-3/5 xl:px-16 flex flex-col gap-8 items-center">
           <About />
           <TokenSaleS />
           <FuelRevolution />
