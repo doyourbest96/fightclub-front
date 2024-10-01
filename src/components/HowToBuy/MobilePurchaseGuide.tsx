@@ -35,15 +35,17 @@ export default function MobilePurchaseGuide() {
   return (
     <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-[#dbdbcf] p-8">
       <div className="w-full max-w-md">
-        <h1 className="text-lg font-revoluti text-center text-[#dbdbcf]">HOW TO BUY FICCO</h1>
-        <p className="mt-2 text-lg font-revoluti text-center text-[#854b3d]">
+        <h1 className="text-lg font-revoluti text-center text-[#dbdbcf]">
+          HOW TO BUY FICCO
+        </h1>
+        <p className="text-lg font-revoluti text-center text-[#854b3d]">
           GET STARTED
         </p>
-        <p className="my-4 text-lg font-helvetica text-center text-[#854b3d]">
+        <p className="my-6 text-lg font-helvetica text-center text-[#854b3d]">
           Follow these easy steps to purchase FICCO tokens and embrace on our
           journey
         </p>
-        <div className="h-[250px] sm:h-[240px] bg-[#353731] p-4 sm:p-6 rounded-lg shadow-lg font-helvetica">
+        <div className="h-[250px] sm:h-[240px] bg-[#353731] p-4 sm:p-6 rounded-lg shadow-lg">
           <Image
             src={steps[currentStep].icon}
             alt="icon"
@@ -51,10 +53,12 @@ export default function MobilePurchaseGuide() {
             height={60}
             className="my-1 sm:my-4"
           />
-          <h2 className="text-xl font-semibold mb-2">
+          <h2 className="text-xl font-roboto-bold mb-2">
             {steps[currentStep].title}
           </h2>
-          <p className="text-[#dbdbcf]">{steps[currentStep].description}</p>
+          <p className="font-helvetica text-[#dbdbcf]">
+            {steps[currentStep].description}
+          </p>
         </div>
         <div className="flex justify-center space-x-2 mt-6 font-helvetica">
           {steps.map((_, index) => (
