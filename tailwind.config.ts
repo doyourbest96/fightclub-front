@@ -19,6 +19,8 @@ const config: Config = {
         helvetica: ["Helvetica Neue", "sans-serif"],
         helveticaNeue5: ["Helvetica Neue 5", "sans-serif"],
         revoluti: ['"Revoluti"', "sans-serif"],
+        "roboto-thin": ["roboto-thin", "sans-serif"],
+        "roboto-bold": ["roboto-bold", "sans-serif"],
       },
     },
   },
