@@ -6,6 +6,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import Image from "next/image";
 
 const navigation = [
   { name: "about", href: "#about" },
@@ -21,44 +22,42 @@ const Header = () => {
   return (
     <>
       <div className="flex flex-col gap-2 lg:gap-12 pb-8 branding">
-        <div className="py-7 flex flex-row  items-center gap-4 lg:gap-10 px-1 lg:px-2 xl:px-4">
-          <div className="flex flex-row flex-1 items-center gap-4 lg:gap-10 uppercase">
+        <div className="py-7 flex px-1 lg:px-2 xl:px-4">
+          <div className="flex flex-row flex-1 justify-between items-center uppercase">
             <Logo />
-            <div className="hidden lg:flex flex-1 flex-row items-end gap-2 lg:gap-4 font-revoluti justify-around lg:text-[14px] text-[#824b3d] tracking-tighter">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  // className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  {item.name}
-                </a>
-              ))}
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="hidden lg:block font-revoluti lg:text-[14px] text-[#824b3d] tracking-tighter"
+              >
+                {item.name}
+              </a>
+            ))}
+            <div className="flex lg:hidden">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              >
+                <span className="sr-only">Open main menu</span>
+                <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+              </button>
             </div>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+            <button className="hidden lg:block p-2 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf]">
+              whitepaper
             </button>
           </div>
-          <button className="hidden lg:block p-2 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf]">
-            whitepaper
-          </button>
         </div>
         <div className="relative w-full lg:pl-20">
-          {/* <div className="text-[#824b3d] text-center font-bold text-md sm:hidden">PRESALE LIVE - PRESALE LIVE - PRESALE LIVE</div>
-          <div className="absolute -top-6 w-full max-w-[580px] text-center">
-            <p className="text-[140px] md:text-[160px] lg:text-[200px] text-stroke-8 ">FIGHT</p>
-          </div>
-          <div className="absolute top-40 md:top-44 lg:top-60 w-full max-w-[580px] text-center">
-            <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
-          </div> */}
-          <div className="mt-64 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+          <div className="mt-12 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+            <Image
+              src={"/assets/images/mark.png"}
+              alt="mark"
+              width={383}
+              height={160}
+              className="w-full h-auto mb-12"
+            />
             <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the FIght Club{" "}
