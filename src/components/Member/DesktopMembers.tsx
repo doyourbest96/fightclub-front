@@ -67,7 +67,7 @@ const placeholders: Placeholder[] = [
 
 export default function DesktopMembers() {
   return (
-    <div className="text-white p-8 max-w-6xl">
+    <div className="text-[#dbdbcf] p-8 max-w-6xl">
       <div className="mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
@@ -83,15 +83,15 @@ export default function DesktopMembers() {
               </div>
               <div className="p-4">
                 <div className="flex items-center">
-                  <h2 className="text-xl font-bold mr-2">{member.name}</h2>
+                  <h2 className="text-xl text-[#dbdbcf] font-bold mr-2">{member.name}</h2>
                   <Link href={member.href}>
                     {
-                      member.socialLink == "Instagram" ? <FaInstagram className="w-6 h-6" /> : <FaLinkedinIn className="w-5 h-5" />
+                      member.socialLink == "Instagram" ? <FaInstagram className="w-6 h-6 stroke-[#dbdbcf]" /> : <FaLinkedinIn className="w-5 h-5 stroke-[#dbdbcf]" />
                     }
                   </Link>
                 </div>
-                <p className="text-gray-400">{member.title}</p>
-                <p className="mt-2 text-sm">{member.description}</p>
+                <p className="text-[#dbdbcf]">{member.title}</p>
+                <p className="mt-2 text-sm text-[#dbdbcf]">{member.description}</p>
               </div>
             </div>
           ))}
@@ -107,8 +107,8 @@ export default function DesktopMembers() {
                 />
               </div>
               <div className="p-4">
-                <h2 className="text-xl font-bold">{placeholder.title}</h2>
-                <p className="text-gray-400">{placeholder.description}</p>
+                <h2 className="text-xl font-bold text-[#dbdbcf]">{placeholder.title}</h2>
+                <p className="text-[#dbdbcf]">{placeholder.description}</p>
               </div>
             </div>
           ))}

@@ -33,9 +33,9 @@ export default function MobilePurchaseGuide() {
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-white p-8">
+    <div className="w-full flex flex-col items-center justify-center rounded-md bg-[#131511] text-[#dbdbcf] p-8">
       <div className="w-full max-w-md">
-        <h1 className="text-lg font-revoluti text-center">HOW TO BUY FICCO</h1>
+        <h1 className="text-lg font-revoluti text-center text-[#dbdbcf]">HOW TO BUY FICCO</h1>
         <p className="mt-2 text-lg font-revoluti text-center text-[#854b3d]">
           GET STARTED
         </p>
@@ -54,7 +54,7 @@ export default function MobilePurchaseGuide() {
           <h2 className="text-xl font-semibold mb-2">
             {steps[currentStep].title}
           </h2>
-          <p className="text-gray-400">{steps[currentStep].description}</p>
+          <p className="text-[#dbdbcf]">{steps[currentStep].description}</p>
         </div>
         <div className="flex justify-center space-x-2 mt-6 font-helvetica">
           {steps.map((_, index) => (
@@ -63,7 +63,7 @@ export default function MobilePurchaseGuide() {
               onClick={() => setCurrentStep(index)}
               className={`w-12 h-10 rounded ${
                 index === currentStep ? "bg-yellow-600" : "bg-gray-700"
-              } text-white font-semibold transition-colors duration-200`}
+              } text-[#dbdbcf] font-semibold transition-colors duration-200`}
               aria-label={`Step ${index + 1}`}
             >
               {index + 1}

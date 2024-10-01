@@ -3,9 +3,9 @@ import { tokenomicsTableData } from "@/data/tokenomics.table";
 const TokenomicsTable = () => {
   return (
     <>
-      <div className="font-helvetica font-thin rounded-md bg-[#353731] overflow-hidden lg:w-[420px] lg:mr-4 xl:w-[540px]">
+      <div className="font-helvetica font-thin text-[#dbdbcf] rounded-md bg-[#353731] overflow-hidden lg:w-[420px] lg:mr-4 xl:w-[540px]">
         <table>
-          <thead className="w-full">
+          <thead className="w-full text-[#dbdbcf]">
             <tr className="text-left bg-[#814b3d]">
               <th className="px-2 lg:text-sm xl:text-base">Structure</th>
               <th className="px-2  lg:text-sm xl:text-base">%</th>
@@ -26,7 +26,7 @@ const TokenomicsTable = () => {
             ))}
           </tbody>
         </table>
-        <p className="px-4 py-6  lg:text-sm xl:text-base">
+        <p className="px-4 py-6  lg:text-sm xl:text-base text-[#dbdbcf]">
           FICCO coins are held secure in multi-signature wallets, requiring
           multiple approvals for any transaction, ensuring robust protection
           against unauthorized access and fraud. For more information please

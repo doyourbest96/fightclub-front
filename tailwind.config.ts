@@ -17,6 +17,7 @@ const config: Config = {
       },
       fontFamily: {
         helvetica: ["Helvetica Neue", "sans-serif"],
+        helveticaNeue5: ["Helvetica Neue 5", "sans-serif"],
         revoluti: ['"Revoluti"', "sans-serif"],
       },
     },

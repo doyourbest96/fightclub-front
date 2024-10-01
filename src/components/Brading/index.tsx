@@ -2,6 +2,7 @@
 
 import { classNames } from "@/utils/classNames";
 import { useEffect, useRef, useState } from "react";
+import BackImage from "./BackImage";
 
 const Branding = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -30,30 +31,30 @@ const Branding = () => {
         >
           <span></span>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-black">Empower</p>
-            <p className="font-light">
+            <p className="font-black  text-[#dbdbcf]">Empower</p>
+            <p className="font-light font-helvetica text-[#dbdbcf]">
               Get control over your career and be seen by millions of people
               worldwide.
             </p>
           </div>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-black">Revenue</p>
-            <p className="font-light">
+            <p className="font-black  text-[#dbdbcf]">Revenue</p>
+            <p className="font-light font-helvetica text-[#dbdbcf]">
               Whether you are a fighter, fan or club, our platform offers income
               models for everyone.
             </p>
           </div>
           <span></span>
-          <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-black">Connect</p>
-            <p className="font-light">
+          <div className="flex flex-col gap-2 min-w-48 bg-connect">
+            <p className="font-black text-[#dbdbcf]">Connect</p>
+            <p className="font-light font-helvetica text-[#dbdbcf]">
               Build your empire and get in touch with everyone, from fans to
               industry leaders.
             </p>
           </div>
           <div className="flex flex-col gap-2 min-w-48">
-            <p className="font-black">Transparency</p>
-            <p className="font-light">
+            <p className="font-black text-[#dbdbcf]">Transparency</p>
+            <p className="font-light font-helvetica text-[#dbdbcf]">
               By leveraging blockchain nothing can be hidden. Its easy to use
               and fool proof.
             </p>

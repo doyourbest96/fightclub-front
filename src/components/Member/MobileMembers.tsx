@@ -99,7 +99,7 @@ function CoFounderShowCase() {
           />
         </div>
         <div className="p-4">
-          <div className="flex items-center">
+          <div className="flex items-center text-[#dbdbcf]">
             <h2 className="text-xl font-bold mr-2">{member.name}</h2>
             <Link href={member.href}>
               {
@@ -107,8 +107,8 @@ function CoFounderShowCase() {
               }
             </Link>
           </div>
-          <p className="text-gray-400">{member.title}</p>
-          <p className="mt-2 text-sm">{member.description}</p>
+          <p className="text-[#dbdbcf]">{member.title}</p>
+          <p className="mt-2 text-sm text-[#dbdbcf]">{member.description}</p>
         </div>
       </div>
     );
@@ -146,15 +146,15 @@ function AdvisorShowCase() {
         </div>
         <div className="p-4">
           {/* <h2 className="text-xl font-bold">{member.name}</h2> */}
-          <p className="text-gray-400">{member.title}</p>
-          <p className="mt-2 text-sm">{member.description}</p>
+          <p className="text-[#dbdbcf]">{member.title}</p>
+          <p className="mt-2 text-sm text-[#dbdbcf]">{member.description}</p>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="text-white  p-4">
+    <div className="text-[#dbdbcf] p-4">
       <div className="max-w-sm mx-auto">
         {renderCard(currentIndex)}
         <div className="flex justify-center mt-4 space-x-2">
@@ -179,14 +179,14 @@ function AmbassadorShowCase() {
   const renderCard = (index: number) => {
     const member = ambassadors[index];
     return (
-      <div className="bg-gray-900 rounded-lg overflow-hidden">
+      <div className="bg-gray-900 rounded-lg overflow-hidden text-[#dbdbcf]">
         <div className="h-40 flex justify-center items-end ">
           <Image src={member.iconSrc} alt="avatar" width={140} height={200} className="rounded-full" />
         </div>
         <div className="p-4">
           {/* <h2 className="text-xl font-bold">{member.name}</h2> */}
-          <p className="text-gray-400">{member.title}</p>
-          <p className="mt-2 text-sm">{member.description}</p>
+          <p className="text-[#dbdbcf]">{member.title}</p>
+          <p className="mt-2 text-sm text-[#dbdbcf]">{member.description}</p>
         </div>
       </div>
     );

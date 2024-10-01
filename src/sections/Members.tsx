@@ -4,7 +4,7 @@ import MobileMembers from "@/components/Member/MobileMembers";
 const Members = () => {
   return (
     <div id="founders" className="flex flex-col gap-6 rounded-md">
-      <p className="text-lg font-revoluti">Founders | Advisors | Ambassadors</p>
+      <p className="text-lg font-revoluti text-[#dbdbcf]">Founders | Advisors | Ambassadors</p>
       <div className="hidden lg:block">
         <DesktopMembers />
       </div>
