@@ -48,6 +48,13 @@ body {
   background-size: cover;
 }
 
+.track {
+  background-image: url("/assets/images/track.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 /* .bg-connect {
   background-image: url("/assets/images/bg-connect.png");
   background-repeat: no-repeat;
