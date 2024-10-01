@@ -17,6 +17,7 @@ const roadmapData = [
       "• First public sale and dex listing",
     ],
     up: true,
+    done:3
   },
   {
     index: "Phase 2",
@@ -32,6 +33,7 @@ const roadmapData = [
       "• Second public sale",
     ],
     up: true,
+    done:0
   },
   {
     index: "Phase 3",
@@ -48,6 +50,7 @@ const roadmapData = [
       "• Campus research",
     ],
     up: false,
+    done:0
   },
   {
     index: "Phase 4",
@@ -65,6 +68,7 @@ const roadmapData = [
       "• First Fight Club worldchampions ",
     ],
     up: false,
+    done:0
   },
 ];
 
