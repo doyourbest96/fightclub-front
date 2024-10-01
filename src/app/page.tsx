@@ -19,45 +19,48 @@ import Bander2 from "@/sections/Bander2";
 
 export default function Home() {
   return (
-    <div className="landing px-1 lg:px-2 xl:px-4 flex flex-col gap-16 w-full">
-      <Header />
-      <Branding />
-
-      {/* desktop for splitting */}
-      <div className="hidden lg:flex gap-4">
-        <div className="w-3/5 xl:px-16 flex flex-col gap-8 items-center">
-          <About />
-          <TokenSaleS />
-          <FuelRevolution />
-          <Tokenomics />
+    <div className="landing flex flex-col gap-16 w-full lg:max-w-7xl">
+      <div className="flex flex-col">
+        <Header />
+        <Branding />
+      </div>
+      <div className="flex flex-col gap-16 px-1 lg:px-2 xl:px-4">
+        {/* desktop for splitting */}
+        <div className="hidden lg:flex gap-4">
+          <div className="w-3/5 xl:px-16 flex flex-col gap-8 items-center">
+            <About />
+            <TokenSaleS />
+            <FuelRevolution />
+            <Tokenomics />
+          </div>
+          <div className="w-2/5 flex flex-col gap-8 items-center">
+            <Supply />
+            <PreSaleInterface />
+            <TokenomicsTable />
+          </div>
         </div>
-        <div className="w-2/5 flex flex-col gap-8 items-center">
+
+        {/* mobile  */}
+        <div className="flex flex-col lg:hidden items-center gap-8">
+          <About />
           <Supply />
           <PreSaleInterface />
-          <TokenomicsTable />
+          <TokenSaleS />
+          <TokenomicsTableMobile />
+          <Tokenomics />
         </div>
-      </div>
 
-      {/* mobile  */}
-      <div className="flex flex-col lg:hidden items-center gap-8">
-        <About />
-        <Supply />
-        <PreSaleInterface />
-        <TokenSaleS />
-        <TokenomicsTableMobile />
-        <Tokenomics />
-      </div>
-
-      {/* Bottom section */}
-      <div className="flex flex-col gap-16 items-center">
-        {/* Bander 2 */}
-        <Bander />
-        <Roadmap />
-        <HowtoBuy />
-        <Members />
-        <Bander2 />
-        <Faq />
-        <Footer />
+        {/* Bottom section */}
+        <div className="flex flex-col gap-16 items-center">
+          {/* Bander 2 */}
+          <Bander />
+          <Roadmap />
+          <HowtoBuy />
+          <Members />
+          <Bander2 />
+          <Faq />
+          <Footer />
+        </div>
       </div>
     </div>
   );
