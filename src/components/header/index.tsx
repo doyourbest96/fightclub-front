@@ -51,10 +51,18 @@ const Header = () => {
           </button>
         </div>
         <div className="relative w-full lg:pl-20">
+          {/* <div className="text-[#824b3d] text-center font-bold text-md sm:hidden">PRESALE LIVE - PRESALE LIVE - PRESALE LIVE</div>
+          <div className="absolute -top-6 w-full max-w-[580px] text-center">
+            <p className="text-[140px] md:text-[160px] lg:text-[200px] text-stroke-8 ">FIGHT</p>
+          </div>
+          <div className="absolute top-40 md:top-44 lg:top-60 w-full max-w-[580px] text-center">
+            <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
+          </div> */}
           <div className="mt-48 md:mt-64 lg:mt-80 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
             <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the FIght Club{" "}
+             {" "}
               <br />
               platform.
             </p>
