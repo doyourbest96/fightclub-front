@@ -22,7 +22,7 @@ const RoadmapItem = ({ item }: { item: RoadmapItemProps }) => {
           <span className="py-3">{item.title}</span>
         </div>
       )}
-      <ul className="p-4 flex flex-col gap-2 rounded-md text-[#dbdbcf] bg-[#151312]">
+      <ul className="p-4 flex flex-col rounded-md text-[#dbdbcf] bg-[#151312]">
         {item.contents.map((content, idx) => (
           <li key={idx}>{idx < item.done ? <span className="text-[#7f4236]">{content}</span> : <span>{content}</span>}</li>
         ))}

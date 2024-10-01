@@ -60,7 +60,7 @@ export default function FiccoFAQ() {
             <TrackImg className="absolute top-0 translate-x-52 -translate-y-16 -z-10  w-[240px] h-[240px]" />
           </span>
         </h2>
-        <div className="space-y-4 font-roboto-bold">
+        <div className="font-roboto-bold">
           {faqItems.map((item, index) => (
             <div key={index}>
               <button
