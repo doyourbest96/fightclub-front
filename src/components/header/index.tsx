@@ -58,14 +58,14 @@ const Header = () => {
           <div className="absolute top-40 md:top-44 lg:top-60 w-full max-w-[580px] text-center">
             <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
           </div> */}
-          <div className="mt-48 md:mt-64 lg:mt-[22rem] max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+          <div className="mt-48 md:mt-64 lg:mt-80 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
             <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
-              leaders for a financially rewarding experience with the FIght Club
+              leaders for a financially rewarding experience with the FIght Club <br />
               platform.
             </p>
-            <button className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-xl font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
-              <IoDocumentTextOutline aria-hidden="true" className="h-6 w-6" />
+            <button className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
+              <IoDocumentTextOutline aria-hidden="true" className="h-6 w-6 border-black" />
               Whitepaper
             </button>
           </div>
