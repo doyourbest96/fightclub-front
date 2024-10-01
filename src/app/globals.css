@@ -9,7 +9,7 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  /* background: var(--background); */
   /* font-family: 'Helvetica Neue', 'Revoluti', sans-serif; */
   display: flex;
   justify-content: center;
@@ -53,6 +53,10 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.stretched-font-stretch {
+  font-stretch: expanded;
 }
 
 /* .bg-connect {

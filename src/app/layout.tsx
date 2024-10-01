@@ -14,8 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className="w-full flex flex-col items-center bg-[#030303]">{children}</div>
+      <body className="relative">
+        <div className="absolute -z-50 bg-[#030303] top-0 left-0 right-0 bottom-0" />
+        <div className="w-full flex flex-col items-center">{children}</div>
       </body>
     </html>
   );

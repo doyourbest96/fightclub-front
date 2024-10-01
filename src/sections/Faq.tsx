@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
+import TrackImg from "@/components/trackImg";
 
 interface FAQItem {
   question: string;
@@ -53,7 +54,12 @@ export default function FiccoFAQ() {
   return (
     <div id="faq" className=" text-[#dbdbcf] p-2 md:p-8">
       <div className="max-w-xl mx-auto">
-        <h2 className="text-lg font-revoluti text-center mb-6">FAQ</h2>
+        <h2 className="text-lg font-revoluti text-center mb-6">
+          <span className="relative">
+            FAQ
+            <TrackImg className="absolute top-0 translate-x-52 -translate-y-16 -z-10  w-[240px] h-[240px]" />
+          </span>
+        </h2>
         <div className="space-y-4 font-roboto-bold">
           {faqItems.map((item, index) => (
             <div key={index}>
