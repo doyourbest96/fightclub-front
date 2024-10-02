@@ -38,7 +38,7 @@ const Header = () => {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                className="inline-flex items-center justify-center rounded-md p-2.5 text-[#dbdbcf]"
               >
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -58,10 +58,9 @@ const Header = () => {
               height={160}
               className="w-full h-auto mb-12"
             />
-            <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
+            <p className="px-2 font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
-              leaders for a financially rewarding experience with the FIght Club{" "}
-              <br />
+              leaders for a financially rewarding experience with the IRONWILL
               platform.
             </p>
             <button className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">

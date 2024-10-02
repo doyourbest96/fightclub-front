@@ -14,8 +14,8 @@ export const tokenomicsTableData = [
     color: "#A84D3B",
   },
   {
-    structure: "Public sale 2 ",
-    percent: "0%",
+    structure: "Public sale 2",
+    percent: "10%",
     allocation: "10,000,000,000",
     schedule: "25% unlocked followed by 25% quarterly unlock",
     color: "#B95844",
@@ -49,7 +49,7 @@ export const tokenomicsTableData = [
     color: "#CE9689",
   },
   {
-    structure: "Community incent.",
+    structure: "Community incent",
     percent: "10%",
     allocation: "10,000,000,000",
     schedule: "Linear vesting during 48 months",
