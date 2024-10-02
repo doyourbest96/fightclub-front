@@ -67,7 +67,7 @@ const Header = () => {
                 className="w-full h-auto mb-12"
               />
             </div>
-            <p className="px-2 font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
+            <p className="pr-6 font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the IRONWILL
               platform.
