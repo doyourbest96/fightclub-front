@@ -10,19 +10,22 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col lg:flex-row gap-4 items-center px-2 justify-between">
         <div className="flex items-center mb-4 md:mb-0 mx-4">
           <div className="flex flex-row items-center">
-            <Link href={"/"} className="font-revoluti text-xl tracking-tighter text-[#dbdbcf]">
+            <Link
+              href={"/"}
+              className="font-revoluti text-xl tracking-tighter text-[#dbdbcf]"
+            >
               IRONWILL
             </Link>
             <RxSlash className="w-5 h-5 stroke-[#dbdbcf]" />
-            <Link href={"/"}>
+            <Link href={"https://x.com/IRONWILLIO"}>
               <FaXTwitter className="w-5 h-5 stroke-[#dbdbcf]" />
             </Link>
             <RxSlash className="w-5 h-5 stroke-[#dbdbcf]" />
-            <Link href={"/"}>
+            <Link href={"https://t.me/IRONWILL.IO"}>
               <FaTelegramPlane className="w-5 h-5 stroke-[#dbdbcf]" />
             </Link>
             <RxSlash className="w-5 h-5 stroke-[#dbdbcf]" />
-            <Link href={"/"}>
+            <Link href={"https://www.instagram.com/ironwill_io"}>
               <FaInstagram className="w-5 h-5 stroke-[#dbdbcf]" />
             </Link>
           </div>

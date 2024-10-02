@@ -7,6 +7,7 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Image from "next/image";
+import Link from "next/link";
 
 const navigation = [
   { name: "about", href: "#about" },
@@ -29,7 +30,7 @@ const Header = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="hidden lg:block font-revoluti lg:text-[14px] text-[#824b3d] tracking-tighter"
+                className="hidden lg:block font-revoluti lg:text-[14px] text-[#824b3d] tracking-tighter hover:text-[#dbdbcf]"
               >
                 {item.name}
               </a>
@@ -44,9 +45,15 @@ const Header = () => {
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
               </button>
             </div>
-            <button className="hidden lg:block p-2 ml-8 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf]">
+            <Link
+              href={"/assets/documents/whitepaper.pdf"}
+              className="hidden lg:block p-2 ml-8 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf] hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
               whitepaper
-            </button>
+            </Link>
           </div>
         </div>
         <div className="relative w-full lg:pl-20">
@@ -72,13 +79,19 @@ const Header = () => {
               leaders for a financially rewarding experience with the IRONWILL
               platform.
             </p>
-            <button className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all">
+            <Link
+              href={"/assets/documents/whitepaper.pdf"}
+              className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
               <IoDocumentTextOutline
                 aria-hidden="true"
                 className="h-6 w-6 border-black"
               />
               Whitepaper
-            </button>
+            </Link>
           </div>
         </div>
       </div>

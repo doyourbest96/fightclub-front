@@ -6,17 +6,19 @@ const stageData = [
   {
     id: 1,
     type: "pre",
+    subtype: "sale",
     value: "10,000,000,000",
     maxPrice: "$0.00010",
     softcap: "$100,000",
     hardcap: "$1,000,000",
-    period: "12-0-24 to 23-22-23",
+    period: "08-10-24 to 08-11-24",
     status: "open",
     running: true,
   },
   {
     id: 2,
     type: "public",
+    subtype: "sale",
     value: "15,000,000,000",
     maxPrice: "$0.0004",
     softcap: "tba",
@@ -27,8 +29,9 @@ const stageData = [
   },
   {
     id: 3,
-    type: `public`,
-    value: "15,000,000,000",
+    type: `ieo`,
+    subtype: `1`,
+    value: "10,000,000,000",
     maxPrice: "tba",
     softcap: "tba",
     hardcap: "tba",
@@ -38,7 +41,8 @@ const stageData = [
   },
   {
     id: 4,
-    type: "public",
+    type: "ieo",
+    subtype: "2",
     value: "5,000,000,000",
     maxPrice: "tba",
     softcap: "tba",
@@ -51,7 +55,7 @@ const stageData = [
 
 const Stage = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const [selectedIntroView, setSelectedIntroView] = useState(1);
+  const [selectedIntroView, setSelectedIntroView] = useState(-1);
 
   const scrollToElement = (index: number) => {
     const element = scrollRef.current?.children[index] as HTMLElement;
@@ -63,10 +67,6 @@ const Stage = () => {
       });
     }
   };
-
-  useEffect(() => {
-    setSelectedIntroView(1);
-  }, []);
 
   useEffect(() => {
     scrollToElement(selectedIntroView);

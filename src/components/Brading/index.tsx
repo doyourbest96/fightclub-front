@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Branding = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const [selectedIntroView, setSelectedIntroView] = useState(0);
+  const [selectedIntroView, setSelectedIntroView] = useState(-1);
 
   useEffect(() => {
     console.log(selectedIntroView);

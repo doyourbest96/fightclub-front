@@ -14,15 +14,15 @@ const Logo = () => {
         IRONWILL
       </Link>
       <RxSlash className="w-6 h-6 stroke-[#dbdbcf]" />
-      <Link href={"/"}>
+      <Link href={"https://x.com/IRONWILLIO"}>
         <FaXTwitter className="w-6 h-6 stroke-[#dbdbcf]" />
       </Link>
       <RxSlash className="w-6 h-6 stroke-[#dbdbcf]" />
-      <Link href={"/"}>
+      <Link href={"https://t.me/IRONWILL.IO"}>
         <FaTelegramPlane className="w-6 h-6 stroke-[#dbdbcf]" />
       </Link>
       <RxSlash className="w-6 h-6 stroke-[#dbdbcf]" />
-      <Link href={"/"}>
+      <Link href={"https://www.instagram.com/ironwill_io"}>
         <FaInstagram className="w-6 h-6 stroke-[#dbdbcf]" />
       </Link>
     </div>
