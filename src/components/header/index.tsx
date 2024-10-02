@@ -24,7 +24,7 @@ const Header = () => {
         <div className="py-7 flex flex-row  items-center gap-4 px-1 lg:px-2 xl:px-4">
           <div className="flex flex-row flex-1 items-center gap-4 uppercase">
             <Logo />
-            <div className="hidden p-3 lg:flex flex-1 flex-row items-end gap-2 lg:gap-4 font-revoluti justify-around lg:text-[14px] text-[#824b3d] bg-black/70 tracking-tighter">
+            <div className="hidden lg:flex flex-1 flex-row items-end gap-2 lg:gap-4 font-revoluti justify-around lg:text-[14px] text-[#824b3d] bg[#030303] tracking-tighter">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -58,7 +58,7 @@ const Header = () => {
           <div className="absolute top-40 md:top-44 lg:top-60 w-full max-w-[580px] text-center">
             <p className="text-4xl text-stroke-4 text-[#824b3d]">C L U B</p>
           </div> */}
-          <div className="mt-48 md:mt-56 lg:mt-64 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+          <div className="mt-48 md:mt-64 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
             <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the FIght Club{" "}
