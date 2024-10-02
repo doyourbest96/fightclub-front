@@ -23,7 +23,7 @@ const Header = () => {
     <>
       <div className="flex flex-col gap-2 lg:gap-12 pb-8 branding">
         <div className="py-7 flex px-1 lg:px-2 xl:px-4">
-          <div className="flex flex-row flex-1 justify-between items-center uppercase">
+          <div className="flex flex-row flex-1 justify-between items-center uppercase bg-[#030303]/60">
             <Logo />
             {navigation.map((item) => (
               <a
@@ -44,7 +44,7 @@ const Header = () => {
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
               </button>
             </div>
-            <button className="hidden lg:block p-2 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf]">
+            <button className="hidden lg:block p-2 ml-8 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf]">
               whitepaper
             </button>
           </div>
