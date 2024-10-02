@@ -14,10 +14,9 @@ const FuelRevolution = () => {
         <span className="font-roboto-bold text-[#dbdbcf]">
           Ownership and Empowerment:
         </span>{" "}
-        Purchasing FICCO coins grants you a stake in the Fight Club ecosystem.
-        You become an integral part of a movement that empowers martial artists
-        by providing them direct control over their careers and earning
-        potential.
+        Purchasing FICCO coins grants you a stake in the IRONWILL ecosystem. You
+        become an integral part of a movement that empowers martial artists by
+        providing them direct control over their careers and earning potential.
       </p>
       <p className="font-roboto-thin text-base text-[#dbdbcf]">
         <span className="font-roboto-bold text-[#dbdbcf]">

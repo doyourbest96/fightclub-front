@@ -17,7 +17,7 @@ const roadmapData = [
       "• First public sale and dex listing",
     ],
     up: true,
-    done:3
+    done: 3,
   },
   {
     index: "Phase 2",
@@ -33,7 +33,7 @@ const roadmapData = [
       "• Second public sale",
     ],
     up: true,
-    done:0
+    done: 0,
   },
   {
     index: "Phase 3",
@@ -50,7 +50,7 @@ const roadmapData = [
       "• Campus research",
     ],
     up: false,
-    done:0
+    done: 0,
   },
   {
     index: "Phase 4",
@@ -58,17 +58,17 @@ const roadmapData = [
     title: "Expansion",
     contents: [
       "• Global marketing initiatives",
-      "• Launch of Fight Club clothing & attribute line",
+      "• Launch of IRONWILL clothing & attribute line",
       "• Fight club development progress",
       "• Focus on long-term sustainability",
       "• Development bootcamp campuses",
       "• Third public sale",
       "• First operational profits",
       "• Introduction FIght Club intern scout program",
-      "• First Fight Club worldchampions ",
+      "• First IRONWILL worldchampions ",
     ],
     up: false,
-    done:0
+    done: 0,
   },
 ];
 
@@ -76,7 +76,9 @@ const Roadmap = () => {
   return (
     <div id="roadmap" className="flex flex-col lg:gap-6 rounded-md">
       <div className="relative flex items-center justify-between top-0 right-0 w-full h-[15vh] lg:h-full overflow-hidden">
-        <p className="text-3xl font-black italic text-[#dbdbcf] uppercase z-10">Roadmap</p>
+        <p className="text-3xl font-black italic text-[#dbdbcf] uppercase z-10">
+          Roadmap
+        </p>
         <div className="lg:hidden absolute top-0 right-0 w-1/2 h-full">
           <Image
             src={"/assets/images/smart.png"}

@@ -44,7 +44,7 @@ const Footer = () => {
             cryptocurrencies may fluctuate. Profits may be subject to capital
             gains or other taxes applicable in your jurisdiction.
             <span className="mt-2 text-xm font-bold stroke-[#dbdbcf]">
-              © Fight Club. All rights reserved.
+              © IRONWILL. All rights reserved.
             </span>
           </p>
         </div>
