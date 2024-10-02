@@ -5,7 +5,7 @@ import TrackImg from "@/components/trackImg";
 const Members = () => {
   return (
     <div id="founders" className="flex flex-col gap-6 rounded-md">
-      <div className="flex flex-col items-center gap-2 text-lg font-revoluti text-[#dbdbcf] uppercase">
+      <div className="flex flex-col lg:items-start gap-2 text-lg font-revoluti text-[#dbdbcf] uppercase">
         <div className="relative flex items-center gap-2">
           <span>Founders</span>
           <span className="w-1.5 h-4 border" />
