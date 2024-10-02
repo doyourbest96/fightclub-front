@@ -19,15 +19,15 @@ import Bander2 from "@/sections/Bander2";
 
 export default function Home() {
   return (
-    <div className="landing flex flex-col gap-12 w-full lg:max-w-7xl">
+    <div className="landing xl:px-16 flex flex-col gap-12 w-full lg:max-w-7xl">
       <div className="flex flex-col">
         <Header />
         <Branding />
       </div>
-      <div className="flex flex-col gap-16 px-1 lg:px-2 xl:px-4">
+      <div className="px-1 sm:px-8 md:px-12 lg:px-4 flex flex-col gap-16">
         {/* desktop for splitting */}
-        <div className="hidden lg:flex gap-1">
-          <div className="w-3/5 xl:px-16 flex flex-col gap-8 lg:gap-12 items-center">
+        <div className="hidden lg:flex lg:gap-4 xl:gap-16">
+          <div className="w-3/5 flex flex-col gap-8 lg:gap-12 items-center">
             <About />
             <TokenSaleS />
             <FuelRevolution />

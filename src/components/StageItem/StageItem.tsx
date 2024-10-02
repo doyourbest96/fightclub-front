@@ -28,8 +28,8 @@ const StageItem = ({
   } = data;
   return (
     <>
-      <div className="relative  w-full min-w-[124px] pt-4">
-        <div className="absolute left-0 top-0 -z-10 w-full rotate-[5deg] translate-y-4 h-56 bg-[#787871]" />
+      <div className="relative w-full min-w-[124px] max-w-[132px] mx-2 pt-4">
+        <div className="absolute left-0 top-0 -z-10 w-full rotate-[3deg] translate-y-4 h-56 bg-[#787871]" />
         <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] shadow-lg">
           <div className="tracking-tighter py-3">
             <div
@@ -38,29 +38,29 @@ const StageItem = ({
               <p>{type}</p> <p>{subtype}</p>
               <p className="text-4xl font-helvetica font-medium">{id}</p>
             </div>
-            <div className={`text-sm ${running && "text-[#c9c9bf]"}`}>
+            <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
               {value}
             </div>
             {maxPrice === "tba" ? (
               <div
                 className={`text-sm mb-3 uppercase ${
-                  running && "text-[#c9c9bf]"
+                  running && "text-[#dbdbcf]"
                 }`}
               >
                 {maxPrice}
               </div>
             ) : (
-              <div className={`text-sm mb-3 ${running && "text-[#c9c9bf]"}`}>
+              <div className={`text-sm mb-3 ${running && "text-[#dbdbcf]"}`}>
                 Max price: {maxPrice}
               </div>
             )}
-            <div className={`text-sm ${running && "text-[#c9c9bf]"}`}>
+            <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
               Softcap: <span className="uppercase">{softcap}</span>
             </div>
-            <div className={`text-sm mb-3 ${running && "text-[#c9c9bf]"}`}>
+            <div className={`text-sm mb-3 ${running && "text-[#dbdbcf]"}`}>
               Hardcap: <span className="uppercase">{hardcap}</span>
             </div>
-            <p className={`text-sm font-bold ${running && "text-[#c9c9bf]"}`}>
+            <p className={`text-sm font-bold ${running && "text-[#dbdbcf]"}`}>
               {period}
             </p>
           </div>
