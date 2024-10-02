@@ -11,7 +11,7 @@ const faqItems: FAQItem[] = [
   {
     question: "What is FICCO coin?",
     answer:
-      "FICCO is the native cryptocurrency of the Fight Club platform, designed to facilitate transactions within the decentralized ecosystem, including sponsorships, match funding, and access to exclusive content.",
+      "FICCO is the native cryptocurrency of the IRONWILL platform, designed to facilitate transactions within the decentralized ecosystem, including sponsorships, match funding, and access to exclusive content.",
   },
   {
     question: "How do I purchase FICCO coins from the pre-sale?",

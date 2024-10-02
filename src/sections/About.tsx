@@ -14,7 +14,7 @@ const About = () => {
         </span>
       </div>
       <p className="stretched-font-stretch font-helvetica font-thin text-md text-[#dbdbcf] scale-x-95 scale-y-110 -ml-4">
-        {`Fight Club envisions a world where martial arts transcend
+        {`IRONWILL envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
               this, we're building a decentralized platform, powered by our
               native token FICCO, that unlocks unprecedented opportunities for
