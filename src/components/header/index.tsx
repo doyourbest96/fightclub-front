@@ -58,14 +58,14 @@ const Header = () => {
         </div>
         <div className="relative w-full lg:pl-20">
           <div className="max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
-            <div className="w-full p-1 sm:hidden flex flex-row justify-around gap-1 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
+            {/* <div className="w-full p-1 sm:hidden flex flex-row justify-around gap-1 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
               <span>Presale Live</span>
               <span>-</span>
               <span>Presale Live</span>
               <span>-</span>
               <span>Presale Live</span>
-            </div>
-            <div className="w-full mt-2 sm:mt-12">
+            </div> */}
+            <div className="w-full mt-12">
               <Image
                 src={"/assets/images/mark.png"}
                 alt="mark"

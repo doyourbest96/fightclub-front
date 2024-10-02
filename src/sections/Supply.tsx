@@ -10,7 +10,7 @@ const Supply = () => {
         </div>
         <div className="pl-2 md:px-6 flex flex-col">
           <p className="text-sm font-revoluti  text-[#824b3d]">
-            1000000000000
+            100,000,000,000
           </p>
           <p className="text-sm font-helvetica font-medium text-[#2d2f2b]">
             Max supply
