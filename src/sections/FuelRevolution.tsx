@@ -1,4 +1,5 @@
 import TrackImg from "@/components/trackImg";
+import Link from "next/link";
 
 const FuelRevolution = () => {
   return (
@@ -37,7 +38,15 @@ const FuelRevolution = () => {
           participation in exclusive experiences and potential rewards based on
           the platform&apos;s success.
         </p>
-        <p className="text-[#824b3d] pt-1">Learn more about $FICCO</p>
+        <Link
+          href={"/assets/documents/whitepaper.pdf"}
+          className="font-helvetica font-thin text-md text-[#824b3d] hover:text-[#dbdbcf]"
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+        >
+          Learn more about $FICCO
+        </Link>
       </div>
     </div>
   );

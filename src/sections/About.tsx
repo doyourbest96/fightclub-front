@@ -1,4 +1,5 @@
 import TrackImg from "@/components/trackImg";
+import Link from "next/link";
 
 const About = () => {
   return (
@@ -24,12 +25,15 @@ const About = () => {
               athletes and invest in their success, fostering a more equitable
               and rewarding future for the world of combat sports.`}
       </p>
-      <p className="hidden lg:block font-helvetica font-thin text-md text-[#824b3d]">
-        Read the whole story
-      </p>
-      <p className="lg:hidden font-helvetica font-thin text-md text-[#824b3d]">
+      <Link
+        href={"/assets/documents/whitepaper.pdf"}
+        className="font-helvetica font-thin text-md text-[#824b3d] hover:text-[#dbdbcf]"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
         Read more
-      </p>
+      </Link>
     </div>
   );
 };
