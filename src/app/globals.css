@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #030303;
+  --foreground: #dbdbcf;
 }
 
 body {
@@ -22,16 +22,10 @@ body {
 }
 
 .branding {
-  background-image: url("/assets/images/bg-fighter-edit.jpg");
+  background-image: url("/assets/images/bg-fighter.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: left;
-}
-
-.advertisement {
-  background-image: url("/assets/images/bg-add.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .brander {
