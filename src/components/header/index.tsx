@@ -49,20 +49,24 @@ const Header = () => {
             </button>
           </div>
         </div>
-        <div className="w-full p-1 sm:hidden flex flex-rowj justify-center gap-2 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
-          <span>Presale Live</span>
-          <span>- Presale Live</span>
-          <span>- Presale Live</span>
-        </div>
         <div className="relative w-full lg:pl-20">
-          <div className="mt-2 sm:mt-12 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
-            <Image
-              src={"/assets/images/mark.png"}
-              alt="mark"
-              width={383}
-              height={160}
-              className="w-full h-auto mb-12"
-            />
+          <div className="max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+            <div className="w-full p-1 sm:hidden flex flex-row justify-around gap-1 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
+              <span>Presale Live</span>
+              <span>-</span>
+              <span>Presale Live</span>
+              <span>-</span>
+              <span>Presale Live</span>
+            </div>
+            <div className="w-full mt-2 sm:mt-12">
+              <Image
+                src={"/assets/images/mark.png"}
+                alt="mark"
+                width={383}
+                height={160}
+                className="w-full h-auto mb-12"
+              />
+            </div>
             <p className="px-2 font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
               Empowering martial artists, engaging fans and connecting industry
               leaders for a financially rewarding experience with the IRONWILL
