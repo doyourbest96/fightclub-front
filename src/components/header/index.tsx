@@ -49,8 +49,13 @@ const Header = () => {
             </button>
           </div>
         </div>
+        <div className="w-full p-1 sm:hidden flex flex-rowj justify-center gap-2 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
+          <span>Presale Live</span>
+          <span>- Presale Live</span>
+          <span>- Presale Live</span>
+        </div>
         <div className="relative w-full lg:pl-20">
-          <div className="mt-12 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+          <div className="mt-2 sm:mt-12 max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
             <Image
               src={"/assets/images/mark.png"}
               alt="mark"
