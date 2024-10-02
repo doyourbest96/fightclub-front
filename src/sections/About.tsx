@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4 relative"
+      className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4 relative text-center lg:text-left"
     >
       <div className="font-revoluti text-base text-[#dbdbcf] my-5">
         <span className="relative">
@@ -24,8 +24,11 @@ const About = () => {
               athletes and invest in their success, fostering a more equitable
               and rewarding future for the world of combat sports.`}
       </p>
-      <p className="font-helvetica font-thin text-md text-[#824b3d]">
+      <p className="hidden lg:block font-helvetica font-thin text-md text-[#824b3d]">
         Read the whole story
+      </p>
+      <p className="lg:hidden font-helvetica font-thin text-md text-[#824b3d]">
+        Read more
       </p>
     </div>
   );

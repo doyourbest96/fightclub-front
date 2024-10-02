@@ -43,8 +43,7 @@ const Branding = () => {
               models for everyone.
             </p>
           </div>
-          <span></span>
-          <div className="flex flex-col gap-2 min-w-48 py-10 track bg-connect">
+          <div className="flex flex-col gap-2 min-w-48 py-10 track">
             <p className="font-roboto-bold text-lg text-[#dbdbcf]">Connect</p>
             <p className="font-light font-helvetica text-[#dbdbcf]">
               Build your empire and get in touch with everyone, from fans to
@@ -66,11 +65,11 @@ const Branding = () => {
           <div
             className={classNames(
               "rounded-full w-6 h-6 hover:cursor-pointer hover:bg-gray-100",
-              selectedIntroView === 0 ? "bg-gray-200" : "bg-gray-400 "
+              selectedIntroView === 1 ? "bg-gray-200" : "bg-gray-400 "
             )}
             onClick={() => {
-              scrollToElement(0);
-              setSelectedIntroView(0);
+              scrollToElement(1);
+              setSelectedIntroView(1);
             }}
           ></div>
           <div
@@ -86,21 +85,21 @@ const Branding = () => {
           <div
             className={classNames(
               "rounded-full w-6 h-6 hover:cursor-pointer hover:bg-gray-100",
-              selectedIntroView === 4 ? "bg-gray-200" : "bg-gray-400 "
+              selectedIntroView === 3 ? "bg-gray-200" : "bg-gray-300 "
             )}
             onClick={() => {
-              scrollToElement(4);
-              setSelectedIntroView(4);
+              scrollToElement(3);
+              setSelectedIntroView(3);
             }}
           ></div>
           <div
             className={classNames(
               "rounded-full w-6 h-6 hover:cursor-pointer hover:bg-gray-100",
-              selectedIntroView === 6 ? "bg-gray-200" : "bg-gray-400 "
+              selectedIntroView === 4 ? "bg-gray-200" : "bg-gray-400 "
             )}
             onClick={() => {
-              scrollToElement(6);
-              setSelectedIntroView(6);
+              scrollToElement(4);
+              setSelectedIntroView(4);
             }}
           ></div>
         </div>

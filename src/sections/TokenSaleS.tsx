@@ -3,11 +3,11 @@ import Stage from "./Stage";
 
 const TokenSaleS = () => {
   return (
-    <div className="flex flex-col gap-2 items-center lg:items-start sm:px-8 md:px-12 lg:px-4 w-full overflow-visible">
-      <div className="max-w-md text-md font-revoluti text-center lg:text-left text-[#dbdbcf]">
+    <div className="flex flex-col gap-2 items-center lg:items-start sm:px-8 md:px-12 lg:px-4 w-full overflow-visible text-center lg:text-left">
+      <div className="max-w-md text-md font-revoluti text-[#dbdbcf]">
         <span className="relative">
           Exclusive FICCO Token SaleS with Guaranteed AND MYSTERY ALLOCATION
-          <TrackImg className="absolute top-0  overflow-auto translate-x-80 -translate-y-24 -z-10  w-[240px] h-[240px]" />
+          <TrackImg className="absolute top-0  overflow-auto md:translate-x-80  -translate-y-24 -z-10  w-[240px] h-[240px]" />
         </span>
       </div>
       <div className="py-4 w-full">
