@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { CiLinkedin } from "react-icons/ci";
 
 interface TeamMember {
   name: string;
@@ -8,7 +9,7 @@ interface TeamMember {
   description: string;
   imageSrc: string;
   socialLink: string;
-  href: string
+  href: string;
 }
 
 interface Placeholder {
@@ -25,7 +26,7 @@ const teamMembers: TeamMember[] = [
       "Former world champion kickboxing, owner of Andy Souwer Kickboxing University and WKS.",
     imageSrc: "/assets/avatars/Andy.jpg",
     socialLink: "Instagram",
-    href: "/"
+    href: "/",
   },
   {
     name: "Niels Strijbos",
@@ -34,7 +35,7 @@ const teamMembers: TeamMember[] = [
       "Creator of consumer brands, former co-owner at Bos Group Suant and Dutch Etail Network",
     imageSrc: "/assets/avatars/Niels.png",
     socialLink: "Instagram",
-    href: "/"
+    href: "/",
   },
   {
     name: "Steven Piao",
@@ -43,7 +44,7 @@ const teamMembers: TeamMember[] = [
       "Hebei university of technology, Former full stack developer at DESO, RubyExchange and Freebit.",
     imageSrc: "/assets/avatars/Steven.jpg",
     socialLink: "Linkedin",
-    href: "/"
+    href: "/",
   },
 ];
 
@@ -83,15 +84,21 @@ export default function DesktopMembers() {
               </div>
               <div className="p-4">
                 <div className="flex items-center">
-                  <h2 className="text-xl text-[#dbdbcf] font-bold mr-2">{member.name}</h2>
+                  <h2 className="text-xl text-[#dbdbcf] font-bold mr-2">
+                    {member.name}
+                  </h2>
                   <Link href={member.href}>
-                    {
-                      member.socialLink == "Instagram" ? <FaInstagram className="w-6 h-6 stroke-[#dbdbcf]" /> : <FaLinkedinIn className="w-5 h-5 stroke-[#dbdbcf]" />
-                    }
+                    {member.socialLink == "Instagram" ? (
+                      <FaInstagram className="w-6 h-6 stroke-[#dbdbcf]" />
+                    ) : (
+                      <CiLinkedin className="w-7 h-7 stroke-[#dbdbcf]" />
+                    )}
                   </Link>
                 </div>
                 <p className="text-[#dbdbcf]">{member.title}</p>
-                <p className="mt-2 text-sm text-[#dbdbcf]">{member.description}</p>
+                <p className="mt-2 text-sm text-[#dbdbcf]">
+                  {member.description}
+                </p>
               </div>
             </div>
           ))}
@@ -107,7 +114,9 @@ export default function DesktopMembers() {
                 />
               </div>
               <div className="p-4">
-                <h2 className="text-xl font-bold text-[#dbdbcf]">{placeholder.title}</h2>
+                <h2 className="text-xl font-bold text-[#dbdbcf]">
+                  {placeholder.title}
+                </h2>
                 <p className="text-[#dbdbcf]">{placeholder.description}</p>
               </div>
             </div>
