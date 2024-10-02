@@ -12,7 +12,7 @@ const Tokenomics = () => {
     <>
       <div
         id="tokenomics"
-        className="hidden lg:block w-full text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase sm:px-8 md:px-12 lg:px-4 "
+        className="hidden lg:block w-full text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase"
       >
         <span className="relative">
           Tokenomics
