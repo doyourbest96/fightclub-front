@@ -167,13 +167,15 @@ const PreSaleInterface: React.FC = () => {
               } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("ETH")}
             >
-              <Image
-                src={"/assets/icons/eth.png"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1 sm:mr-4 rounded-full"
-              />{" "}
+              <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#6274dd]">
+                <Image
+                  src={"/assets/icons/ethereum-eth-logo-colored.svg"}
+                  alt="icon"
+                  width={24}
+                  height={24}
+                  className="w-6 h-5"
+                />
+              </span>{" "}
               Pay with ETH
             </button>
             <button
@@ -184,48 +186,50 @@ const PreSaleInterface: React.FC = () => {
               } pl-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("USDT")}
             >
-              <Image
-                src={"/assets/icons/usdt.png"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1 lg:mr-2 rounded-full"
-              />{" "}
+              <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#389770]">
+                <Image
+                  src={"/assets/icons/tether-usdt-logo.svg"}
+                  alt="icon"
+                  width={24}
+                  height={24}
+                  className="w-6 h-5"
+                />
+              </span>{" "}
               Pay with USDT
             </button>
             <button
               className={`bg-[#353535] border ${
-                paymentType === "BNB"
+                paymentType === "DAI"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
               }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("BNB")}
+              onClick={() => setPaymentType("DAI")}
             >
               <Image
-                src={"/assets/icons/bnb.png"}
+                src={"/assets/icons/multi-collateral-dai-dai-logo.svg"}
                 alt="icon"
                 width={24}
                 height={24}
                 className="mr-1 lg:mr-2 rounded-full"
               />{" "}
-              Pay with BNB
+              Pay with DAI
             </button>
             <button
               className={`bg-[#353535] border ${
-                paymentType === "Card"
+                paymentType === "USDC"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
               }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("Card")}
+              onClick={() => setPaymentType("USDC")}
             >
               <Image
-                src={"/assets/icons/card.png"}
+                src={"/assets/icons/usd-coin-usdc-logo.svg"}
                 alt="icon"
                 width={24}
                 height={24}
                 className="mr-1 lg:mr-2 rounded-full bg-white"
               />{" "}
-              Pay with Card
+              Pay with USDC
             </button>
           </div>
 
