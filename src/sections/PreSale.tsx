@@ -51,7 +51,7 @@ const PreSaleInterface: React.FC = () => {
     minutes: 40,
     seconds: 60,
   });
-  const [progress] = useState(90000.24);
+  const [progress] = useState(0);
   const [amountETH, setAmountETH] = useState("0.0");
   const [getAmount, setGetAmount] = useState("0.0");
   const [paymentType, setPaymentType] = useState("ETH");
@@ -119,7 +119,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
             <div className="flex justify-end mt-3 ">
               <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
-                $1000000
+                $1,000,000
               </span>
             </div>
           </div>
