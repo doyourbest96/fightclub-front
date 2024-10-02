@@ -14,6 +14,7 @@ const PreSaleInterface: React.FC = () => {
   const [amountETH, setAmountETH] = useState("0.0");
   const [getAmount, setGetAmount] = useState("0.0");
   const [paymentType, setPaymentType] = useState("ETH");
+  const [connect, setConnect] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -220,16 +221,21 @@ const PreSaleInterface: React.FC = () => {
             />
           </div>
 
-          <button className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4 focus:bg-orange-800">
-            CONNECT WALLET
+          <button
+            className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4 focus:bg-orange-800 truncate"
+            onClick={() => setConnect(!connect)}
+          >
+            {connect ? "0x53845...e9" : "CONNECT WALLET"}
           </button>
 
-          <div className="">
-            <p className="text-sm font-bold">Your current holdings:</p>
-            <p className="text-sm mb-2">0 USDT</p>
-            <p className="text-sm font-bold">Balance PICCO</p>
-            <p className="text-sm">0</p>
-          </div>
+          {connect && (
+            <div className="">
+              <p className="text-sm font-bold">Your current holdings:</p>
+              <p className="text-sm mb-2">0 USDT</p>
+              <p className="text-sm font-bold">Balance PICCO</p>
+              <p className="text-sm">0</p>
+            </div>
+          )}
         </div>
         <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
           <span className="text-xs font-bold">Contract address:</span>
