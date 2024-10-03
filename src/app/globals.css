@@ -24,8 +24,7 @@ body {
 .branding {
   background-image: url("/assets/images/bg-fighter.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
-  /* background-position: left; */
+  background-size: auto;
 }
 
 .brander {
