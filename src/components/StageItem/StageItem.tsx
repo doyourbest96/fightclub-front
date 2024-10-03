@@ -4,6 +4,7 @@ const StageItem = ({
   data: {
     id: number;
     type: string;
+    subtype: string;
     value: string;
     maxPrice: string;
     softcap: string;
@@ -16,6 +17,7 @@ const StageItem = ({
   const {
     id,
     type,
+    subtype,
     value,
     maxPrice,
     softcap,
@@ -33,7 +35,7 @@ const StageItem = ({
             <div
               className={`font-revoluti text-sm ${running && "text-[#824b3d]"}`}
             >
-              {type === "public" ? <p>PUBLIC</p> : <p>PRE</p>} <p>SALE</p>
+              <p>{type}</p> <p>{subtype}</p>
               <p className="text-4xl font-helvetica font-medium">{id}</p>
             </div>
             <div className={`text-sm ${running && "text-[#c9c9bf]"}`}>

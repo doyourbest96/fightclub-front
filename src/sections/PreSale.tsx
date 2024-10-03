@@ -3,20 +3,65 @@ import React, { useState, useEffect } from "react";
 
 import Image from "next/image";
 
+interface TimeDifference {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+function diffFromNow(targetDate: Date): TimeDifference {
+  // Get the current date and time
+  const now = new Date();
+
+  // Calculate the difference in milliseconds
+  const millisecondsDiff = targetDate.getTime() - now.getTime();
+
+  // If the target date is in the past, return a message
+  if (millisecondsDiff < 0) {
+    return {
+      days: -1,
+      hours: -1,
+      minutes: -1,
+      seconds: -1,
+    };
+  }
+
+  // Calculate total seconds from milliseconds
+  const totalSeconds = Math.floor(millisecondsDiff / 1000);
+
+  // Calculate days, hours, minutes, and seconds
+  const days = Math.floor(totalSeconds / (24 * 3600));
+  const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return {
+    days,
+    hours,
+    minutes,
+    seconds,
+  };
+}
+
 const PreSaleInterface: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState({
+  const [timeLeft, setTimeLeft] = useState<TimeDifference>({
     days: 14,
     hours: 24,
     minutes: 40,
     seconds: 60,
   });
-  const [progress] = useState(90000.24);
+  const [progress] = useState(0);
   const [amountETH, setAmountETH] = useState("0.0");
   const [getAmount, setGetAmount] = useState("0.0");
   const [paymentType, setPaymentType] = useState("ETH");
   const [connect, setConnect] = useState(false);
 
   useEffect(() => {
+    const targetDate = new Date("2024-10-08T12:00:00Z"); // Specify your target date here
+    const difference = diffFromNow(targetDate);
+    setTimeLeft(difference);
+
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime.seconds > 0) {
@@ -46,10 +91,10 @@ const PreSaleInterface: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
-  };
+  // const copyToClipboard = (text: string) => {
+  //   navigator.clipboard.writeText(text);
+  //   alert("Copied to clipboard!");
+  // };
 
   return (
     <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-md min-w-md">
@@ -74,7 +119,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
             <div className="flex justify-end mt-3 ">
               <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
-                $1000000
+                $1,000,000
               </span>
             </div>
           </div>
@@ -90,7 +135,7 @@ const PreSaleInterface: React.FC = () => {
 
           <div className="mb-4">
             <p className="font-bold font-revoluti text-xl text-[#dbdbcf]">
-              TIME LEFT
+              TIME UNTIL PRE-SALE
             </p>
           </div>
 
@@ -122,13 +167,15 @@ const PreSaleInterface: React.FC = () => {
               } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("ETH")}
             >
-              <Image
-                src={"/assets/icons/eth.png"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1 sm:mr-4 rounded-full"
-              />{" "}
+              <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#6274dd]">
+                <Image
+                  src={"/assets/icons/ethereum-eth-logo-colored.svg"}
+                  alt="icon"
+                  width={24}
+                  height={24}
+                  className="w-6 h-5"
+                />
+              </span>{" "}
               Pay with ETH
             </button>
             <button
@@ -139,48 +186,50 @@ const PreSaleInterface: React.FC = () => {
               } pl-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("USDT")}
             >
-              <Image
-                src={"/assets/icons/usdt.png"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1 lg:mr-2 rounded-full"
-              />{" "}
+              <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#389770]">
+                <Image
+                  src={"/assets/icons/tether-usdt-logo.svg"}
+                  alt="icon"
+                  width={24}
+                  height={24}
+                  className="w-6 h-5"
+                />
+              </span>{" "}
               Pay with USDT
             </button>
             <button
               className={`bg-[#353535] border ${
-                paymentType === "BNB"
+                paymentType === "DAI"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
               }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("BNB")}
+              onClick={() => setPaymentType("DAI")}
             >
               <Image
-                src={"/assets/icons/bnb.png"}
+                src={"/assets/icons/multi-collateral-dai-dai-logo.svg"}
                 alt="icon"
                 width={24}
                 height={24}
                 className="mr-1 lg:mr-2 rounded-full"
               />{" "}
-              Pay with BNB
+              Pay with DAI
             </button>
             <button
               className={`bg-[#353535] border ${
-                paymentType === "Card"
+                paymentType === "USDC"
                   ? "border-orange-900 border-2"
                   : "border-gray-600"
               }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("Card")}
+              onClick={() => setPaymentType("USDC")}
             >
               <Image
-                src={"/assets/icons/card.png"}
+                src={"/assets/icons/usd-coin-usdc-logo.svg"}
                 alt="icon"
                 width={24}
                 height={24}
                 className="mr-1 lg:mr-2 rounded-full bg-white"
               />{" "}
-              Pay with Card
+              Pay with USDC
             </button>
           </div>
 
@@ -240,17 +289,15 @@ const PreSaleInterface: React.FC = () => {
         <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
           <span className="text-xs font-bold">Contract address:</span>
           <div className="flex items-center gap-2 mt-1 justify-center w-[90%]">
-            <span className="text-xs">
-              0x5384545c3190474713bdc48c3371fdbccd2b8e9
-            </span>
-            <button
+            <span className="text-xs">TBA</span>
+            {/* <button
               className="px-2 py-0.5 text-xs rounded-md bg-[#824B3D] hover:focus:bg-orange-800"
               onClick={() =>
                 copyToClipboard("0x5384545c3190474713bdc48c3371fdbccd2b8e9")
               }
             >
               COPY
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

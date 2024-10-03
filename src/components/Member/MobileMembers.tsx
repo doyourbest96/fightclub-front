@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
-import { FaLinkedinIn } from "react-icons/fa";
+import { CiLinkedin } from "react-icons/ci";
 
 interface CoFounder {
   name: string;
@@ -105,7 +105,7 @@ function CoFounderShowCase() {
               {member.socialLink == "Instagram" ? (
                 <FaInstagram className="w-6 h-6" />
               ) : (
-                <FaLinkedinIn className="w-5 h-5" />
+                <CiLinkedin className="w-7 h-7 stroke-[#dbdbcf]" />
               )}
             </Link>
           </div>

@@ -1,4 +1,5 @@
 import TrackImg from "@/components/trackImg";
+import Link from "next/link";
 
 const About = () => {
   return (
@@ -12,8 +13,8 @@ const About = () => {
           <TrackImg className="absolute top-0 translate-x-24 -translate-y-24 w-[240px] h-[240px] -z-10" />
         </span>
       </div>
-      <p className="stretched-font-stretch font-helvetica font-thin text-md text-[#dbdbcf] scale-x-95 scale-y-110 -ml-4">
-        {`Fight Club envisions a world where martial arts transcend
+      <p className="stretched-font-stretch font-helvetica font-light text-base text-[#dbdbcf] scale-x-95 scale-y-110 -ml-4">
+        {`IRONWILL envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
               this, we're building a decentralized platform, powered by our
               native token FICCO, that unlocks unprecedented opportunities for
@@ -24,12 +25,15 @@ const About = () => {
               athletes and invest in their success, fostering a more equitable
               and rewarding future for the world of combat sports.`}
       </p>
-      <p className="hidden lg:block font-helvetica font-thin text-md text-[#824b3d]">
-        Read the whole story
-      </p>
-      <p className="lg:hidden font-helvetica font-thin text-md text-[#824b3d]">
+      <Link
+        href={"/assets/documents/whitepaper.pdf"}
+        className="font-helvetica font-light text-base text-[#824b3d] hover:text-[#dbdbcf]"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
         Read more
-      </p>
+      </Link>
     </div>
   );
 };

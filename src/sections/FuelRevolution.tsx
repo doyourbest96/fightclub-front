@@ -1,4 +1,5 @@
 import TrackImg from "@/components/trackImg";
+import Link from "next/link";
 
 const FuelRevolution = () => {
   return (
@@ -13,10 +14,9 @@ const FuelRevolution = () => {
         <span className="font-roboto-bold text-[#dbdbcf]">
           Ownership and Empowerment:
         </span>{" "}
-        Purchasing FICCO coins grants you a stake in the Fight Club ecosystem.
-        You become an integral part of a movement that empowers martial artists
-        by providing them direct control over their careers and earning
-        potential.
+        Purchasing FICCO coins grants you a stake in the IRONWILL ecosystem. You
+        become an integral part of a movement that empowers martial artists by
+        providing them direct control over their careers and earning potential.
       </p>
       <p className="font-roboto-thin text-base text-[#dbdbcf]">
         <span className="font-roboto-bold text-[#dbdbcf]">
@@ -37,7 +37,15 @@ const FuelRevolution = () => {
           participation in exclusive experiences and potential rewards based on
           the platform&apos;s success.
         </p>
-        <p className="text-[#824b3d] pt-1">Learn more about $FICCO</p>
+        <Link
+          href={"/assets/documents/whitepaper.pdf"}
+          className="font-helvetica font-thin text-md text-[#824b3d] hover:text-[#dbdbcf]"
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+        >
+          Learn more about $FICCO
+        </Link>
       </div>
     </div>
   );

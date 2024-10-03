@@ -13,7 +13,7 @@ const TokenSaleS = () => {
       <div className="py-4 w-full">
         <Stage />
       </div>
-      <p className="font-helvetica font-thin text-sm scale-x-90 scale-y-105 -mx-3">
+      <p className="font-helvetica font-light text-base scale-x-90 scale-y-105 -mx-3">
         IRONWILL&apos;s native token, FICCO, is set to launch with a total
         maximum supply of 100 billion tokens. The initial price for the pre sale
         of 10 billion tokens will be set at a maximum of 0.00010 cent per token,
@@ -24,7 +24,7 @@ const TokenSaleS = () => {
         bought, potentially bringing the price per FICCO coin down while
         increasing the quantity you receive. Terms apply.
       </p>
-      <p className="font-helvetica font-thin text-md text-[#824b3d] px-5">
+      <p className="font-helvetica font-light text-base text-[#824b3d] px-5">
         More information
       </p>
     </div>
