@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <>
       <div className="flex flex-col gap-2 lg:gap-12 pb-8 branding">
-        <div className="py-7 flex px-1 lg:px-2 xl:px-4">
+        <div className="py-7 flex px-1 md:px-4 lg:px-2 xl:px-4">
           <div className="flex flex-row flex-1 justify-between items-center uppercase bg-[#030303]/60">
             <Logo />
             {navigation.map((item) => (
