@@ -18,7 +18,7 @@ const steps: Step[] = [
   {
     title: "Pay with the currency you like",
     description:
-      "Use one of the supported currencies to buy your FICCO coins. We accept ETH, USDT, SOL and CARD.",
+      "Use one of the supported currencies to buy your FICCO coins. We accept ETH, USDT, USDC and DAI.",
     icon: "/assets/icons/pay.svg",
   },
   {
@@ -45,7 +45,7 @@ export default function MobilePurchaseGuide() {
           Follow these easy steps to purchase FICCO tokens and embrace on our
           journey
         </p>
-        <div className="h-[250px] sm:h-[240px] bg-[#353731] p-4 sm:p-6 rounded-lg shadow-lg">
+        <div className="h-[250px] sm:h-[240px] bg-[#353731] p-8 sm:p-6 rounded-lg shadow-lg">
           <Image
             src={steps[currentStep].icon}
             alt="icon"
