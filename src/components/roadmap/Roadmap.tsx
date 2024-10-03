@@ -5,7 +5,7 @@ import Image from "next/image";
 const roadmapData = [
   {
     index: "Phase 1",
-    period: "Q2 2024",
+    period: "Q4 2024",
     title: "Foundation",
     contents: [
       "• Research phase, partnerships, whitepaper",
