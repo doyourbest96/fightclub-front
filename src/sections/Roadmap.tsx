@@ -74,7 +74,7 @@ const roadmapData = [
 
 const Roadmap = () => {
   return (
-    <div id="roadmap" className="flex flex-col lg:gap-6 rounded-md">
+    <div className="flex flex-col lg:gap-6 rounded-md">
       <div className="relative flex items-center justify-between top-0 right-0 w-full h-[15vh] lg:h-full overflow-hidden">
         <p className="text-3xl font-black italic text-[#dbdbcf] uppercase z-10">
           Roadmap

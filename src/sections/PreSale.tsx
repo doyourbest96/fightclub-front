@@ -124,7 +124,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-6">
             <p className="text-sm font-bold text-[#824b3d]">
               Current maximum price: $ 0.0001
             </p>
@@ -133,13 +133,13 @@ const PreSaleInterface: React.FC = () => {
             </p>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-6">
             <p className="font-bold font-revoluti text-xl text-[#dbdbcf]">
               TIME UNTIL PRE-SALE
             </p>
           </div>
 
-          <div className="grid grid-cols-4 gap-3 mb-10">
+          <div className="grid grid-cols-4 gap-4 mb-14">
             <div className="bg-[#212121] border border-orange-900 p-2 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.days}</div>
               <div className="text-sm">days</div>
@@ -158,7 +158,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-10">
+          <div className="grid grid-cols-2 gap-4 mb-10">
             <button
               className={`bg-[#353535] border ${
                 paymentType === "ETH"
@@ -233,7 +233,7 @@ const PreSaleInterface: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="text-left">
               <label className="block text-sm mb-1 sm:font-bold">
                 AMOUNT (ETH)
@@ -258,7 +258,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-6">
             <label className="block text-sm mb-1 sm:font-bold">
               CURRENT MYSTERY FICCO
             </label>
