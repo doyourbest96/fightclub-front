@@ -74,24 +74,28 @@ const Header = () => {
                 className="w-full h-auto mb-12"
               />
             </div>
-            <p className="pr-6 font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
-              Empowering martial artists, engaging fans and connecting industry
-              leaders for a financially rewarding experience with the IRONWILL
-              platform.
-            </p>
-            <Link
-              href={"/assets/documents/whitepaper.pdf"}
-              className="my-12 px-6 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-            >
-              <IoDocumentTextOutline
-                aria-hidden="true"
-                className="h-6 w-6 border-black"
-              />
-              Whitepaper
-            </Link>
+            <div className="w-full pr-8 flex flex-col justify-center items-center">
+              <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
+                Empowering martial artists, engaging fans and connecting
+                industry leaders for a financially rewarding experience with the
+                IRONWILL platform.
+              </p>
+              <Link
+                href={"/assets/documents/whitepaper.pdf"}
+                className="my-12 px-6 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                <Image
+                  src={"/assets/icons/doc.svg"}
+                  alt="whitepaper"
+                  width={20}
+                  height={20}
+                />
+                Whitepaper
+              </Link>
+            </div>
           </div>
         </div>
       </div>
