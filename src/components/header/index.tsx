@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/20/solid";
-import { IoDocumentTextOutline } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
 
