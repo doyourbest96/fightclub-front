@@ -97,11 +97,11 @@ const PreSaleInterface: React.FC = () => {
   // };
 
   return (
-    <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-md min-w-md">
+    <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-lg min-w-lg">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
-        <div className="w-full bg-[#131511] rounded-lg text-center p-4 ">
+        <div className="w-full bg-[#131511] rounded-lg text-center py-4">
           <h1 className="text-2xl font-revoluti font-bold mb-4">PRE SALE 1</h1>
-          <div className="mb-4 items-center">
+          <div className="px-1 mb-4 items-center">
             <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-lg h-8">
               <div
                 className="relative bg-[#824B3D] h-7 rounded-l-lg flex justify-end"
@@ -139,26 +139,26 @@ const PreSaleInterface: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 mb-14">
-            <div className="bg-[#212121] border border-orange-900 p-2 rounded">
+          <div className="px-12 grid grid-cols-4 gap-6 mb-14">
+            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.days}</div>
               <div className="text-sm">days</div>
             </div>
-            <div className="bg-[#212121] border border-orange-900 p-2 rounded">
+            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.hours}</div>
               <div className="text-sm">hours</div>
             </div>
-            <div className="bg-[#212121] border border-orange-900 p-2 rounded">
+            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.minutes}</div>
               <div className="text-sm">minutes</div>
             </div>
-            <div className="bg-[#212121] border border-orange-900 p-2 rounded">
+            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.seconds}</div>
               <div className="text-sm">seconds</div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-10">
+          <div className="px-4 grid grid-cols-2 gap-4 mb-10">
             <button
               className={`bg-[#353535] border ${
                 paymentType === "ETH"
@@ -233,7 +233,7 @@ const PreSaleInterface: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="px-2 grid grid-cols-2 gap-4 mb-4">
             <div className="text-left">
               <label className="block text-sm mb-1 sm:font-bold">
                 AMOUNT (ETH)
