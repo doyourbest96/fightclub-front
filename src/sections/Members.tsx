@@ -6,7 +6,7 @@ const Members = () => {
   return (
     <div id="founders" className="flex flex-col gap-6 rounded-md">
       <div className="flex flex-col lg:items-start gap-2 text-lg font-revoluti text-[#dbdbcf] uppercase">
-        <div className="relative justify-center flex items-center gap-2">
+        <div className="relative justify-center flex items-center gap-4">
           <span>Founders</span>
           <span className="w-1.5 h-4 border" />
           <span>Advisors</span>

@@ -33,7 +33,7 @@ export default function Home() {
             <FuelRevolution />
             <Tokenomics />
           </div>
-          <div className="w-2/5 flex flex-col gap-6 items-center">
+          <div className="w-2/5 flex flex-col gap-8 items-center">
             <Supply />
             <PreSaleInterface />
             <TokenomicsTable />
