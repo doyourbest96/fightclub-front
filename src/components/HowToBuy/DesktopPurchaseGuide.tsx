@@ -16,7 +16,7 @@ const steps: Step[] = [
   {
     title: "Pay with the currency you like",
     description:
-      "Use one of the supported currencies to buy your FICCO coins. We accept ETH, USDT, SOL and CARD.",
+      "Use one of the supported currencies to buy your FICCO coins. We accept ETH, USDT, USDC and DAI.",
     icon: "/assets/icons/pay.svg",
   },
   {
@@ -41,11 +41,11 @@ export default function DesktopPurchaseGuide() {
             journey
           </p>
         </div>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="text-[#dbdbcf] bg-[#353731] p-6 rounded-lg shadow-lg"
+              className="text-[#dbdbcf] bg-[#353731] p-8 rounded-lg shadow-lg"
             >
               <Image
                 src={step.icon}
