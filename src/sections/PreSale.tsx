@@ -46,10 +46,10 @@ function diffFromNow(targetDate: Date): TimeDifference {
 
 const PreSaleInterface: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<TimeDifference>({
-    days: 14,
-    hours: 24,
-    minutes: 40,
-    seconds: 60,
+    days: 30,
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
   });
   const [progress] = useState(0);
   const [amountETH, setAmountETH] = useState("0.0");
@@ -58,7 +58,7 @@ const PreSaleInterface: React.FC = () => {
   const [connect, setConnect] = useState(false);
 
   useEffect(() => {
-    const targetDate = new Date("2024-10-08T12:00:00Z"); // Specify your target date here
+    const targetDate = new Date("2024-10-12T12:00:00Z"); // Specify your target date here
     const difference = diffFromNow(targetDate);
     setTimeLeft(difference);
 
@@ -101,7 +101,7 @@ const PreSaleInterface: React.FC = () => {
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center py-4">
           <h1 className="text-2xl font-revoluti font-bold mb-4">PRE SALE 1</h1>
-          <div className="px-1 mb-4 items-center">
+          <div className="px-2 mb-4 items-center">
             <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-lg h-8">
               <div
                 className="relative bg-[#824B3D] h-7 rounded-l-lg flex justify-end"
@@ -158,7 +158,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
           </div>
 
-          <div className="px-4 grid grid-cols-2 gap-4 mb-10">
+          <div className="px-6 grid grid-cols-2 gap-4 mb-10">
             <button
               className={`bg-[#353535] border ${
                 paymentType === "ETH"
@@ -233,7 +233,7 @@ const PreSaleInterface: React.FC = () => {
             </button>
           </div>
 
-          <div className="px-2 grid grid-cols-2 gap-4 mb-4">
+          <div className="px-4 grid grid-cols-2 gap-4 mb-4">
             <div className="text-left">
               <label className="block text-sm mb-1 sm:font-bold">
                 AMOUNT (ETH)

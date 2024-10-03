@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <>
       <div className="flex flex-col gap-2 lg:gap-12 pb-8 branding">
-        <div className="py-7 flex px-1 lg:px-2 xl:px-4">
+        <div className="py-7 flex px-1 md:px-4 lg:px-2 xl:px-4">
           <div className="flex flex-row flex-1 justify-between items-center uppercase bg-[#030303]/60">
             <Logo />
             {navigation.map((item) => (
@@ -56,7 +56,7 @@ const Header = () => {
             </Link>
           </div>
         </div>
-        <div className="relative w-full lg:pl-20">
+        <div className="relative w-full lg:pl-12">
           <div className="max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
             {/* <div className="w-full p-1 sm:hidden flex flex-row justify-around gap-1 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
               <span>Presale Live</span>
@@ -65,7 +65,7 @@ const Header = () => {
               <span>-</span>
               <span>Presale Live</span>
             </div> */}
-            <div className="w-full mt-12">
+            <div className="w-full mt-8">
               <Image
                 src={"/assets/images/mark.png"}
                 alt="mark"
@@ -81,7 +81,7 @@ const Header = () => {
             </p>
             <Link
               href={"/assets/documents/whitepaper.pdf"}
-              className="my-16 px-4 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
+              className="my-12 px-6 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
               target="_blank"
               rel="noopener noreferrer"
               download
