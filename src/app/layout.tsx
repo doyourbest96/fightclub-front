@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import RootProvider from "@/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "IRONWILL",
   description:
-    "Fight Club envisions a world where martial arts transcend barriers, empowers individuals and unites communities.",
+    "IRONWILL envisions a world where martial arts transcend barriers, empowers individuals and unites communities.",
 };
 
 export default function RootLayout({
@@ -16,7 +17,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="relative">
         <div className="absolute -z-50 bg-[#030303] top-0 left-0 right-0 bottom-0" />
-        <div className="w-full flex flex-col items-center">{children}</div>
+        <div className="w-full flex flex-col items-center">
+          <RootProvider>{children}</RootProvider>
+        </div>
       </body>
     </html>
   );
