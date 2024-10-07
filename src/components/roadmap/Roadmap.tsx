@@ -5,7 +5,7 @@ import Image from "next/image";
 const roadmapData = [
   {
     index: "Phase 1",
-    period: "Q2 2024",
+    period: "Q4 2024",
     title: "Foundation",
     contents: [
       "• Research phase, partnerships, whitepaper",
@@ -75,7 +75,7 @@ const roadmapData = [
 
 const Roadmap = () => {
   return (
-    <div className="flex flex-col lg:gap-6 rounded-md font-helvetica relative">
+    <div id="roadmap" className="flex flex-col lg:gap-6 rounded-md font-helvetica relative">
       <div className="relative flex items-center justify-between w-full h-[15vh] lg:h-full overflow-visible">
         <div className="text-lg font-revoluti -z-10 text-[#dbdbcf]">
           <span className="relative uppercase">

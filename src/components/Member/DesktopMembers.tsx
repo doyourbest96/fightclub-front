@@ -46,16 +46,20 @@ const teamMembers: TeamMember[] = [
     socialLink: "Linkedin",
     href: "/",
   },
+  {
+    name: "Jonathan Ruiz",
+    title: "Co-founder",
+    description:
+      "World renowned mma & muay thai fight instructor, team USA coach - WMO & WAKO, owner of WKS and Striking 101.",
+    imageSrc: "/assets/avatars/Jonathan.png",
+    socialLink: "Instagram",
+    href: "/",
+  },
 ];
 
 const placeholders: Placeholder[] = [
   {
     title: "Advisor",
-    description: "Soon to be announced",
-    iconSrc: "/assets/avatars/default.png",
-  },
-  {
-    title: "Ambassador",
     description: "Soon to be announced",
     iconSrc: "/assets/avatars/default.png",
   },

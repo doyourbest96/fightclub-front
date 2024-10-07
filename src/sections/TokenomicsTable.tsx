@@ -26,7 +26,7 @@ const TokenomicsTable = () => {
             ))}
           </tbody>
         </table>
-        <p className="px-4 py-6  lg:text-sm xl:text-base scale-x-90 scale-y-110 -ml-5 text-[#dbdbcf]">
+        <p className="px-4 py-6 lg:text-sm xl:text-base scale-x-90 scale-y-110 -ml-5 text-[#dbdbcf]">
           FICCO coins are held secure in multi-signature wallets, requiring
           multiple approvals for any transaction, ensuring robust protection
           against unauthorized access and fraud. For more information please

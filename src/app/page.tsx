@@ -19,7 +19,7 @@ import Bander2 from "@/sections/Bander2";
 
 export default function Home() {
   return (
-    <div className="landing flex flex-col gap-12 w-full lg:max-w-7xl">
+    <div className="landing  flex flex-col gap-12 w-full lg:max-w-7xl">
       <div className="flex flex-col">
         <Header />
         <Branding />
@@ -33,7 +33,7 @@ export default function Home() {
             <FuelRevolution />
             <Tokenomics />
           </div>
-          <div className="w-2/5 flex flex-col gap-4 items-center">
+          <div className="w-2/5 flex flex-col gap-6 items-center">
             <Supply />
             <PreSaleInterface />
             <TokenomicsTable />

@@ -11,7 +11,7 @@ const stageData = [
     maxPrice: "$0.00010",
     softcap: "$100,000",
     hardcap: "$1,000,000",
-    period: "08-10-24 to 08-11-24",
+    period: "12-10-24 to 12-11-24",
     status: "soon",
     running: true,
   },
