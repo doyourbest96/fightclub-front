@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 
 interface TimeDifference {
@@ -55,7 +55,7 @@ const PreSaleInterface: React.FC = () => {
   const [amountETH, setAmountETH] = useState("0.0");
   const [getAmount, setGetAmount] = useState("0.0");
   const [paymentType, setPaymentType] = useState("ETH");
-  const [connect, setConnect] = useState(false);
+  // const [connect, setConnect] = useState(false);
 
   useEffect(() => {
     const targetDate = new Date("2024-10-12T12:00:00Z"); // Specify your target date here
@@ -99,7 +99,7 @@ const PreSaleInterface: React.FC = () => {
   return (
     <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-lg min-w-lg">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
-        <div className="w-full bg-[#131511] rounded-lg text-center py-4 ">
+        <div className="w-full bg-[#131511] rounded-lg text-center py-4">
           <h1 className="text-2xl font-revoluti font-bold mb-4">PRE SALE 1</h1>
           <div className="px-2 mb-4 items-center">
             <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-lg h-8">
@@ -138,8 +138,7 @@ const PreSaleInterface: React.FC = () => {
               TIME UNTIL PRE-SALE
             </p>
           </div>
-
-          <div className="grid grid-cols-4 px-12 gap-6 mb-14">
+          <div className="px-12 grid grid-cols-4 gap-6 mb-14">
             <div className="bg-[#212121] border border-orange-900 p-1 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.days}</div>
               <div className="text-sm">days</div>
@@ -270,21 +269,43 @@ const PreSaleInterface: React.FC = () => {
             />
           </div>
 
-          <button
+          {/* <button
             className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4 focus:bg-orange-800 truncate"
             onClick={() => setConnect(!connect)}
           >
             {connect ? "0x53845...e9" : "CONNECT WALLET"}
-          </button>
+          </button> */}
+          <ConnectButton.Custom>
+            {({ account, openAccountModal, openConnectModal }) => {
+              return (
+                <>
+                  <button
+                    className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 truncate"
+                    onClick={account ? openAccountModal : openConnectModal}
+                  >
+                    {account ? account.displayName : "CONNECT WALLET"}
+                  </button>
+                  {account && (
+                    <>
+                      <p className="text-sm font-bold">
+                        Your current holdings:
+                      </p>
+                      <p className="text-sm mb-2">{account.displayBalance}</p>
+                    </>
+                  )}
+                </>
+              );
+            }}
+          </ConnectButton.Custom>
 
-          {connect && (
+          {/* {connect && (
             <div className="">
               <p className="text-sm font-bold">Your current holdings:</p>
               <p className="text-sm mb-2">0 USDT</p>
               <p className="text-sm font-bold">Balance PICCO</p>
               <p className="text-sm">0</p>
             </div>
-          )}
+          )} */}
         </div>
         <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
           <span className="text-xs font-bold">Contract address:</span>

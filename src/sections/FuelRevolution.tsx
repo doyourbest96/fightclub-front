@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const FuelRevolution = () => {
   return (
-    <div className="flex flex-col gap-6 font-helvetica sm:px-8 md:px-12 lg:px-4 w-full">
+    <div className="flex flex-col gap-6 font-helvetica w-full pr-8">
       <div className="text-base font-revoluti text-[#dbdbcf]">
         <span className="relative">
           FUEL THE REVOLUTION
@@ -11,7 +11,7 @@ const FuelRevolution = () => {
         </span>
       </div>
       <p className="font-roboto-thin text-base text-[#dbdbcf]">
-        <span className="font-roboto-bold text-[#dbdbcf]">
+        <span className="font-lg font-roboto-bold text-[#dbdbcf] scale-x-90 scale-y-105">
           Ownership and Empowerment:
         </span>{" "}
         Purchasing FICCO coins grants you a stake in the IRONWILL ecosystem. You
@@ -19,7 +19,7 @@ const FuelRevolution = () => {
         providing them direct control over their careers and earning potential.
       </p>
       <p className="font-roboto-thin text-base text-[#dbdbcf]">
-        <span className="font-roboto-bold text-[#dbdbcf]">
+        <span className="font-lg font-roboto-bold text-[#dbdbcf] scale-x-90 scale-y-105">
           Fueling the Ecosystem:
         </span>{" "}
         FICCO coins power every transaction within the platform. By using FICCO,
@@ -29,7 +29,7 @@ const FuelRevolution = () => {
       </p>
       <div className="font-roboto-thin">
         <p className="text-base text-[#dbdbcf]">
-          <span className="font-roboto-bold text-[#dbdbcf]">
+          <span className="font-lg font-roboto-bold text-[#dbdbcf] scale-x-90 scale-y-105">
             Access and Rewards:
           </span>{" "}
           Owning FICCO unlocks exclusive benefits within the ecosystem. This
