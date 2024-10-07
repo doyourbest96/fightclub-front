@@ -28,6 +28,7 @@ const StageItem = ({
   } = data;
   return (
     <>
+
       <div className="relative w-full min-w-[128px] max-w-[132px] mx-2 pt-4">
         <div className="absolute left-0 top-0 -z-10 w-full rotate-[3deg] translate-y-4 h-56 bg-[#787871]" />
         <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] shadow-lg">

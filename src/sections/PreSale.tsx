@@ -138,7 +138,6 @@ const PreSaleInterface: React.FC = () => {
               TIME UNTIL PRE-SALE
             </p>
           </div>
-
           <div className="px-12 grid grid-cols-4 gap-6 mb-14">
             <div className="bg-[#212121] border border-orange-900 p-1 rounded">
               <div className="text-2xl font-revoluti">{timeLeft.days}</div>
