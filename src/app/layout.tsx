@@ -22,6 +22,7 @@ export default function RootLayout({
           {/* <RootProvider> */}
             {children}
           {/* </RootProvider> */}
+
         </div>
       </body>
     </html>

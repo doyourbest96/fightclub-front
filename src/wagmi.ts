@@ -7,6 +7,7 @@ import {
   polygon,
   sepolia,
 } from "wagmi/chains";
+
 export const config = getDefaultConfig({
   appName: "IRONWILL",
   projectId: "YOUR_PROJECT_ID", // Replace with your actual project ID

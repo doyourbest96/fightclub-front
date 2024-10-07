@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="flex flex-col gap-2 sm:px-8 md:px-12 lg:px-4 relative text-center lg:text-left"
+      className="flex flex-col gap-2 relative text-center lg:text-left"
     >
       <div className="font-revoluti text-base text-[#dbdbcf] my-5">
         <span className="relative">

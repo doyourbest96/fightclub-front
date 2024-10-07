@@ -12,8 +12,7 @@ const Tokenomics = () => {
     <>
       <div
         id="tokenomics"
-        className="w-full text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase sm:px-8 md:px-12 lg:px-4 "
-      >
+        className="w-full text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase">
         <span className="hidden lg:block relative">
           Tokenomics
           <TrackImg className="absolute top-1/2 right-0 translate-x-1/3 md:translate-x-1/2 -translate-y-1/2 -z-10  w-[240px] h-[240px]" />
