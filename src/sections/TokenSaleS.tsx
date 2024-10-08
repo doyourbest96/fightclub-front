@@ -13,7 +13,7 @@ const TokenSaleS = () => {
       <div className="py-2 w-full">
         <Stage />
       </div>
-      <p className="font-helvetica font-light text-base scale-x-90 scale-y-105 -mx-8">
+      <p className="font-helvetica font-light text-base scale-x-90 scale-y-105 lg:-mx-8">
         IRONWILL&apos;s native token, FICCO, is set to launch with a total
         maximum supply of 100 billion tokens. The initial price for the pre sale
         of 10 billion tokens will be set at a maximum of 0.00010 cent per token,
