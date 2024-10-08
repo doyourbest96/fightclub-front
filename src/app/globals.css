@@ -31,21 +31,21 @@ body {
   background-image: url("/assets/images/band.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: auto;
 }
 
 .brander2 {
   background-image: url("/assets/images/band2.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: auto;
 }
 
 .track {
   background-image: url("/assets/images/track.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: auto;
 }
 
 .stretched-font-stretch {
