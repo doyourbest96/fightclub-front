@@ -41,6 +41,13 @@ body {
   background-size: auto;
 }
 
+.partners {
+  background-image: url("/assets/images/partners.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+}
+
 .track {
   background-image: url("/assets/images/track.png");
   background-repeat: no-repeat;
