@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import RootProvider from "@/providers";
+import { getBalances } from "../utils/ethUtils";
 
 interface TimeDifference {
   days: number;
@@ -46,6 +47,10 @@ function diffFromNow(targetDate: Date): TimeDifference {
 }
 
 const PreSaleInterface: React.FC = () => {
+  const [balances, setBalances] = useState<{ [key: string]: string }>({});
+  const [address, setAddress] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeDifference>({
     days: 30,
     hours: 23,
@@ -92,6 +97,27 @@ const PreSaleInterface: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    async function fetchBalances() {
+      if (address) {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const fetchedBalances = await getBalances(address);
+          setBalances(fetchedBalances);
+        } catch (err) {
+          setError(`Failed to fetch balances. Please try again. ${err}`);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    }
+    fetchBalances();
+  }, [address]);
+
+  // const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setAddress(e.target.value);
+  // };
   // const copyToClipboard = (text: string) => {
   //   navigator.clipboard.writeText(text);
   //   alert("Copied to clipboard!");
@@ -163,9 +189,9 @@ const PreSaleInterface: React.FC = () => {
 
             <div className="px-6 grid grid-cols-2 gap-4 mb-10">
               <button
-                className={`bg-[#353535] border ${
+                className={`bg-[#353535] border-2 ${
                   paymentType === "ETH"
-                    ? "border-orange-900 border-2"
+                    ? "border-orange-900"
                     : "border-gray-600"
                 } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                 onClick={() => setPaymentType("ETH")}
@@ -182,9 +208,9 @@ const PreSaleInterface: React.FC = () => {
                 Pay with ETH
               </button>
               <button
-                className={`bg-[#353535] border ${
+                className={`bg-[#353535] border-2 ${
                   paymentType === "USDT"
-                    ? "border-orange-900 border-2"
+                    ? "border-orange-900"
                     : "border-gray-600"
                 } pl-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                 onClick={() => setPaymentType("USDT")}
@@ -201,9 +227,9 @@ const PreSaleInterface: React.FC = () => {
                 Pay with USDT
               </button>
               <button
-                className={`bg-[#353535] border ${
+                className={`bg-[#353535] border-2 ${
                   paymentType === "DAI"
-                    ? "border-orange-900 border-2"
+                    ? "border-orange-900"
                     : "border-gray-600"
                 }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                 onClick={() => setPaymentType("DAI")}
@@ -218,9 +244,9 @@ const PreSaleInterface: React.FC = () => {
                 Pay with DAI
               </button>
               <button
-                className={`bg-[#353535] border ${
+                className={`bg-[#353535] border-2 ${
                   paymentType === "USDC"
-                    ? "border-orange-900 border-2"
+                    ? "border-orange-900"
                     : "border-gray-600"
                 }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                 onClick={() => setPaymentType("USDC")}
@@ -239,7 +265,7 @@ const PreSaleInterface: React.FC = () => {
             <div className="px-4 grid grid-cols-2 gap-4 mb-4">
               <div className="text-left">
                 <label className="block text-sm mb-1 sm:font-bold">
-                  AMOUNT (ETH)
+                  AMOUNT ({paymentType})
                 </label>
                 <input
                   type="number"
@@ -281,6 +307,9 @@ const PreSaleInterface: React.FC = () => {
           </button> */}
             <ConnectButton.Custom>
               {({ account, openAccountModal, openConnectModal }) => {
+                if (account && account.address && account.address !== address) {
+                  setAddress(account.address);
+                }
                 return (
                   <>
                     <button
@@ -294,7 +323,12 @@ const PreSaleInterface: React.FC = () => {
                         <p className="text-sm font-bold">
                           Your current holdings:
                         </p>
-                        <p className="text-sm mb-2">{account.displayBalance}</p>
+                        {/* <p className="text-sm mb-2">{account.displayBalance}</p> */}
+                        {isLoading && <p>Loading...</p>}
+                        {error && <p className="text-red-500">{error}</p>}
+                        <p className="text-sm mb-2">
+                          {balances[paymentType] + " " + paymentType}
+                        </p>
                       </>
                     )}
                   </>
@@ -311,6 +345,22 @@ const PreSaleInterface: React.FC = () => {
             </div>
           )} */}
           </div>
+          {/* <div className="w-full flex flex-col justify-center items-center">
+            <h2>Presale ETH Balance Checker</h2>
+            <input
+              type="text"
+              value={address}
+              onChange={handleAddressChange}
+              placeholder="Enter Ethereum address"
+            />
+            {isLoading && <p>Loading...</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {Object.entries(balances).map(([token, balance]) => (
+              <p key={token}>
+                {token} Balance: {balance}
+              </p>
+            ))}
+          </div> */}
           <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
             <span className="text-xs font-bold">Contract address:</span>
             <div className="flex items-center gap-2 mt-1 justify-center w-[90%]">
