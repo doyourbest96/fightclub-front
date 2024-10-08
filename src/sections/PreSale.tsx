@@ -324,11 +324,14 @@ const PreSaleInterface: React.FC = () => {
                           Your current holdings:
                         </p>
                         {/* <p className="text-sm mb-2">{account.displayBalance}</p> */}
-                        {isLoading && <p>Loading...</p>}
+                        {isLoading ? (
+                          <p>Loading...</p>
+                        ) : (
+                          <p className="text-sm mb-2">
+                            {balances[paymentType] + " " + paymentType}
+                          </p>
+                        )}
                         {error && <p className="text-red-500">{error}</p>}
-                        <p className="text-sm mb-2">
-                          {balances[paymentType] + " " + paymentType}
-                        </p>
                       </>
                     )}
                   </>
