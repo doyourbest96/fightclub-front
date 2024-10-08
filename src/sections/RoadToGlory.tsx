@@ -22,7 +22,7 @@ export default function RoadToGlory() {
       </div>
       {/* For Desktop */}
       <div className="hidden lg:flex flex-col gap-10">
-        <div className="flex px-12 flex-row justify-center gap-16">
+        <div className="flex px-10 flex-row justify-center gap-12">
           <GloryItem item={gloryData[0]} />
           <GloryItem item={gloryData[1]} />
         </div>
@@ -82,16 +82,16 @@ export default function RoadToGlory() {
                 openIndex === index ? "h-auto" : "max-h-0"
               }`}
             >
-              <p className="font-helvetica font-thin">{item.comment}</p>
-              <p className="py-4 font-roboto-thin leading-none text-lg">
+              <p className="font-roboto-thin">{item.comment}</p>
+              <p className="py-4 font-helvetica leading-none">
                 {item.description}
               </p>
               {item.features.map((feature, idx) => (
                 <p key={idx}>
-                  <span className="font-roboto-bold text-lg">
+                  <span className="font-roboto-bold">
                     {feature.title}
                   </span>
-                  <span className="font-roboto-thin">{" " + feature.desc}</span>
+                  <span className="font-helvetica">{" " + feature.desc}</span>
                 </p>
               ))}
             </div>
