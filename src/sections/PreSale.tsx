@@ -58,8 +58,8 @@ const PreSaleInterface: React.FC = () => {
     seconds: 59,
   });
   const [progress] = useState(0);
-  const [amountETH, setAmountETH] = useState("0.0");
-  const [getAmount, setGetAmount] = useState("0.0");
+  const [amount, setAmount] = useState(0.0);
+  const [getAmount, setGetAmount] = useState(0.0);
   const [paymentType, setPaymentType] = useState("ETH");
   // const [connect, setConnect] = useState(false);
 
@@ -268,9 +268,10 @@ const PreSaleInterface: React.FC = () => {
                   AMOUNT ({paymentType})
                 </label>
                 <input
-                  type="number"
-                  value={amountETH}
-                  onChange={(e) => setAmountETH(e.target.value)}
+                  type={"number"}
+                  value={amount}
+                  min={0}
+                  onChange={(e) => setAmount(parseFloat(e.target.value))}
                   className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
                 />
               </div>
@@ -281,7 +282,8 @@ const PreSaleInterface: React.FC = () => {
                 <input
                   type="number"
                   value={getAmount}
-                  onChange={(e) => setGetAmount(e.target.value)}
+                  min={0}
+                  onChange={(e) => setGetAmount(parseFloat(e.target.value))}
                   className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
                 />
               </div>
@@ -312,12 +314,26 @@ const PreSaleInterface: React.FC = () => {
                 }
                 return (
                   <>
-                    <button
-                      className="w-[70%] bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 truncate"
-                      onClick={account ? openAccountModal : openConnectModal}
-                    >
-                      {account ? account.displayName : "CONNECT WALLET"}
-                    </button>
+                    <div className="px-4 w-full flex flex-row justify-center gap-4">
+                      <button
+                        className="max-w-[70%] w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 truncate"
+                        onClick={account ? openAccountModal : openConnectModal}
+                      >
+                        {account ? account.displayName : "CONNECT WALLET"}
+                      </button>
+                      {account && (
+                        <button
+                          className="w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 disabled:bg-[#333] disabled:cursor-not-allowed truncate"
+                          disabled={
+                            parseFloat(balances[paymentType]) == 0 ||
+                            parseFloat(balances[paymentType]) < amount
+                          }
+                          // onClick={account ? openAccountModal : openConnectModal}
+                        >
+                          BUY
+                        </button>
+                      )}
+                    </div>
                     {account && (
                       <>
                         <p className="text-sm font-bold">
