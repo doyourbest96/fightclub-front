@@ -1,1 +1,0 @@
-@/components/RoadToGlory/gloryItemComps

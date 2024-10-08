@@ -15,7 +15,7 @@ export default function RootProvider({
     <WagmiProvider config={config}>
       <QueryClientProvider client={client}>
         <RainbowKitProvider
-          coolMode={false}
+          coolMode={true}
           theme={darkTheme({
             accentColor: "#824B3D",
             accentColorForeground: "#dbdbcf",
