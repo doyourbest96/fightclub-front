@@ -6,7 +6,7 @@ import About from "@/sections/About";
 import TokenSaleS from "@/sections/TokenSaleS";
 import FuelRevolution from "@/sections/FuelRevolution";
 import Supply from "@/sections/Supply";
-import Bander from "@/sections/Bander";
+// import Bander from "@/sections/Bander";
 import TokenomicsTable from "@/sections/TokenomicsTable";
 import Tokenomics from "@/sections/Tokenomics";
 import HowtoBuy from "@/sections/HowtoBuy";
@@ -14,8 +14,9 @@ import Members from "@/sections/Members";
 import Faq from "@/sections/Faq";
 import Footer from "@/sections/Footer";
 import Roadmap from "@/components/roadmap/Roadmap";
-import TokenomicsTableMobile from "@/sections/TokenomicsTableMobile";
+// import TokenomicsTableMobile from "@/sections/TokenomicsTableMobile";
 import Bander2 from "@/sections/Bander2";
+import RoadToGlory from "@/sections/RoadToGlory";
 
 export default function Home() {
   return (
@@ -46,14 +47,15 @@ export default function Home() {
           <Supply />
           <PreSaleInterface />
           <TokenSaleS />
-          <TokenomicsTableMobile />
-          <Tokenomics />
+          {/* <TokenomicsTableMobile /> */}
+          {/* <Tokenomics /> */}
         </div>
 
         {/* Bottom section */}
         <div className="flex flex-col gap-16 items-center">
           {/* Bander 2 */}
-          <Bander />
+          <RoadToGlory />
+          {/* <Bander /> */}
           <Roadmap />
           <HowtoBuy />
           <Members />
