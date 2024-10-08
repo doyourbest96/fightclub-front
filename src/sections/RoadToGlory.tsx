@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { gloryData } from "@/data/glory.data";
 import GloryItem from "@/components/RoadToGlory/GloryItem";
+import TrackImg from "@/components/trackImg";
 
 export default function RoadToGlory() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -12,19 +13,22 @@ export default function RoadToGlory() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-10">
-      <p className="text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase">
-        Road to Glory
-      </p>
+    <div id="roadtoglory" className="w-full flex flex-col gap-10">
+      <div className="text-center lg:text-left">
+        <span className="relative text-lg font-revoluti text-[#dbdbcf] uppercase">
+          Road to Glory
+          <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 -z-10  w-[240px] h-[240px]" />
+        </span>
+      </div>
       {/* For Desktop */}
       <div className="hidden lg:flex flex-col gap-10">
         <div className="flex px-12 flex-row justify-center gap-16">
           <GloryItem item={gloryData[0]} />
           <GloryItem item={gloryData[1]} />
         </div>
-        <div className="flex flex-row justify-center items-center gap-1">
+        <div className="flex flex-row justify-center items-center gap-2">
           <GloryItem item={gloryData[2]} />
-          <div className="relative max-w-64 w-full h-72 flex justify-center">
+          <div className="relative max-w-64 w-full h-64 flex justify-center">
             <Image
               src={"/assets/images/glory.png"}
               alt="glory"
@@ -75,7 +79,7 @@ export default function RoadToGlory() {
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                openIndex === index ? "max-h-96" : "max-h-0"
+                openIndex === index ? "h-auto" : "max-h-0"
               }`}
             >
               <p className="font-helvetica font-thin">{item.comment}</p>
