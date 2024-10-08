@@ -17,7 +17,7 @@ export default function RoadToGlory() {
       <div className="text-center lg:text-left">
         <span className="relative text-lg font-revoluti text-[#dbdbcf] uppercase">
           Road to Glory
-          <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 -z-10  w-[240px] h-[240px]" />
+          <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 w-[240px] h-[240px]" />
         </span>
       </div>
       {/* For Desktop */}

@@ -20,7 +20,7 @@ import RoadToGlory from "@/sections/RoadToGlory";
 
 export default function Home() {
   return (
-    <div className="landing  flex flex-col gap-12 w-full lg:max-w-7xl">
+    <div className="landing  flex flex-col gap-12 w-full lg:max-w-7xl overflow-hidden">
       <div className="flex flex-col">
         <Header />
         <Branding />
