@@ -26,7 +26,7 @@ export const stageData = [
   {
     id: 3,
     type: `ieo`,
-    subtype: `1`,
+    subtype: `sale`,
     value: "10,000,000,000",
     maxPrice: "tba",
     softcap: "tba",
@@ -38,7 +38,7 @@ export const stageData = [
   {
     id: 4,
     type: "ieo",
-    subtype: "2",
+    subtype: "sale",
     value: "5,000,000,000",
     maxPrice: "tba",
     softcap: "tba",
