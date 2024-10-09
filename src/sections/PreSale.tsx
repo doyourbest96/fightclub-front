@@ -149,20 +149,11 @@ const PreSaleInterface: React.FC = () => {
             </div>
 
             <div className="mb-6">
-              <p className="text-sm font-bold text-[#824b3d]">
-                Current maximum price: $ 0.0001
-              </p>
-              <p className="text-sm font-bold text-[#dbdbcf]">
-                Sale 2 maximum price: $ 0.0004
-              </p>
-            </div>
-
-            <div className="mb-6">
               <p className="font-bold font-revoluti text-xl text-[#dbdbcf]">
-                TIME UNTIL PRE-SALE
+                TIME LEFT
               </p>
             </div>
-            <div className="px-12 grid grid-cols-4 gap-6 mb-14">
+            <div className="px-8 grid grid-cols-4 gap-6 mb-6">
               <div className="bg-[#212121] border border-orange-900 p-1 rounded">
                 <div className="text-2xl font-revoluti">{timeLeft.days}</div>
                 <div className="text-sm">days</div>
@@ -179,6 +170,21 @@ const PreSaleInterface: React.FC = () => {
                 <div className="text-2xl font-revoluti">{timeLeft.seconds}</div>
                 <div className="text-sm">seconds</div>
               </div>
+            </div>
+
+            <div className="mb-8">
+              <p className="text-base font-bold text-[#824b3d]">
+                Current price $0.00008 / 3.000.000.000 left
+              </p>
+              <p className="text-base text-[#dbdbcf]">
+                Next price $0.0001 / 4.000.000.000
+              </p>
+              <p className="text-base text-[#dbdbcf]">
+                Phase 3 $0.00012 / 2.000.000.000
+              </p>
+              <p className="text-base text-[#dbdbcf]">
+                Phase 4 $0.00014 / 1.000.000.000
+              </p>
             </div>
 
             <div className="px-6 grid grid-cols-2 gap-4 mb-10">

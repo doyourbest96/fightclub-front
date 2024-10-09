@@ -23,8 +23,8 @@ const FuelRevolution = () => {
           Fueling the Ecosystem:
         </span>{" "}
         FICCO coins power every transaction within the platform. By using FICCO,
-        you directly contribute to the growth and sustainability of the Fight
-        Club community, fostering a vibrant space where talent thrives and
+        you directly contribute to the growth and sustainability of the IRONWILL
+        community, fostering a vibrant space where talent thrives and
         opportunities flourish.
       </p>
       <div className="font-roboto-thin">

@@ -17,7 +17,7 @@ const About = () => {
         {`IRONWILL envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
               this, we're building a decentralized platform, powered by our
-              native token FICCO, that unlocks unprecedented opportunities for
+              native coin FICCO, that unlocks unprecedented opportunities for
               all stakeholders in combat sports—from aspiring amateurs and
               passionate fans to seasoned professionals and dedicated clubs.
               Through IRONWILL, fighters can take control of their careers and
@@ -32,7 +32,7 @@ const About = () => {
         rel="noopener noreferrer"
         download
       >
-        Read more
+        Read more, download whitepaper
       </Link>
     </div>
   );
