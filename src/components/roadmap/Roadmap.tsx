@@ -5,7 +5,10 @@ import { roadmapData } from "@/data/roadmap.data";
 
 const Roadmap = () => {
   return (
-    <div id="roadmap" className="flex flex-col lg:gap-6 rounded-md font-helvetica relative">
+    <div
+      id="roadmap"
+      className="flex flex-col lg:gap-6 rounded-md font-helvetica relative"
+    >
       <div className="relative flex items-center justify-between w-full h-[15vh] lg:h-full overflow-visible">
         <div className="text-lg font-revoluti -z-10 pl-8 lg:pr-0 text-[#dbdbcf]">
           <span className="relative uppercase">
@@ -13,13 +16,15 @@ const Roadmap = () => {
             <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 -z-10  w-[240px] h-[240px]" />
           </span>
         </div>
-        <div className="lg:hidden absolute top-0 right-0 w-1/2 h-full">
+        <div className="lg:hidden absolute top-0 right-0 -z-10 w-1/2 h-full">
           <Image
             src={"/assets/images/smart.png"}
             alt="smart"
-            layout="fill"
-            objectFit="cover"
-            className="object-top" // To ensure the top part of the image is shown
+            width={239}
+            height={360}
+            // layout="fill"
+            // objectFit="cover"
+            className="w-full h-auto object-top" // To ensure the top part of the image is shown
           />
         </div>
       </div>
@@ -35,7 +40,7 @@ const Roadmap = () => {
             alt="smart"
             width={239}
             height={360}
-            className="w-full h-auto"
+            className="h-auto"
           />
         </div>
         <div className="w-2/5 flex flex-col gap-4">
