@@ -1,11 +1,4 @@
-interface RoadmapItemProps {
-  index: string;
-  period: string;
-  title: string;
-  contents: string[];
-  up: boolean;
-  done: number;
-}
+import { RoadmapItemProps } from "@/types";
 
 const RoadmapItem = ({ item }: { item: RoadmapItemProps }) => {
   return (

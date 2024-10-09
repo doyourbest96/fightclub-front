@@ -2,80 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
-
-interface TeamMember {
-  name: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  socialLink: string;
-  href: string;
-}
-
-interface Placeholder {
-  title: string;
-  description: string;
-  iconSrc: string;
-}
-
-const teamMembers: TeamMember[] = [
-  {
-    name: "Andy Souwer",
-    title: "Co-founder",
-    description:
-      "Former world champion kickboxing, owner of Andy Souwer Kickboxing University and WKS.",
-    imageSrc: "/assets/avatars/Andy.jpg",
-    socialLink: "Instagram",
-    href: "/",
-  },
-  {
-    name: "Niels Strijbos",
-    title: "Co-founder",
-    description:
-      "Creator of consumer brands, former co-owner at Bos Group Suant and Dutch Etail Network",
-    imageSrc: "/assets/avatars/Niels.png",
-    socialLink: "Instagram",
-    href: "/",
-  },
-  {
-    name: "Steven Piao",
-    title: "Co-founder",
-    description:
-      "Hebei university of technology, Former full stack developer at DESO, RubyExchange and Freebit.",
-    imageSrc: "/assets/avatars/Steven.jpg",
-    socialLink: "Linkedin",
-    href: "/",
-  },
-  {
-    name: "Jonathan Ruiz",
-    title: "Co-founder",
-    description:
-      "World renowned mma & muay thai fight instructor, team USA coach - WMO & WAKO, owner of WKS and Striking 101.",
-    imageSrc: "/assets/avatars/Jonathan.png",
-    socialLink: "Instagram",
-    href: "/",
-  },
-];
-
-const placeholders: Placeholder[] = [
-  {
-    title: "Advisor",
-    description: "Soon to be announced",
-    iconSrc: "/assets/avatars/default.png",
-  },
-  {
-    title: "Ambassador",
-    description: "Soon to be announced",
-    iconSrc: "/assets/avatars/default.png",
-  },
-];
+import { teamMemberData, placeholderData } from "@/data/member.data";
 
 export default function DesktopMembers() {
   return (
     <div className="text-[#dbdbcf] p-8 max-w-6xl">
       <div className="mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
+          {teamMemberData.map((member, index) => (
             <div key={index} className="rounded-lg overflow-hidden">
               <div className="flex justify-center items-end">
                 <Image
@@ -106,7 +40,7 @@ export default function DesktopMembers() {
               </div>
             </div>
           ))}
-          {placeholders.map((placeholder, index) => (
+          {placeholderData.map((placeholder, index) => (
             <div key={index} className="rounded-lg overflow-hidden">
               <div className="flex justify-center items-end">
                 <Image

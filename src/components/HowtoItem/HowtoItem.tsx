@@ -1,10 +1,5 @@
 import Image from "next/image";
-
-interface HowtoItemProps {
-  icon: string;
-  title: string;
-  content: string;
-}
+import { HowtoItemProps } from "@/types";
 
 const HowtoItem = ({ item }: { item: HowtoItemProps }) => {
   return (

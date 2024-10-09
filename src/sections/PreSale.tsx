@@ -4,13 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import RootProvider from "@/providers";
 import { getBalances } from "../utils/ethUtils";
-
-interface TimeDifference {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import { TimeDifference } from "@/types";
 
 function diffFromNow(targetDate: Date): TimeDifference {
   // Get the current date and time
