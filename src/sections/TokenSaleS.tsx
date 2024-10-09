@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TrackImg from "@/components/trackImg";
 import Stage from "./Stage";
 
@@ -13,7 +14,7 @@ const TokenSaleS = () => {
       <div className="py-6 w-full">
         <Stage />
       </div>
-      <p className="font-helvetica font-light text-base scale-x-90 scale-y-105 lg:-mx-8">
+      <p className="stretched-font-stretch font-helvetica font-light text-base scale-x-90 scale-y-105 lg:-mx-10">
         IRONWILL&apos;s native coin, FICCO, is set to launch with a total
         maximum supply of 100 billion coins. In the first public sale
         10,000,000,000 FICCO coins will be sold, of which 3,000,000,000 with a
@@ -24,9 +25,15 @@ const TokenSaleS = () => {
         public sale can be claimed after TGE which will take place after
         conducting the second public sale. Unsold coins will be burned.
       </p>
-      <p className="font-helvetica font-light text-base text-[#824b3d]">
-        More information
-      </p>
+      <Link
+        href={"/assets/documents/whitepaper.pdf"}
+        className="font-helvetica font-light text-base text-[#824b3d] hover:text-[#dbdbcf]"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
+        Read more, download whitepaper
+      </Link>
     </div>
   );
 };
