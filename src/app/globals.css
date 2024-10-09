@@ -20,11 +20,23 @@ body {
     text-wrap: balance;
   }
 }
-
+/* 
 .branding {
   background-image: url("/assets/images/bg-fighter.jpg");
   background-repeat: no-repeat;
   background-size: auto;
+} */
+
+@media screen and (max-width: 900px) {
+  .branding {
+    background-image: url("/assets/images/bg-mobile.jpg");
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .branding {
+    background-image: url("/assets/images/bg-fighter.jpg") !important;
+  }
 }
 
 .brander {
