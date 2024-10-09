@@ -21,7 +21,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <>
-      <div className="flex flex-col gap-2 lg:gap-12 pb-8 branding">
+      <div className="flex flex-col gap-12 pb-8 branding">
         <div className="py-7 flex px-1 md:px-4 lg:px-2 xl:px-4">
           <div className="flex flex-row flex-1 justify-between items-center uppercase bg-[#030303]/60">
             <Logo />
@@ -56,7 +56,7 @@ const Header = () => {
           </div>
         </div>
         <div className="relative w-full lg:pl-12">
-          <div className="max-w-[580px] px-1 md:px-8 flex flex-col items-center text-center w-full font-light">
+          <div className="max-w-[516px] mx-1 md:mx-8 flex flex-col items-center text-center w-full font-light">
             {/* <div className="w-full p-1 sm:hidden flex flex-row justify-around gap-1 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
               <span>Presale Live</span>
               <span>-</span>
@@ -73,8 +73,8 @@ const Header = () => {
                 className="w-full h-auto mb-12"
               />
             </div>
-            <div className="w-full pr-8 flex flex-col justify-center items-center">
-              <p className="font-helvetica text-[1.4rem] md:text-2xl font-light text-[#d3d3c7]">
+            <div className="w-full pr-2 sm:pr-8 flex flex-col justify-center items-center">
+              <p className="font-helvetica text-2xl font-light text-[#d3d3c7]">
                 Empowering martial artists, engaging fans and connecting
                 industry leaders for a financially rewarding experience with the
                 IRONWILL platform.
@@ -92,7 +92,7 @@ const Header = () => {
                   width={20}
                   height={20}
                 />
-                Whitepaper
+                <span className="font-black">Whitepaper</span>
               </Link>
             </div>
           </div>
