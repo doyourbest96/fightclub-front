@@ -212,7 +212,7 @@ const PreSaleInterface: React.FC = () => {
                   paymentType === "USDT"
                     ? "border-orange-900"
                     : "border-gray-600"
-                } pl-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                 onClick={() => setPaymentType("USDT")}
               >
                 <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#389770]">
