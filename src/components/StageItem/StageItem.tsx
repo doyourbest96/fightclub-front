@@ -1,3 +1,5 @@
+import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
+
 const StageItem = ({
   data,
 }: {
@@ -71,7 +73,11 @@ const StageItem = ({
               running && "text-[#824b3d]"
             }`}
           >
-            {status}
+            {id !== 1
+              ? status
+              : diffTimeFromNow(new Date("2024-10-22T12:00:00Z")).days === -1
+              ? "open"
+              : status}
           </div>
         </div>
       </div>
