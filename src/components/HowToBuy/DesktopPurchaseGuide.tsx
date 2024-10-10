@@ -11,7 +11,7 @@ export default function DesktopPurchaseGuide() {
           </h2>
           <p className="text-lg font-revoluti text-[#854b3d]">GET STARTED</p>
           <p className="max-w-md mt-6 text-lg font-helvetica text-center pa text-[#854b3d]">
-            Follow these easy stepData to purchase FICCO tokens and embrace on our
+            Follow these easy steps to purchase FICCO tokens and embrace on our
             journey
           </p>
         </div>
@@ -26,7 +26,7 @@ export default function DesktopPurchaseGuide() {
                 alt="icon"
                 width={60}
                 height={60}
-                className="my-4"
+                className="my-4 h-auto"
               />
               <h3 className="text-lg font-roboto-bold text-[#dbdbcf]">
                 {step.title}

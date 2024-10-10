@@ -8,7 +8,7 @@ interface Step {
   icon: string;
 }
 
-const steps: Step[] = [
+const stepData: Step[] = [
   {
     title: "Connect your wallet",
     description:
@@ -47,21 +47,21 @@ export default function MobilePurchaseGuide() {
         </p>
         <div className="h-[250px] sm:h-[240px] bg-[#353731] p-8 sm:p-6 rounded-lg shadow-lg">
           <Image
-            src={steps[currentStep].icon}
+            src={stepData[currentStep].icon}
             alt="icon"
             width={60}
             height={60}
-            className="my-1 sm:my-4"
+            className="my-1 sm:my-4 w-16 h-auto"
           />
           <h2 className="text-xl font-roboto-bold mb-2">
-            {steps[currentStep].title}
+            {stepData[currentStep].title}
           </h2>
           <p className="font-helvetica text-[#dbdbcf]">
-            {steps[currentStep].description}
+            {stepData[currentStep].description}
           </p>
         </div>
         <div className="flex justify-center space-x-2 mt-6 font-helvetica">
-          {steps.map((_, index) => (
+          {stepData.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentStep(index)}
