@@ -24,7 +24,7 @@ const Roadmap = () => {
             height={360}
             // layout="fill"
             // objectFit="cover"
-            className="w-full h-auto object-top" // To ensure the top part of the image is shown
+            className="w-full h-auto" // To ensure the top part of the image is shown
           />
         </div>
       </div>
