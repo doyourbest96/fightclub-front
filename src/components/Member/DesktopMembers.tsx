@@ -15,8 +15,8 @@ export default function DesktopMembers() {
                 <Image
                   src={member.imageSrc}
                   alt="avatar"
-                  width={140}
-                  height={140}
+                  width={160}
+                  height={160}
                   className="rounded-full h-auto"
                 />
               </div>

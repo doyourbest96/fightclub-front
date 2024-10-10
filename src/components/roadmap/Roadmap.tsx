@@ -16,7 +16,7 @@ const Roadmap = () => {
             <TrackImg className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-24 -z-10  w-[240px] h-[240px]" />
           </span>
         </div>
-        <div className="lg:hidden absolute top-0 right-0 -z-10 w-1/2 h-full">
+        <div className="lg:hidden absolute top-8 right-4 -z-10 w-40 h-full">
           <Image
             src={"/assets/images/smart.png"}
             alt="smart"
@@ -24,7 +24,7 @@ const Roadmap = () => {
             height={360}
             // layout="fill"
             // objectFit="cover"
-            className="w-full h-auto" // To ensure the top part of the image is shown
+            className="h-auto" // To ensure the top part of the image is shown
           />
         </div>
       </div>
@@ -40,7 +40,7 @@ const Roadmap = () => {
             alt="smart"
             width={239}
             height={360}
-            className="h-auto"
+            className="w-full h-auto"
           />
         </div>
         <div className="w-2/5 flex flex-col gap-4">
