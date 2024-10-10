@@ -3,8 +3,7 @@
 import Logo from "@/components/Logo/Logo";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/20/solid";
-import { Bars3Icon } from "@heroicons/react/20/solid";
+import { XMarkIcon, Bars3Icon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,6 +18,7 @@ const navigation = [
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <>
       <div className="flex flex-col gap-12 pb-8 branding">
@@ -45,7 +45,7 @@ const Header = () => {
               </button>
             </div>
             <Link
-              href={"/assets/documents/whitepaper.pdf"}
+              href="/assets/documents/whitepaper.pdf"
               className="hidden lg:block p-2 ml-8 lg:text-[14px] font-revoluti uppercase rounded-md bg-[#854b3d] text-[#dbdbcf] hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
               target="_blank"
               rel="noopener noreferrer"
@@ -57,16 +57,9 @@ const Header = () => {
         </div>
         <div className="relative w-full lg:pl-12">
           <div className="max-w-[516px] mx-1 md:mx-8 flex flex-col items-center text-center w-full font-light">
-            {/* <div className="w-full p-1 sm:hidden flex flex-row justify-around gap-1 text-lg font-roboto-bold text-center text-[#824b3d] text-nowrap uppercase overflow-hidden">
-              <span>Presale Live</span>
-              <span>-</span>
-              <span>Presale Live</span>
-              <span>-</span>
-              <span>Presale Live</span>
-            </div> */}
             <div className="w-full mt-8">
               <Image
-                src={"/assets/images/mark.png"}
+                src="/assets/images/mark.png"
                 alt="mark"
                 width={383}
                 height={160}
@@ -80,17 +73,18 @@ const Header = () => {
                 IRONWILL platform.
               </p>
               <Link
-                href={"/assets/documents/whitepaper.pdf"}
+                href="/assets/documents/whitepaper.pdf"
                 className="my-12 px-6 py-2 flex justify-center items-center gap-4 text-[#d3d3c7] text-md font-helvetica font-light rounded-md bg-gradient-to-r from-[#824b3d]/50 from-10% via-[#824b3d] via-50% to-[#824b3d]/50 to-90% hover:filter hover:brightness-125 hover:-translate-y-1 transition-all"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
               >
                 <Image
-                  src={"/assets/icons/doc.svg"}
+                  src="/assets/icons/doc.svg"
                   alt="whitepaper"
                   width={20}
                   height={20}
+                  className="w-auto h-auto"
                 />
                 <span className="font-black">Whitepaper</span>
               </Link>
@@ -98,9 +92,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
       <Dialog
         open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-50" />
