@@ -31,7 +31,7 @@ const Stage = () => {
         >
           <div className="min-w-32 h-2 lg:hidden" />
           {stageData.map((item, id) => (
-            <StageItem key={id} data={item} />
+            id > 0 && <StageItem key={id} data={item} />
           ))}
           <div className="min-w-32 h-2 lg:hidden" />
         </div>

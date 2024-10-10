@@ -5,40 +5,8 @@ import Image from "next/image";
 import RootProvider from "@/providers";
 import { getBalances } from "../utils/ethUtils";
 import { TimeDifference } from "@/types";
-
-function diffFromNow(targetDate: Date): TimeDifference {
-  // Get the current date and time
-  const now = new Date();
-
-  // Calculate the difference in milliseconds
-  const millisecondsDiff = targetDate.getTime() - now.getTime();
-
-  // If the target date is in the past, return a message
-  if (millisecondsDiff < 0) {
-    return {
-      days: -1,
-      hours: -1,
-      minutes: -1,
-      seconds: -1,
-    };
-  }
-
-  // Calculate total seconds from milliseconds
-  const totalSeconds = Math.floor(millisecondsDiff / 1000);
-
-  // Calculate days, hours, minutes, and seconds
-  const days = Math.floor(totalSeconds / (24 * 3600));
-  const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  return {
-    days,
-    hours,
-    minutes,
-    seconds,
-  };
-}
+import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
+import { stageData } from "@/data/stage.data";
 
 const PreSaleInterface: React.FC = () => {
   const [balances, setBalances] = useState<{ [key: string]: string }>({});
@@ -46,7 +14,7 @@ const PreSaleInterface: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeDifference>({
-    days: 30,
+    days: 29,
     hours: 23,
     minutes: 59,
     seconds: 59,
@@ -55,13 +23,22 @@ const PreSaleInterface: React.FC = () => {
   const [amount, setAmount] = useState(0.0);
   const [getAmount, setGetAmount] = useState(0.0);
   const [paymentType, setPaymentType] = useState("ETH");
-  // const [connect, setConnect] = useState(false);
+  const [stageIndex, setStageIndex] = useState<number>(0);
+  const [targetDate, setTargetDate] = useState<Date>(
+    new Date(stageData[stageIndex].endDate)
+  );
 
   useEffect(() => {
-    const targetDate = new Date("2024-10-22T12:00:00Z"); // Specify your target date here
-    const difference = diffFromNow(targetDate);
-    setTimeLeft(difference);
+    setTargetDate(new Date(stageData[stageIndex].endDate)); // Specify your target date here
+  }, [stageIndex]);
 
+  useEffect(()=>{
+    const difference = diffTimeFromNow(targetDate);
+    if (difference.days === -1) setStageIndex(stageIndex + 1);
+    setTimeLeft(difference);
+  }, [stageIndex, targetDate]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime.seconds > 0) {
@@ -89,7 +66,7 @@ const PreSaleInterface: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [timeLeft]);
 
   useEffect(() => {
     async function fetchBalances() {
@@ -150,7 +127,7 @@ const PreSaleInterface: React.FC = () => {
 
             <div className="mb-6">
               <p className="font-bold font-revoluti text-xl text-[#dbdbcf]">
-                TIME UNTIL START
+                {stageIndex === 0 ? "TIME UNTIL START" : "TIME LEFT"}
               </p>
             </div>
             <div className="px-10 grid grid-cols-4 gap-4 mb-6">
@@ -333,9 +310,7 @@ const PreSaleInterface: React.FC = () => {
                         {isLoading ? (
                           <p className="text-sm mb-2">Loading...</p>
                         ) : (
-                          <p className="text-sm mb-2">
-                            {"0"}
-                          </p>
+                          <p className="text-sm mb-2">{"0"}</p>
                         )}
                         {error && <p className="text-red-500">{error}</p>}
                       </>
