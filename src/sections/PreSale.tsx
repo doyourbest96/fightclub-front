@@ -153,7 +153,7 @@ const PreSaleInterface: React.FC = () => {
                 TIME LEFT
               </p>
             </div>
-            <div className="px-8 grid grid-cols-4 gap-6 mb-6">
+            <div className="px-4 grid grid-cols-4 gap-6 mb-6">
               <div className="bg-[#212121] border border-orange-900 p-1 rounded">
                 <div className="text-2xl font-revoluti">{timeLeft.days}</div>
                 <div className="text-sm">days</div>
@@ -187,7 +187,7 @@ const PreSaleInterface: React.FC = () => {
               </p>
             </div>
 
-            <div className="px-6 grid grid-cols-2 gap-4 mb-10">
+            <div className="px-4 grid grid-cols-2 gap-x-8 gap-y-4 mb-10">
               <button
                 className={`bg-[#353535] border-2 ${
                   paymentType === "ETH"
