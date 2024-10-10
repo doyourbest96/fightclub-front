@@ -5,7 +5,7 @@ const RoadmapItem = ({ item }: { item: RoadmapItemProps }) => {
     <div className="flex flex-col">
       {item.up && (
         <div
-          className={`mx-4 px-4 flex flex-row gap-4 text-base font-roboto-bold text-[#dbdbcf] font-bold ${item.up ? "rounded-t-md" : "rounded-b-md"
+          className={`mx-1 md:mx-4 px-4 flex flex-row gap-4 text-base font-roboto-bold text-[#dbdbcf] font-bold ${item.up ? "rounded-t-md" : "rounded-b-md"
             } bg-[#7b4134]`}
         >
           <span className="py-3">{item.index}</span>
@@ -22,7 +22,7 @@ const RoadmapItem = ({ item }: { item: RoadmapItemProps }) => {
       </ul>
       {!item.up && (
         <div
-          className={`mx-4 px-4 flex flex-row gap-4 text-base font-roboto-bold text-[#dbdbcf] font-bold ${item.up ? "rounded-t-md" : "rounded-b-md"
+          className={`mx-1 md:mx-4 px-4 flex flex-row gap-4 text-base font-roboto-bold text-[#dbdbcf] font-bold ${item.up ? "rounded-t-md" : "rounded-b-md"
             } bg-[#7b4134]`}
         >
           <span className="py-3">{item.index}</span>
