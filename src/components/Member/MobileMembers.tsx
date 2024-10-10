@@ -13,16 +13,16 @@ function CoFounderShowCase() {
     const member = coFounderData[index];
     return (
       <div className="rounded-lg overflow-hidden">
-        <div className="h-40 flex justify-center items-end">
+        <div className="flex justify-center items-end">
           <Image
             src={member.imageSrc}
             alt="avatar"
             width={140}
             height={140}
-            className="rounded-full h-auto"
+            className="rounded-full max-w-60 w-full h-auto"
           />
         </div>
-        <div className="p-4">
+        <div className="max-w-60 mx-auto py-4">
           <div className="flex justify-center items-center text-[#dbdbcf]">
             <h2 className="text-xl font-bold mr-2">{member.name}</h2>
             <Link href={member.href}>
@@ -68,13 +68,13 @@ function AdvisorShowCase() {
     const member = advisorData[index];
     return (
       <div className="rounded-lg overflow-hidden">
-        <div className="h-40 flex justify-center items-end ">
+        <div className="flex justify-center items-end">
           <Image
             src={member.iconSrc}
             alt="avatar"
             width={140}
             height={200}
-            className="rounded-full h-auto"
+            className="rounded-full max-w-60 w-full h-auto"
           />
         </div>
         <div className="p-4">
@@ -114,13 +114,13 @@ function AmbassadorShowCase() {
     const member = ambassadorData[index];
     return (
       <div className="rounded-lg overflow-hidden text-[#dbdbcf]">
-        <div className="h-40 flex justify-center items-end ">
+        <div className="flex justify-center items-end">
           <Image
             src={member.iconSrc}
             alt="avatar"
             width={140}
             height={200}
-            className="rounded-full h-auto"
+            className="rounded-full max-w-60 w-full h-auto"
           />
         </div>
         <div className="p-4">
