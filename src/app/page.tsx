@@ -27,14 +27,14 @@ export default function Home() {
       </div>
       <div className="px-1 sm:px-8 md:px-12 lg:px-4 flex flex-col gap-16">
         {/* desktop for splitting */}
-        <div className="hidden lg:flex lg:gap-4 xl:gap-16">
+        <div className="hidden lg:flex lg:gap-4 xl:gap-12">
           <div className="w-3/5 flex flex-col gap-8 lg:gap-12 items-center">
             <About />
             <TokenSaleS />
             <FuelRevolution />
             <Tokenomics />
           </div>
-          <div className="w-2/5 flex flex-col gap-6 items-center">
+          <div className="w-2/5 flex flex-col gap-10 items-center">
             <Supply />
             <PreSaleInterface />
             <TokenomicsTable />

@@ -42,7 +42,7 @@ export default function MobilePurchaseGuide() {
           GET STARTED
         </p>
         <p className="my-6 text-lg font-helvetica text-center text-[#854b3d]">
-          Follow these easy steps to purchase FICCO tokens and embrace on our
+          Follow these easy steps to purchase FICCO coins and embrace on our
           journey
         </p>
         <div className="h-[250px] sm:h-[240px] bg-[#353731] p-8 sm:p-6 rounded-lg shadow-lg">
