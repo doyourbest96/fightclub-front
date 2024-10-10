@@ -17,7 +17,7 @@ export default function DesktopMembers() {
                   alt="avatar"
                   width={140}
                   height={140}
-                  className="rounded-full"
+                  className="rounded-full h-auto"
                 />
               </div>
               <div className="px-12 py-4">
@@ -48,7 +48,7 @@ export default function DesktopMembers() {
                   alt="avatar"
                   width={140}
                   height={140}
-                  className="rounded-full"
+                  className="rounded-full h-auto"
                 />
               </div>
               <div className="p-4">
