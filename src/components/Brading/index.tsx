@@ -1,15 +1,11 @@
 "use client";
 
 import { classNames } from "@/utils/classNames";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const Branding = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [selectedIntroView, setSelectedIntroView] = useState(-1);
-
-  useEffect(() => {
-    console.log(selectedIntroView);
-  }, [selectedIntroView]);
 
   const scrollToElement = (index: number) => {
     const element = scrollRef.current?.children[index] as HTMLElement;
