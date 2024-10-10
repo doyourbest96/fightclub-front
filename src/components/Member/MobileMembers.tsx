@@ -19,7 +19,7 @@ function CoFounderShowCase() {
             alt="avatar"
             width={140}
             height={140}
-            className="rounded-full"
+            className="rounded-full h-auto"
           />
         </div>
         <div className="p-4">
@@ -74,7 +74,7 @@ function AdvisorShowCase() {
             alt="avatar"
             width={140}
             height={200}
-            className="rounded-full"
+            className="rounded-full h-auto"
           />
         </div>
         <div className="p-4">
@@ -120,7 +120,7 @@ function AmbassadorShowCase() {
             alt="avatar"
             width={140}
             height={200}
-            className="rounded-full"
+            className="rounded-full h-auto"
           />
         </div>
         <div className="p-4">
