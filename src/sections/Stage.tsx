@@ -29,11 +29,11 @@ const Stage = () => {
           className="w-full flex overflow-x-hidden"
           ref={scrollRef}
         >
-          <div className="min-w-24 h-2 lg:hidden" />
+          <div className="min-w-32 h-2 lg:hidden" />
           {stageData.map((item, id) => (
             <StageItem key={id} data={item} />
           ))}
-          <div className="min-w-24 h-2 lg:hidden" />
+          <div className="min-w-32 h-2 lg:hidden" />
         </div>
         <div className="flex m-auto gap-4 lg:hidden">
           {Array.from({ length: 4 }).map((item, id) => (
