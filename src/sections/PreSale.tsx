@@ -202,7 +202,7 @@ const PreSaleInterface: React.FC = () => {
                     alt="icon"
                     width={24}
                     height={24}
-                    className="w-6 h-5"
+                    className="w-auto h-5"
                   />
                 </span>{" "}
                 Pay with ETH
@@ -221,7 +221,7 @@ const PreSaleInterface: React.FC = () => {
                     alt="icon"
                     width={24}
                     height={24}
-                    className="w-6 h-5"
+                    className="w-auto h-5"
                   />
                 </span>{" "}
                 Pay with USDT
