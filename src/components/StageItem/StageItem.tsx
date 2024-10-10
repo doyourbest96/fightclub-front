@@ -6,9 +6,9 @@ const StageItem = ({
     type: string;
     subtype: string;
     value: string;
+    minPrice: string;
     maxPrice: string;
-    softcap: string;
-    hardcap: string;
+    goal: string;
     period: string;
     status: string;
     running: boolean;
@@ -19,16 +19,15 @@ const StageItem = ({
     type,
     subtype,
     value,
+    minPrice,
     maxPrice,
-    softcap,
-    hardcap,
+    goal,
     period,
     status,
     running,
   } = data;
   return (
     <>
-
       <div className="relative w-full min-w-32 max-w-[132px] mx-2 pt-4">
         <div className="absolute left-0 top-0 -z-10 w-full rotate-[3deg] translate-y-4 h-56 bg-[#787871]" />
         <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] shadow-lg">
@@ -44,22 +43,24 @@ const StageItem = ({
             </div>
             {maxPrice === "tba" ? (
               <div
-                className={`text-sm mb-3 uppercase ${
+                className={`text-sm mb-8 uppercase ${
                   running && "text-[#dbdbcf]"
                 }`}
               >
-                {maxPrice}
+                Price: {maxPrice}
               </div>
             ) : (
-              <div className={`text-sm mb-3 ${running && "text-[#dbdbcf]"}`}>
-                Max price: {maxPrice}
-              </div>
+              <>
+                <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
+                  Min price: {minPrice}
+                </div>
+                <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
+                  Max price: {maxPrice}
+                </div>
+              </>
             )}
-            <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
-              Softcap: <span className="uppercase">{softcap}</span>
-            </div>
-            <div className={`text-sm mb-3 ${running && "text-[#dbdbcf]"}`}>
-              Hardcap: <span className="uppercase">{hardcap}</span>
+            <div className={`text-sm my-3 ${running && "text-[#dbdbcf]"}`}>
+              Goal: <span className="uppercase">{goal}</span>
             </div>
             <p className={`text-sm font-bold ${running && "text-[#dbdbcf]"}`}>
               {period}

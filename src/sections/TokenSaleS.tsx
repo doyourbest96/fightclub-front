@@ -23,7 +23,9 @@ const TokenSaleS = () => {
         fourth stage. The total duration of the public sale is set at 30 days or
         until all FICCO coins sell out. FICCO coins bought during the first
         public sale can be claimed after TGE which will take place after
-        conducting the second public sale. Unsold coins will be burned.
+        conducting the second public sale. Unsold coins will be distributed
+        pro-rata to all participants of the public sale. Minimum and maximum
+        purchase amount per wallet: $100 / $5,000.
       </p>
       <Link
         href={"/assets/documents/whitepaper.pdf"}
