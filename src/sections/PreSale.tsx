@@ -116,7 +116,7 @@ const PreSaleInterface: React.FC = () => {
             </div>
             <div className="flex justify-end mt-3 ">
               <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
-                $1,000,000
+                $1,020,000
               </span>
             </div>
           </div>
