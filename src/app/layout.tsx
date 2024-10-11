@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import RootProvider from "@/providers";
 
 import "./globals.css";
 
@@ -18,7 +19,7 @@ export default function RootLayout({
       <body className="relative">
         <div className="absolute -z-50 bg-[#030303] top-0 left-0 right-0 bottom-0" />
         <div className="w-full flex flex-col items-center">
-          {children}
+          <RootProvider>{children}</RootProvider>
         </div>
       </body>
     </html>
