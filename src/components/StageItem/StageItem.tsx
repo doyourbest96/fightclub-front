@@ -10,7 +10,7 @@ const StageItem = ({
     value: string;
     minPrice: string;
     maxPrice: string;
-    goal: string;
+    hardcap: string;
     period: string;
     status: string;
     running: boolean;
@@ -23,7 +23,7 @@ const StageItem = ({
     value,
     minPrice,
     maxPrice,
-    goal,
+    hardcap,
     period,
     status,
     running,
@@ -62,7 +62,7 @@ const StageItem = ({
               </>
             )}
             <div className={`text-sm my-3 ${running && "text-[#dbdbcf]"}`}>
-              Goal: <span className="uppercase">{goal}</span>
+              Hardcap: <span className="uppercase">{hardcap}</span>
             </div>
             <p className={`text-sm font-bold ${running && "text-[#dbdbcf]"}`}>
               {period}
