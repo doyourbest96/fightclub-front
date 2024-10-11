@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
-import RootProvider from "@/providers";
 import { getBalances } from "../utils/ethUtils";
 import { TimeDifference } from "@/types";
 import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
@@ -95,7 +94,6 @@ const PreSaleInterface: React.FC = () => {
   // };
 
   return (
-    <RootProvider>
       <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-lg min-w-lg">
         <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
           <div className="w-full bg-[#131511] rounded-lg text-center py-6">
@@ -352,7 +350,6 @@ const PreSaleInterface: React.FC = () => {
           </div>
         </div>
       </div>
-    </RootProvider>
   );
 };
 
