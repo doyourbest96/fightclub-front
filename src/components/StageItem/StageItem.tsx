@@ -43,7 +43,7 @@ const StageItem = ({
             <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
               {value}
             </div>
-            {maxPrice === "tba" ? (
+            {maxPrice === "TBA" ? (
               <div
                 className={`text-sm mb-8 uppercase ${
                   running && "text-[#dbdbcf]"
