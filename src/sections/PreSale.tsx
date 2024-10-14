@@ -21,6 +21,8 @@ const PreSaleInterface: React.FC = () => {
   const [progress] = useState(0);
   const [amount, setAmount] = useState(0.0);
   const [getAmount, setGetAmount] = useState(0.0);
+  const [min, setMin] = useState(100.0);
+  const [max, setMax] = useState(5000.0);
   const [paymentType, setPaymentType] = useState("ETH");
   const [stageIndex, setStageIndex] = useState<number>(0);
   const [targetDate, setTargetDate] = useState<Date>(
@@ -85,6 +87,17 @@ const PreSaleInterface: React.FC = () => {
     fetchBalances();
   }, [address]);
 
+  useEffect(() => {
+    if (paymentType === "ETH") {
+      setMin(0.4);
+      setMax(2.0);
+    }
+    if (paymentType === "USDT") {
+      setMin(100.0);
+      setMax(5000.0);
+    }
+  }, [paymentType]);
+
   // const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setAddress(e.target.value);
   // };
@@ -92,6 +105,14 @@ const PreSaleInterface: React.FC = () => {
   //   navigator.clipboard.writeText(text);
   //   alert("Copied to clipboard!");
   // };
+
+  const handleMin = () => {
+    setAmount(min);
+  };
+
+  const handleMax = () => {
+    setAmount(max);
+  };
 
   return (
     <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-lg min-w-lg">
@@ -229,8 +250,20 @@ const PreSaleInterface: React.FC = () => {
 
           <div className="px-4 grid grid-cols-2 gap-4 mb-6">
             <div className="text-left">
-              <label className="block text-sm mb-1 sm:font-bold">
-                AMOUNT ({paymentType})
+              <label className="flex flex-row justify-between text-sm mb-1 sm:font-bold">
+                <span>AMOUNT ({paymentType})</span>
+                <span
+                  className="cursor-pointer hover:underline"
+                  onClick={handleMin}
+                >
+                  MIN
+                </span>
+                <span
+                  className="cursor-pointer hover:underline"
+                  onClick={handleMax}
+                >
+                  MAX
+                </span>
               </label>
               <input
                 type={"number"}
@@ -272,6 +305,7 @@ const PreSaleInterface: React.FC = () => {
                       <button
                         className="w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 disabled:bg-[#333] disabled:cursor-not-allowed truncate"
                         disabled={
+                          isLoading ||
                           parseFloat(balances[paymentType]) == 0 ||
                           parseFloat(balances[paymentType]) < amount
                         }
