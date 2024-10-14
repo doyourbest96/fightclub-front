@@ -115,7 +115,7 @@ const PreSaleInterface: React.FC = () => {
   };
 
   return (
-    <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-4 max-w-lg min-w-lg">
+    <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-0 max-w-lg min-w-lg">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center py-6">
           <h1 className="text-2xl font-revoluti font-bold mb-6">PRE SALE 1</h1>
@@ -188,15 +188,13 @@ const PreSaleInterface: React.FC = () => {
               } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("ETH")}
             >
-              <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#6274dd]">
-                <Image
-                  src={"/assets/icons/ethereum-eth-logo-colored.svg"}
-                  alt="icon"
-                  width={24}
-                  height={24}
-                  className="w-auto h-5"
-                />
-              </span>{" "}
+              <Image
+                src={"/assets/icons/ethereum.svg"}
+                alt="icon"
+                width={24}
+                height={24}
+                className="mr-1.5"
+              />
               Pay with ETH
             </button>
             <button
@@ -205,15 +203,13 @@ const PreSaleInterface: React.FC = () => {
               } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
               onClick={() => setPaymentType("USDT")}
             >
-              <span className="w-6 h-6 mr-1 sm:mr-2 flex justify-center items-center rounded-full bg-[#389770]">
-                <Image
-                  src={"/assets/icons/tether-usdt-logo.svg"}
-                  alt="icon"
-                  width={24}
-                  height={24}
-                  className="w-auto h-5"
-                />
-              </span>{" "}
+              <Image
+                src={"/assets/icons/usdt.svg"}
+                alt="icon"
+                width={24}
+                height={24}
+                className="mr-1.5"
+              />
               Pay with USDT
             </button>
             <button
@@ -223,12 +219,12 @@ const PreSaleInterface: React.FC = () => {
               onClick={() => setPaymentType("DAI")}
             >
               <Image
-                src={"/assets/icons/multi-collateral-dai-dai-logo.svg"}
+                src={"/assets/icons/dai.svg"}
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-1 lg:mr-2 rounded-full"
-              />{" "}
+                className="mr-1.5"
+              />
               Pay with DAI
             </button>
             <button
@@ -238,12 +234,12 @@ const PreSaleInterface: React.FC = () => {
               onClick={() => setPaymentType("USDC")}
             >
               <Image
-                src={"/assets/icons/usd-coin-usdc-logo.svg"}
+                src={"/assets/icons/usd-coin.svg"}
                 alt="icon"
                 width={24}
                 height={24}
-                className="mr-1 lg:mr-2 rounded-full bg-white"
-              />{" "}
+                className="mr-1.5"
+              />
               Pay with USDC
             </button>
           </div>
