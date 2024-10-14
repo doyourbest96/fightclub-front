@@ -6,6 +6,7 @@ import { getBalances } from "../utils/ethUtils";
 import { TimeDifference } from "@/types";
 import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
 import { stageData } from "@/data/stage.data";
+import { classNames } from "@/utils/classNames";
 
 const PreSaleInterface: React.FC = () => {
   const [balances, setBalances] = useState<{ [key: string]: string }>({});
@@ -96,7 +97,22 @@ const PreSaleInterface: React.FC = () => {
       setMin(100.0);
       setMax(5000.0);
     }
+    if (paymentType === "USDC") {
+      setMin(100.0);
+      setMax(5000.0);
+    }
+    if (paymentType === "DAI") {
+      setMin(100.0);
+      setMax(5000.0);
+    }
   }, [paymentType]);
+
+  useEffect(()=> {
+    let val = amount;
+    val = val < min ? min : val;
+    val = val > max ? max : val;
+    setAmount(val);
+  }, [amount, min, max]);
 
   // const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setAddress(e.target.value);
@@ -246,25 +262,34 @@ const PreSaleInterface: React.FC = () => {
 
           <div className="px-4 grid grid-cols-2 gap-4 mb-6">
             <div className="text-left">
-              <label className="flex flex-row justify-between text-sm mb-1 sm:font-bold">
-                <span>AMOUNT ({paymentType})</span>
+              <label className="relative flex flex-row justify-between text-sm mb-1 sm:font-bold">
+                <span>AMOUNT({paymentType})</span>
                 <span
-                  className="cursor-pointer hover:underline"
-                  onClick={handleMin}
+                  className={classNames(
+                    "absolute right-0 bottom-0 flex flex-col text-right",
+                    address==="" ? "hidden" : ""
+                  )}
                 >
-                  MIN
-                </span>
-                <span
-                  className="cursor-pointer hover:underline"
-                  onClick={handleMax}
-                >
-                  MAX
+                  <span
+                    className="cursor-pointer hover:underline"
+                    onClick={handleMin}
+                  >
+                    MIN
+                  </span>
+                  <span
+                    className="cursor-pointer hover:underline"
+                    onClick={handleMax}
+                  >
+                    MAX
+                  </span>
                 </span>
               </label>
               <input
                 type={"number"}
                 value={amount}
-                min={0}
+                min={min}
+                max={max}
+                step={paymentType === "ETH" ? 0.1 : 1}
                 onChange={(e) => setAmount(parseFloat(e.target.value))}
                 className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
               />
@@ -287,6 +312,8 @@ const PreSaleInterface: React.FC = () => {
             {({ account, openAccountModal, openConnectModal }) => {
               if (account && account.address && account.address !== address) {
                 setAddress(account.address);
+              } else if (!account) {
+                setAddress("");
               }
               return (
                 <>
