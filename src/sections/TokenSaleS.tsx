@@ -1,32 +1,41 @@
+import Link from "next/link";
 import TrackImg from "@/components/trackImg";
 import Stage from "./Stage";
 
 const TokenSaleS = () => {
   return (
     <div className="flex flex-col gap-2 items-center lg:items-start w-full overflow-visible text-center lg:text-left">
-      <div className="max-w-md font-revoluti text-[#dbdbcf]">
-        <span className="relative">
-          Exclusive FICCO Token SaleS with Guaranteed AND MYSTERY ALLOCATION
-          <TrackImg className="absolute top-0  overflow-auto md:translate-x-80  -translate-y-24 -z-10  w-[240px] h-[240px]" />
+      <div className="max-w-60 font-revoluti text-[#dbdbcf]">
+        <span className="relative leading-loose">
+          FICCO coin SaleS planning
+          <TrackImg className="absolute top-1/2 translate-x-1/3 -translate-y-1/2 -z-10  w-[240px] h-[240px]" />
         </span>
       </div>
-      <div className="py-2 w-full">
+      <div className="py-6 w-full">
         <Stage />
       </div>
-      <p className="font-helvetica font-light text-base scale-x-90 scale-y-105 -mx-8">
-        IRONWILL&apos;s native token, FICCO, is set to launch with a total
-        maximum supply of 100 billion tokens. The initial price for the pre sale
-        of 10 billion tokens will be set at a maximum of 0.00010 cent per token,
-        offering an accessible entry point for early adopters and investors of
-        the platform. But there&apos;s more: FICCO coins that are not sold
-        before the end date has been reached will be distributed pro-rata to all
-        participants. This means you can get more FICCO than you originally
-        bought, potentially bringing the price per FICCO coin down while
-        increasing the quantity you receive. Terms apply.
+      <p className="stretched-font-stretch font-helvetica font-light text-base scale-x-90 scale-y-105 lg:-mx-10">
+        IRONWILL&apos;s native coin, FICCO, is set to launch with a total
+        maximum supply of 100 billion coins. In the first public sale
+        10,000,000,000 FICCO coins will be sold, of which 3,000,000,000 with a
+        starting price of $0.00008 per FICCO. During the first public sale, the
+        price of FICCO coins will gradually increase to eventually $0.00014 in
+        fourth stage. The total duration of the public sale is set at 30 days or
+        until all FICCO coins sell out. FICCO coins bought during the first
+        public sale can be claimed after TGE which will take place after
+        conducting the second public sale. Unsold coins will be distributed
+        pro-rata to all participants of the public sale. Minimum and maximum
+        purchase amount per wallet: $100 / $5,000.
       </p>
-      <p className="font-helvetica font-light text-base text-[#824b3d]">
-        More information
-      </p>
+      <Link
+        href={"/assets/documents/whitepaper.pdf"}
+        className="font-helvetica font-light text-base text-[#824b3d] hover:text-[#dbdbcf]"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
+        Read more, download whitepaper
+      </Link>
     </div>
   );
 };

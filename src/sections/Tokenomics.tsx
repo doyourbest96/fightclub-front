@@ -12,11 +12,14 @@ const Tokenomics = () => {
     <>
       <div
         id="tokenomics"
-        className="w-full text-lg font-revoluti text-[#dbdbcf] text-center lg:text-left uppercase">
-        <span className="hidden lg:block relative">
-          Tokenomics
-          <TrackImg className="absolute top-1/2 right-0 translate-x-1/3 md:translate-x-1/2 -translate-y-1/2 -z-10  w-[240px] h-[240px]" />
-        </span>
+        className="w-full text-lg font-revoluti text-[#dbdbcf]"
+      >
+        <div className="text-center lg:text-left uppercase">
+          <span className="relative">
+            Tokenomics
+            <TrackImg className="absolute top-1/2 right-0 translate-x-1/3 md:translate-x-1/2 -translate-y-1/2 -z-10  w-[240px] h-[240px]" />
+          </span>
+        </div>
         <div className="flex flex-col justify-center items-center">
           <div className="px-2 md:px-8 md:w-2/3 lg:w-5/6 w-full flex flex-col items-center justify-center">
             <Doughnut

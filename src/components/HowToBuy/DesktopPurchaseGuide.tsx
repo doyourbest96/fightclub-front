@@ -1,31 +1,5 @@
 import Image from "next/image";
-
-interface Step {
-  title: string;
-  description: string;
-  icon: string;
-}
-
-const steps: Step[] = [
-  {
-    title: "Connect your wallet",
-    description:
-      "Press the connect button and choose one of the many supported wallets to connect to the website.",
-    icon: "/assets/icons/wallet.svg",
-  },
-  {
-    title: "Pay with the currency you like",
-    description:
-      "Use one of the supported currencies to buy your FICCO coins. We accept ETH, USDT, USDC and DAI.",
-    icon: "/assets/icons/pay.svg",
-  },
-  {
-    title: "Claim your FICCO coins",
-    description:
-      "Coins can be claimed after the second sale ended. Connect your wallet and press the claim button to receive them.",
-    icon: "/assets/icons/claim.svg",
-  },
-];
+import { stepData } from "@/data/step.data";
 
 export default function DesktopPurchaseGuide() {
   return (
@@ -37,12 +11,12 @@ export default function DesktopPurchaseGuide() {
           </h2>
           <p className="text-lg font-revoluti text-[#854b3d]">GET STARTED</p>
           <p className="max-w-md mt-6 text-lg font-helvetica text-center pa text-[#854b3d]">
-            Follow these easy steps to purchase FICCO tokens and embrace on our
+            Follow these easy steps to purchase FICCO coins and embrace on our
             journey
           </p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {steps.map((step, index) => (
+          {stepData.map((step, index) => (
             <div
               key={index}
               className="text-[#dbdbcf] bg-[#353731] p-8 rounded-lg shadow-lg"
@@ -52,7 +26,7 @@ export default function DesktopPurchaseGuide() {
                 alt="icon"
                 width={60}
                 height={60}
-                className="my-4"
+                className="my-4 h-auto"
               />
               <h3 className="text-lg font-roboto-bold text-[#dbdbcf]">
                 {step.title}

@@ -6,7 +6,7 @@ import { RxSlash } from "react-icons/rx";
 
 const Footer = () => {
   return (
-    <footer className="py-4 px-4 w-full border-t">
+    <footer className="py-4 md:px-4 w-full border-t">
       <div className="container mx-auto flex flex-col lg:flex-row gap-4 items-center px-2 justify-between">
         <div className="flex items-center mb-4 md:mb-0 mx-4">
           <div className="flex flex-row items-center">
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="max-w-5xl font-helvetica text-center lg:text-left text-[#dbdbcf]">
-          <p className="text-xs">
+          <p className="text-[11px]">
             Please review this legal disclaimer carefully. Seek professional
             advice for any doubt. The information provided is not exhaustive and
             doesn&apos;t constitute part of a contractual agreement. While we
@@ -43,10 +43,13 @@ const Footer = () => {
             Cryptocurrency may be unregulated in your jurisdiction. The value of
             cryptocurrencies may fluctuate. Profits may be subject to capital
             gains or other taxes applicable in your jurisdiction.{" "}
-            <span className="mt-2 text-sm font-semibold stroke-[#dbdbcf]">
-              © IRONWILL. All rights reserved.
+            <span className="hidden md:inline-block font-semibold stroke-[#dbdbcf]">
+              @ IRONWILL. All rights reserved.
             </span>
           </p>
+          <span className="md:hidden text-[11px] font-semibold stroke-[#dbdbcf]">
+            @ IRONWILL. All rights reserved.
+          </span>
         </div>
       </div>
     </footer>

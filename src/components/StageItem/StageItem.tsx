@@ -1,3 +1,5 @@
+import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
+
 const StageItem = ({
   data,
 }: {
@@ -6,8 +8,8 @@ const StageItem = ({
     type: string;
     subtype: string;
     value: string;
+    minPrice: string;
     maxPrice: string;
-    softcap: string;
     hardcap: string;
     period: string;
     status: string;
@@ -19,8 +21,8 @@ const StageItem = ({
     type,
     subtype,
     value,
+    minPrice,
     maxPrice,
-    softcap,
     hardcap,
     period,
     status,
@@ -28,8 +30,7 @@ const StageItem = ({
   } = data;
   return (
     <>
-
-      <div className="relative w-full min-w-[128px] max-w-[132px] mx-2 pt-4">
+      <div className="relative w-full min-w-32 max-w-[132px] mx-2 pt-4">
         <div className="absolute left-0 top-0 -z-10 w-full rotate-[3deg] translate-y-4 h-56 bg-[#787871]" />
         <div className="w-full max-w-sm mx-auto text-center bg-[#131511] text-[#787871] shadow-lg">
           <div className="tracking-tighter py-3">
@@ -42,23 +43,25 @@ const StageItem = ({
             <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
               {value}
             </div>
-            {maxPrice === "tba" ? (
+            {maxPrice === "TBA" ? (
               <div
-                className={`text-sm mb-3 uppercase ${
+                className={`text-sm mb-8 uppercase ${
                   running && "text-[#dbdbcf]"
                 }`}
               >
-                {maxPrice}
+                Price: {maxPrice}
               </div>
             ) : (
-              <div className={`text-sm mb-3 ${running && "text-[#dbdbcf]"}`}>
-                Max price: {maxPrice}
-              </div>
+              <>
+                <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
+                  Min price: {minPrice}
+                </div>
+                <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
+                  Max price: {maxPrice}
+                </div>
+              </>
             )}
-            <div className={`text-sm ${running && "text-[#dbdbcf]"}`}>
-              Softcap: <span className="uppercase">{softcap}</span>
-            </div>
-            <div className={`text-sm mb-3 ${running && "text-[#dbdbcf]"}`}>
+            <div className={`text-sm my-3 ${running && "text-[#dbdbcf]"}`}>
               Hardcap: <span className="uppercase">{hardcap}</span>
             </div>
             <p className={`text-sm font-bold ${running && "text-[#dbdbcf]"}`}>
@@ -70,7 +73,11 @@ const StageItem = ({
               running && "text-[#824b3d]"
             }`}
           >
-            {status}
+            {id !== 1
+              ? status
+              : diffTimeFromNow(new Date("2024-10-22T12:00:00Z")).days === -1
+              ? "open"
+              : status}
           </div>
         </div>
       </div>

@@ -13,11 +13,11 @@ const About = () => {
           <TrackImg className="absolute top-0 translate-x-24 -translate-y-24 w-[240px] h-[240px] -z-10" />
         </span>
       </div>
-      <p className="stretched-font-stretch font-helvetica font-light text-base text-[#dbdbcf] scale-x-95 scale-y-110 -ml-4">
+      <p className="stretched-font-stretch font-helvetica font-light text-base text-[#dbdbcf] scale-x-95 scale-y-110 lg:-ml-4">
         {`IRONWILL envisions a world where martial arts transcend
               barriers, empowers individuals and unites communities. To achieve
               this, we're building a decentralized platform, powered by our
-              native token FICCO, that unlocks unprecedented opportunities for
+              native coin FICCO, that unlocks unprecedented opportunities for
               all stakeholders in combat sports—from aspiring amateurs and
               passionate fans to seasoned professionals and dedicated clubs.
               Through IRONWILL, fighters can take control of their careers and
@@ -32,7 +32,7 @@ const About = () => {
         rel="noopener noreferrer"
         download
       >
-        Read more
+        Read more, download whitepaper
       </Link>
     </div>
   );

@@ -1,11 +1,5 @@
 import Image from "next/image";
-
-interface MemberCardProps {
-  avatar: string;
-  name: string;
-  title?: string;
-  note?: string;
-}
+import { MemberCardProps } from "@/types";
 
 const MemberCard = ({ member }: { member: MemberCardProps }) => {
   return (

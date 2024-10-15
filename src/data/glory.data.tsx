@@ -1,4 +1,4 @@
-export const gloryItemData = [
+export const gloryData = [
   {
     title: "Martial Artists",
     comment: "Beyond the Mat, Building a Legacy",
