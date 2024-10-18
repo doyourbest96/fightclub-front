@@ -73,7 +73,7 @@ function AdvisorShowCase() {
             src={member.iconSrc}
             alt="avatar"
             width={140}
-            height={200}
+            height={140}
             className="rounded-full max-w-60 w-full h-auto"
           />
         </div>
@@ -119,7 +119,7 @@ function AmbassadorShowCase() {
             src={member.iconSrc}
             alt="avatar"
             width={140}
-            height={200}
+            height={140}
             className="rounded-full max-w-60 w-full h-auto"
           />
         </div>
