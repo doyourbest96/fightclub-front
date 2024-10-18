@@ -1,32 +1,22 @@
 "use client";
-import dynamic from "next/dynamic";
 
 import RootProvider from "@/providers";
+import Header from "@/components/header";
 import Branding from "@/components/Brading";
 import About from "@/sections/About";
 import TokenSaleS from "@/sections/TokenSaleS";
 import FuelRevolution from "@/sections/FuelRevolution";
 import Supply from "@/sections/Supply";
+import PreSale from "@/sections/PreSale";
 import TokenomicsTable from "@/sections/TokenomicsTable";
 import Tokenomics from "@/sections/Tokenomics";
+import RoadToGlory from "@/sections/RoadToGlory";
+import Roadmap from "@/components/roadmap/Roadmap";
 import HowtoBuy from "@/sections/HowtoBuy";
+import Members from "@/sections/Members";
 import Faq from "@/sections/Faq";
 import Footer from "@/sections/Footer";
 import Bander2 from "@/sections/Bander2";
-
-const Header = dynamic(() => import("@/components/header"), { ssr: false });
-const PreSale = dynamic(() => import("@/sections/PreSale"), {
-  ssr: false,
-});
-const RoadToGlory = dynamic(() => import("@/sections/RoadToGlory"), {
-  ssr: false,
-});
-const Roadmap = dynamic(() => import("@/components/roadmap/Roadmap"), {
-  ssr: false,
-});
-const Members = dynamic(() => import("@/sections/Members"), {
-  ssr: false,
-});
 
 export default function Home() {
   return (
