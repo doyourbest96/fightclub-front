@@ -26,16 +26,99 @@ const PreSale: React.FC = () => {
     minutes: 59,
     seconds: 59,
   });
-  const [progress] = useState(0);
+  const [fundsRaised, setFundsRaised] = useState<number>(0);
+  const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
+  const [phaseIndex, setPhaseIndex] = useState<number>(0);
+  const [hardcap] = useState<number>(1020000);
   const [payAmount, setPayAmount] = useState<number>(0);
   const [tokenAmount, setTokenAmount] = useState<number>(0);
   const [min, setMin] = useState<number>(0.05);
   const [ETHFor100USDT, setETHFor100USDT] = useState<number>(0.05);
-  const [paymentType, setPaymentType] = useState("ETH");
+  const [paymentType, setPaymentType] = useState<string>("ETH");
   const [stageIndex, setStageIndex] = useState<number>(0);
   const [targetDate, setTargetDate] = useState<Date>(
     new Date(stageData[stageIndex].endDate)
   );
+
+  useEffect(() => {
+    async function fetchETHFor100USDT() {
+      if (presaleContract && presaleContract.methods) {
+        try {
+          const tempTokenCount = await presaleContract.methods
+            .estimatedTokenAmountAvailableWithCoin(
+              ethers.parseUnits("100", 6).toString(),
+              TOKENS["USDT" as keyof typeof TOKENS]
+            )
+            .call();
+          // console.log("tempTokenCount:", tempTokenCount);
+          const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
+          // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
+          const tempETHFor100USDT = await presaleContract.methods
+            .estimatedEthAmountForTokenAmount(
+              ethers.parseUnits(tokenAmountFor100USDT, 18)
+            )
+            .call();
+          // console.log("tempETHFor100USDT:", tempETHFor100USDT);
+          const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
+          // console.log("expectedPayAmount:", expectedPayAmount);
+          setETHFor100USDT(
+            parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
+          );
+        } catch (error) {
+          console.error("Error fetching ETH price:", error);
+        }
+      }
+    }
+
+    async function fetchFundsRaised() {
+      if (presaleContract && presaleContract.methods) {
+        try {
+          const tempFundsRaised = await presaleContract.methods
+            .getFundsRaised()
+            .call();
+          setFundsRaised(parseFloat(tempFundsRaised) * 100);
+          // console.log("Funds Raised:", tempFundsRaised);
+        } catch (error) {
+          console.error("Error fetching funds raised:", error);
+        }
+      }
+    }
+
+    async function fetchTokensAvailable() {
+      if (presaleContract && presaleContract.methods) {
+        try {
+          const tempTokensAvailable = await presaleContract.methods
+            .tokensAvailable()
+            .call();
+          const formattedTokensAvailable = parseFloat(
+            ethers.formatUnits(tempTokensAvailable, 18)
+          ).toFixed(0);
+          setTokensAvailable(parseFloat(formattedTokensAvailable));
+          console.log("Remaining Token Amount:", formattedTokensAvailable);
+        } catch (error) {
+          console.error("Error fetching remaining token amount:", error);
+        }
+      }
+    }
+
+    fetchETHFor100USDT();
+    fetchFundsRaised();
+    fetchTokensAvailable();
+  }, [presaleContract]);
+
+  useEffect(() => {
+    if (tokensAvailable > 7e9) {
+      setPhaseIndex(0);
+    } else if (tokensAvailable > 5e9) {
+      setPhaseIndex(1);
+    } else if (tokensAvailable > 3e9) {
+      setPhaseIndex(2);
+    } else if (tokensAvailable > 1e9) {
+      setPhaseIndex(3);
+    } else {
+      setPhaseIndex(4);
+    }
+  }, [tokensAvailable]);
 
   useEffect(() => {
     async function fetchBalances() {
@@ -69,30 +152,8 @@ const PreSale: React.FC = () => {
       }
     }
 
-    async function fetchETHFor100USDT() {
-      const tempTokenCount = await presaleContract.methods
-        .estimatedTokenAmountAvailableWithCoin(
-          ethers.parseUnits("100", 6).toString(),
-          TOKENS["USDT" as keyof typeof TOKENS]
-        )
-        .call();
-      // console.log("tempTokenCount:", tempTokenCount);
-      const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
-      // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
-      const tempETHFor100USDT = await presaleContract.methods
-        .estimatedEthAmountForTokenAmount(
-          ethers.parseUnits(tokenAmountFor100USDT, 18)
-        )
-        .call();
-      // console.log("tempETHFor100USDT:", tempETHFor100USDT);
-      const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
-      // console.log("expectedPayAmount:", expectedPayAmount);
-      setETHFor100USDT(parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6)));
-    }
-
     fetchBalances();
     getClaimableBalance();
-    fetchETHFor100USDT();
   }, [account, presaleContract]);
 
   useEffect(() => {
@@ -230,7 +291,8 @@ const PreSale: React.FC = () => {
               TOKENS[paymentType as keyof typeof TOKENS]
             )
             .call();
-          const expectedPayAmount = paymentType === "DAI"
+          const expectedPayAmount =
+            paymentType === "DAI"
               ? ethers.formatUnits(temp, 18)
               : ethers.formatUnits(temp, 6);
           setPayAmount(parseFloat(expectedPayAmount));
@@ -298,13 +360,13 @@ const PreSale: React.FC = () => {
             <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-lg h-8">
               <div
                 className="relative bg-[#824B3D] h-7 rounded-l-lg flex justify-end"
-                style={{ width: `${(progress / 1000000) * 100}%` }}
+                style={{ width: `${(fundsRaised / hardcap) * 100}%` }}
               >
                 <div className="absolute top-10 transform translate-x-1/2">
                   <div className="relative inline-block bg-[#e8e6d9] py-1 px-2 rounded">
                     <div className="absolute left-1/2 -top-1 w-2 h-2 bg-[#e8e6d9] transform -translate-x-1/2 rotate-45"></div>
                     <span className="text-base text-[#824B3D] font-bold font-revoluti">
-                      {"$" + progress}
+                      {"$" + fundsRaised.toLocaleString()}
                     </span>
                   </div>
                 </div>
@@ -312,7 +374,7 @@ const PreSale: React.FC = () => {
             </div>
             <div className="flex justify-end mt-3 ">
               <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
-                $1,020,000
+                ${hardcap.toLocaleString()}
               </span>
             </div>
           </div>
@@ -342,17 +404,55 @@ const PreSale: React.FC = () => {
           </div>
 
           <div className="mb-8">
-            <p className="text-base font-bold text-[#824b3d]">
-              Current price $0.00008 / 3.000.000.000 left
+            <p
+              className={
+                phaseIndex === 0 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
+              }
+            >
+              {phaseIndex === 0
+                ? `Current price $0.00008 / ${(
+                    tokensAvailable - 7e9
+                  ).toLocaleString()} left`
+                : "Phase 1: $0.00008 / 0"}
             </p>
-            <p className="text-base text-[#dbdbcf]">
-              Next price $0.0001 / 4.000.000.000
+            <p
+              className={
+                phaseIndex === 1 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
+              }
+            >
+              {phaseIndex === 1
+                ? `Current price $0.0001 / ${(
+                    tokensAvailable - 3e9
+                  ).toLocaleString()} left`
+                : phaseIndex < 1
+                ? "Phase 2: $0.0001 / 4,000,000,000"
+                : "Phase 2: $0.0001 / 0"}
             </p>
-            <p className="text-base text-[#dbdbcf]">
-              Phase 3 $0.00012 / 2.000.000.000
+            <p
+              className={
+                phaseIndex === 2 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
+              }
+            >
+              {phaseIndex === 2
+                ? `Current price $0.00012 / ${(
+                    tokensAvailable - 1e9
+                  ).toLocaleString()} left`
+                : phaseIndex < 2
+                ? "Phase 3: $0.00012 / 2,000,000,000"
+                : "Phase 3: $0.00012 / 0"}
             </p>
-            <p className="text-base text-[#dbdbcf]">
-              Phase 4 $0.00014 / 1.000.000.000
+            <p
+              className={
+                phaseIndex === 3 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
+              }
+            >
+              {phaseIndex === 3
+                ? `Current price $0.00012 / ${(
+                    tokensAvailable - 1e9
+                  ).toLocaleString()} left`
+                : phaseIndex < 3
+                ? "Phase 4: $0.00014 / 1,000,000,000"
+                : "Phase 4: $0.00014 / 0"}
             </p>
           </div>
 
