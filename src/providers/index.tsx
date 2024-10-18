@@ -4,6 +4,7 @@ import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { config } from "@/wagmi";
 import "@rainbow-me/rainbowkit/styles.css";
+import { Web3Provider } from "@/contexts/web3Context";
 const client = new QueryClient();
 
 export default function RootProvider({
@@ -22,7 +23,7 @@ export default function RootProvider({
             borderRadius: "small",
           })}
         >
-          {children}
+          <Web3Provider>{children}</Web3Provider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
