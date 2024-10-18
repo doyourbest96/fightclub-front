@@ -54,10 +54,10 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
         web3 = new Web3(window.ethereum);
       }
       if (!isConnected || !ethersProvider) {
-        console.log("Not connected wallet");
+        // console.log("Not connected wallet");
       } else {
         setProvider(ethersProvider);
-        console.log("Connected wallet");
+        // console.log("Connected wallet");
       }
 
       if (chainId === 1) {
