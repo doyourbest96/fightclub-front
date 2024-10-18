@@ -76,7 +76,7 @@ const PreSale: React.FC = () => {
           const tempFundsRaised = await presaleContract.methods
             .getFundsRaised()
             .call();
-          setFundsRaised(parseFloat(tempFundsRaised) * 100);
+          setFundsRaised(parseFloat(tempFundsRaised));
           // console.log("Funds Raised:", tempFundsRaised);
         } catch (error) {
           console.error("Error fetching funds raised:", error);
