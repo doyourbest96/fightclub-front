@@ -29,8 +29,8 @@ const PreSale: React.FC = () => {
   const [progress] = useState(0);
   const [payAmount, setPayAmount] = useState<number>(0);
   const [tokenAmount, setTokenAmount] = useState<number>(0);
-  // const [min, setMin] = useState(100.0);
-  // const [max, setMax] = useState(5000.0);
+  const [min, setMin] = useState<number>(0.05);
+  const [ETHFor100USDT, setETHFor100USDT] = useState<number>(0.05);
   const [paymentType, setPaymentType] = useState("ETH");
   const [stageIndex, setStageIndex] = useState<number>(0);
   const [targetDate, setTargetDate] = useState<Date>(
@@ -69,8 +69,30 @@ const PreSale: React.FC = () => {
       }
     }
 
+    async function fetchETHFor100USDT() {
+      const tempTokenCount = await presaleContract.methods
+        .estimatedTokenAmountAvailableWithCoin(
+          ethers.parseUnits("100", 6).toString(),
+          TOKENS["USDT" as keyof typeof TOKENS]
+        )
+        .call();
+      console.log("tempTokenCount:", tempTokenCount);
+      const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
+      console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
+      const tempETHFor100USDT = await presaleContract.methods
+        .estimatedEthAmountForTokenAmount(
+          ethers.parseUnits(tokenAmountFor100USDT, 18)
+        )
+        .call();
+      console.log("tempETHFor100USDT:", tempETHFor100USDT);
+      const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
+      console.log("expectedPayAmount:", expectedPayAmount);
+      setETHFor100USDT(parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6)));
+    }
+
     fetchBalances();
     getClaimableBalance();
+    fetchETHFor100USDT();
   }, [account, presaleContract]);
 
   useEffect(() => {
@@ -113,34 +135,19 @@ const PreSale: React.FC = () => {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  // useEffect(() => {
-  //   if (paymentType === "ETH") {
-  //     setMin(0.4);
-  //     setMax(2.0);
-  //   }
-  //   if (paymentType === "USDT") {
-  //     setMin(100.0);
-  //     setMax(5000.0);
-  //   }
-  //   if (paymentType === "USDC") {
-  //     setMin(100.0);
-  //     setMax(5000.0);
-  //   }
-  //   if (paymentType === "DAI") {
-  //     setMin(100.0);
-  //     setMax(5000.0);
-  //   }
-  // }, [paymentType]);
-
-  // useEffect(() => {
-  //   let val = payAmount;
-  //   val = val < min ? min : val;
-  //   val = val > max ? max : val;
-  //   setPayAmount(val);
-  // }, [payAmount, min, max]);
+  useEffect(() => {
+    if (paymentType === "ETH") {
+      setMin(ETHFor100USDT);
+    } else {
+      setMin(100.0);
+    }
+    setPayAmount(0);
+    setTokenAmount(0);
+  }, [paymentType, ETHFor100USDT]);
 
   const handleMin = () => {
-    // setPayAmount(min);
+    setPayAmount(min);
+    handlePayAmountChange({ target: { value: min.toString() } });
   };
 
   const formatBalance = (balance: string) => {
@@ -152,7 +159,7 @@ const PreSale: React.FC = () => {
   };
 
   const handlePayAmountChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement> | { target: { value: string } }
   ) => {
     const value = e.target.value;
     const regex = /^\d*\.?\d{0,6}$/;
@@ -181,7 +188,10 @@ const PreSale: React.FC = () => {
               TOKENS[paymentType as keyof typeof TOKENS]
             )
             .call();
-          const expectedTokenAmount = ethers.formatUnits(temp, 18);
+          const expectedTokenAmount =
+            paymentType === "DAI"
+              ? ethers.formatUnits(temp, 6)
+              : ethers.formatUnits(temp, 18);
           setTokenAmount(parseFloat(expectedTokenAmount));
         }
       } catch (error) {
@@ -220,7 +230,9 @@ const PreSale: React.FC = () => {
               TOKENS[paymentType as keyof typeof TOKENS]
             )
             .call();
-          const expectedPayAmount = ethers.formatUnits(temp, 6);
+          const expectedPayAmount = paymentType === "DAI"
+              ? ethers.formatUnits(temp, 18)
+              : ethers.formatUnits(temp, 6);
           setPayAmount(parseFloat(expectedPayAmount));
         }
       } catch (error) {
@@ -472,7 +484,7 @@ const PreSale: React.FC = () => {
                         className="w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 disabled:bg-[#333] disabled:cursor-not-allowed truncate"
                         disabled={
                           isLoading ||
-                          payAmount <= 0 ||
+                          payAmount < min ||
                           parseFloat(balances[paymentType]) == 0 ||
                           parseFloat(balances[paymentType]) < payAmount
                         }
