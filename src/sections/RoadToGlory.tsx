@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { gloryData } from "@/data/glory.data";
 import GloryItem from "@/components/RoadToGlory/GloryItem";
-import TrackImg from "@/components/trackImg";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 export default function RoadToGlory() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);

@@ -1,6 +1,10 @@
+import dynamic from "next/dynamic";
 import DesktopMembers from "@/components/Member/DesktopMembers";
 import MobileMembers from "@/components/Member/MobileMembers";
-import TrackImg from "@/components/trackImg";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 const Members = () => {
   return (

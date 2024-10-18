@@ -1,23 +1,32 @@
 "use client";
+import dynamic from "next/dynamic";
+
 import RootProvider from "@/providers";
-import Header from "@/components/header";
 import Branding from "@/components/Brading";
-import PreSaleInterface from "@/sections/PreSale";
 import About from "@/sections/About";
 import TokenSaleS from "@/sections/TokenSaleS";
 import FuelRevolution from "@/sections/FuelRevolution";
 import Supply from "@/sections/Supply";
-// import Bander from "@/sections/Bander";
 import TokenomicsTable from "@/sections/TokenomicsTable";
 import Tokenomics from "@/sections/Tokenomics";
 import HowtoBuy from "@/sections/HowtoBuy";
-import Members from "@/sections/Members";
 import Faq from "@/sections/Faq";
 import Footer from "@/sections/Footer";
-import Roadmap from "@/components/roadmap/Roadmap";
-// import TokenomicsTableMobile from "@/sections/TokenomicsTableMobile";
 import Bander2 from "@/sections/Bander2";
-import RoadToGlory from "@/sections/RoadToGlory";
+
+const Header = dynamic(() => import("@/components/header"), { ssr: false });
+const PreSale = dynamic(() => import("@/sections/PreSale"), {
+  ssr: false,
+});
+const RoadToGlory = dynamic(() => import("@/sections/RoadToGlory"), {
+  ssr: false,
+});
+const Roadmap = dynamic(() => import("@/components/roadmap/Roadmap"), {
+  ssr: false,
+});
+const Members = dynamic(() => import("@/sections/Members"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -38,7 +47,7 @@ export default function Home() {
             </div>
             <div className="w-2/5 flex flex-col gap-10 items-center">
               <Supply />
-              <PreSaleInterface />
+              <PreSale />
               <TokenomicsTable />
             </div>
           </div>
@@ -47,7 +56,7 @@ export default function Home() {
           <div className="flex flex-col lg:hidden items-center gap-8">
             <About />
             <Supply />
-            <PreSaleInterface />
+            <PreSale />
             <TokenSaleS />
             {/* <TokenomicsTableMobile /> */}
             {/* <Tokenomics /> */}
