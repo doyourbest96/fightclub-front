@@ -25,7 +25,7 @@ export const teamMemberData: TeamMember[] = [
     description:
       "Hebei university of technology, Former full stack developer at DESO, RubyExchange and Freebit.",
     imageSrc: "/assets/avatars/Steven.jpg",
-    socialLink: "Linkedin",
+    socialLink: "Instagram",
     href: "/",
   },
   {
