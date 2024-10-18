@@ -1,16 +1,23 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
-import { getBalances } from "../utils/ethUtils";
-import { TimeDifference } from "@/types";
-import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
-import { stageData } from "@/data/stage.data";
-import { classNames } from "@/utils/classNames";
+import { ethers } from "ethers";
 
-const PreSaleInterface: React.FC = () => {
+import useWeb3 from "@/hooks/useWeb3";
+import { classNames } from "@/utils/classNames";
+import { getBalances, TOKENS } from "../utils/ethUtils";
+import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
+import { toBigInt } from "@/utils/toBigInt";
+import { stageData } from "@/data/stage.data";
+import { TimeDifference } from "@/types";
+
+const PreSale: React.FC = () => {
+  const { presaleContract, account } = useWeb3();
   const [balances, setBalances] = useState<{ [key: string]: string }>({});
-  const [address, setAddress] = useState<string>("");
+  const [claimablePICCOBalance, setClaimableFICCOBalance] =
+    useState<string>("0");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeDifference>({
@@ -20,15 +27,51 @@ const PreSaleInterface: React.FC = () => {
     seconds: 59,
   });
   const [progress] = useState(0);
-  const [amount, setAmount] = useState(0.0);
-  const [getAmount, setGetAmount] = useState(0.0);
-  const [min, setMin] = useState(100.0);
-  const [max, setMax] = useState(5000.0);
+  const [payAmount, setPayAmount] = useState<number>(0);
+  const [tokenAmount, setTokenAmount] = useState<number>(0);
+  // const [min, setMin] = useState(100.0);
+  // const [max, setMax] = useState(5000.0);
   const [paymentType, setPaymentType] = useState("ETH");
   const [stageIndex, setStageIndex] = useState<number>(0);
   const [targetDate, setTargetDate] = useState<Date>(
     new Date(stageData[stageIndex].endDate)
   );
+
+  useEffect(() => {
+    async function fetchBalances() {
+      if (account) {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const fetchedBalances = await getBalances(account);
+          setBalances(fetchedBalances);
+        } catch (err) {
+          setError(`Failed to fetch balances. Please try again. ${err}`);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    async function getClaimableBalance() {
+      if (account && presaleContract) {
+        try {
+          const balance = await presaleContract.methods
+            .getTokenAmountForInvestor(account)
+            .call();
+          // console.log("Claimable FICCO Balance:", balance);
+          const formattedBalance = ethers.formatUnits(balance, 18);
+          setClaimableFICCOBalance(formattedBalance);
+        } catch (error) {
+          console.error("Error fetching claimable balance:", error);
+          setClaimableFICCOBalance("0");
+        }
+      }
+    }
+
+    fetchBalances();
+    getClaimableBalance();
+  }, [account, presaleContract]);
 
   useEffect(() => {
     setTargetDate(new Date(stageData[stageIndex].endDate)); // Specify your target date here
@@ -70,64 +113,168 @@ const PreSaleInterface: React.FC = () => {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  useEffect(() => {
-    async function fetchBalances() {
-      if (address) {
-        setIsLoading(true);
-        setError(null);
-        try {
-          const fetchedBalances = await getBalances(address);
-          setBalances(fetchedBalances);
-        } catch (err) {
-          setError(`Failed to fetch balances. Please try again. ${err}`);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    }
-    fetchBalances();
-  }, [address]);
+  // useEffect(() => {
+  //   if (paymentType === "ETH") {
+  //     setMin(0.4);
+  //     setMax(2.0);
+  //   }
+  //   if (paymentType === "USDT") {
+  //     setMin(100.0);
+  //     setMax(5000.0);
+  //   }
+  //   if (paymentType === "USDC") {
+  //     setMin(100.0);
+  //     setMax(5000.0);
+  //   }
+  //   if (paymentType === "DAI") {
+  //     setMin(100.0);
+  //     setMax(5000.0);
+  //   }
+  // }, [paymentType]);
 
-  useEffect(() => {
-    if (paymentType === "ETH") {
-      setMin(0.4);
-      setMax(2.0);
-    }
-    if (paymentType === "USDT") {
-      setMin(100.0);
-      setMax(5000.0);
-    }
-    if (paymentType === "USDC") {
-      setMin(100.0);
-      setMax(5000.0);
-    }
-    if (paymentType === "DAI") {
-      setMin(100.0);
-      setMax(5000.0);
-    }
-  }, [paymentType]);
-
-  useEffect(()=> {
-    let val = amount;
-    val = val < min ? min : val;
-    val = val > max ? max : val;
-    setAmount(val);
-  }, [amount, min, max]);
-
-  // const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setAddress(e.target.value);
-  // };
-  // const copyToClipboard = (text: string) => {
-  //   navigator.clipboard.writeText(text);
-  //   alert("Copied to clipboard!");
-  // };
+  // useEffect(() => {
+  //   let val = payAmount;
+  //   val = val < min ? min : val;
+  //   val = val > max ? max : val;
+  //   setPayAmount(val);
+  // }, [payAmount, min, max]);
 
   const handleMin = () => {
-    setAmount(min);
+    // setPayAmount(min);
   };
 
-  const handleMax = () => {
-    setAmount(max);
+  const formatBalance = (balance: string) => {
+    const num = parseFloat(balance);
+    return num.toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 6,
+    });
+  };
+
+  const handlePayAmountChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = e.target.value;
+    const regex = /^\d*\.?\d{0,6}$/;
+    if (!regex.test(value)) {
+      return;
+    }
+
+    if (value === "" || value === "0") {
+      setPayAmount(0);
+      setTokenAmount(0);
+    } else {
+      try {
+        const newPayAmount = ethers.parseUnits(value, 6);
+        setPayAmount(parseFloat(value));
+        if (paymentType === "ETH") {
+          const ethAmount = ethers.parseEther(value);
+          const temp = await presaleContract.methods
+            .estimatedTokenAmountAvailableWithETH(ethAmount.toString())
+            .call();
+          const expectedTokenAmount = ethers.formatUnits(temp, 18);
+          setTokenAmount(parseFloat(expectedTokenAmount));
+        } else {
+          const temp = await presaleContract.methods
+            .estimatedTokenAmountAvailableWithCoin(
+              newPayAmount.toString(),
+              TOKENS[paymentType as keyof typeof TOKENS]
+            )
+            .call();
+          const expectedTokenAmount = ethers.formatUnits(temp, 18);
+          setTokenAmount(parseFloat(expectedTokenAmount));
+        }
+      } catch (error) {
+        console.error("Error fetching token amount:", error);
+        setTokenAmount(0);
+      }
+    }
+  };
+
+  const handleTokenAmountChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = e.target.value;
+    const regex = /^\d*\.?\d{0,6}$/;
+    if (!regex.test(value)) {
+      return;
+    }
+
+    if (value === "" || value === "0") {
+      setTokenAmount(0);
+      setPayAmount(0);
+    } else {
+      try {
+        const newTokenAmount = ethers.parseUnits(value, 18);
+        setTokenAmount(parseFloat(value));
+        if (paymentType === "ETH") {
+          const temp = await presaleContract.methods
+            .estimatedEthAmountForTokenAmount(newTokenAmount.toString())
+            .call();
+          const expectedPayAmount = ethers.formatUnits(temp, 18);
+          setPayAmount(parseFloat(expectedPayAmount));
+        } else {
+          const temp = await presaleContract.methods
+            .estimatedCoinAmountForTokenAmount(
+              newTokenAmount.toString(),
+              TOKENS[paymentType as keyof typeof TOKENS]
+            )
+            .call();
+          const expectedPayAmount = ethers.formatUnits(temp, 6);
+          setPayAmount(parseFloat(expectedPayAmount));
+        }
+      } catch (error) {
+        console.error("Error fetching pay amount:", error);
+        setPayAmount(0);
+      }
+    }
+  };
+
+  const handleBuy = async () => {
+    try {
+      switch (paymentType) {
+        case "ETH":
+          console.log("buy with eth");
+          const ethAmount = ethers.parseEther(payAmount.toString());
+          const txETH = await presaleContract.methods
+            .buyWithETH()
+            .send({ from: account, value: ethAmount.toString() });
+          console.log("txETH =>>>>>>>>>>", txETH);
+          break;
+        case "USDT":
+          console.log("buy with usdt");
+          const txUSDT = await presaleContract.methods
+            .buyWithUSDT(toBigInt(tokenAmount.toString()))
+            .send({ from: account });
+          console.log("txUSDT =>>>>>>>>>>", txUSDT);
+          break;
+        case "USDC":
+          console.log("buy with usdc");
+          const txUSDC = await presaleContract.methods
+            .buyWithUSDC(toBigInt(tokenAmount.toString()))
+            .send({ from: account });
+          console.log("txUSDC =>>>>>>>>>>", txUSDC);
+          break;
+        case "DAI":
+          console.log("buy with dai");
+          const txDAI = await presaleContract.methods
+            .buyWithDAI(toBigInt(tokenAmount.toString()))
+            .send({ from: account });
+          console.log("txDAI =>>>>>>>>>>", txDAI);
+          break;
+      }
+      // Update balances after successful transaction
+      if (account) {
+        const fetchedBalances = await getBalances(account);
+        setBalances(fetchedBalances);
+      }
+      // Reset input fields
+      setPayAmount(0);
+      setTokenAmount(0);
+    } catch (error) {
+      console.error("Error during transaction:", error);
+      setError("Transaction failed. Please try again.");
+    }
   };
 
   return (
@@ -267,7 +414,7 @@ const PreSaleInterface: React.FC = () => {
                 <span
                   className={classNames(
                     "absolute right-0 bottom-0 flex flex-col text-right",
-                    address==="" ? "hidden" : ""
+                    account === undefined ? "hidden" : ""
                   )}
                 >
                   <span
@@ -276,21 +423,21 @@ const PreSaleInterface: React.FC = () => {
                   >
                     MIN
                   </span>
-                  <span
+                  {/* <span
                     className="cursor-pointer hover:underline"
                     onClick={handleMax}
                   >
                     MAX
-                  </span>
+                  </span> */}
                 </span>
               </label>
               <input
                 type={"number"}
-                value={amount}
-                min={min}
-                max={max}
+                value={payAmount.toString()}
+                min={0}
+                // max={max}
                 step={paymentType === "ETH" ? 0.1 : 1}
-                onChange={(e) => setAmount(parseFloat(e.target.value))}
+                onChange={handlePayAmountChange}
                 className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
               />
             </div>
@@ -300,9 +447,10 @@ const PreSaleInterface: React.FC = () => {
               </label>
               <input
                 type="number"
-                value={getAmount}
+                value={tokenAmount.toString()}
                 min={0}
-                onChange={(e) => setGetAmount(parseFloat(e.target.value))}
+                step={1000000}
+                onChange={handleTokenAmountChange}
                 className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
               />
             </div>
@@ -310,11 +458,6 @@ const PreSaleInterface: React.FC = () => {
 
           <ConnectButton.Custom>
             {({ account, openAccountModal, openConnectModal }) => {
-              if (account && account.address && account.address !== address) {
-                setAddress(account.address);
-              } else if (!account) {
-                setAddress("");
-              }
               return (
                 <>
                   <div className="px-4 w-full flex flex-row justify-center gap-4">
@@ -329,10 +472,11 @@ const PreSaleInterface: React.FC = () => {
                         className="w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 disabled:bg-[#333] disabled:cursor-not-allowed truncate"
                         disabled={
                           isLoading ||
+                          payAmount <= 0 ||
                           parseFloat(balances[paymentType]) == 0 ||
-                          parseFloat(balances[paymentType]) < amount
+                          parseFloat(balances[paymentType]) < payAmount
                         }
-                        // onClick={account ? openAccountModal : openConnectModal}
+                        onClick={handleBuy}
                       >
                         BUY
                       </button>
@@ -348,14 +492,18 @@ const PreSaleInterface: React.FC = () => {
                         <p className="text-sm mb-2">Loading...</p>
                       ) : (
                         <p className="text-sm mb-2">
-                          {balances[paymentType] + " " + paymentType}
+                          {formatBalance(balances[paymentType]) +
+                            " " +
+                            paymentType}
                         </p>
                       )}
-                      <p className="text-sm font-bold">Balance PICCO</p>
+                      <p className="text-sm font-bold">Balance FICCO</p>
                       {isLoading ? (
                         <p className="text-sm mb-2">Loading...</p>
                       ) : (
-                        <p className="text-sm mb-2">{"0"}</p>
+                        <p className="text-sm mb-2">
+                          {parseFloat(claimablePICCOBalance).toFixed(0)}
+                        </p>
                       )}
                       {error && <p className="text-red-500">{error}</p>}
                     </>
@@ -365,22 +513,6 @@ const PreSaleInterface: React.FC = () => {
             }}
           </ConnectButton.Custom>
         </div>
-        {/* <div className="w-full flex flex-col justify-center items-center">
-            <h2>Presale ETH Balance Checker</h2>
-            <input
-              type="text"
-              value={address}
-              onChange={handleAddressChange}
-              placeholder="Enter Ethereum address"
-            />
-            {isLoading && <p>Loading...</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {Object.entries(balances).map(([token, balance]) => (
-              <p key={token}>
-                {token} Balance: {balance}
-              </p>
-            ))}
-          </div> */}
         <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
           <span className="text-xs font-bold">Contract address:</span>
           <div className="flex items-center gap-2 mt-1 justify-center w-[90%]">
@@ -400,4 +532,4 @@ const PreSaleInterface: React.FC = () => {
   );
 };
 
-export default PreSaleInterface;
+export default PreSale;
