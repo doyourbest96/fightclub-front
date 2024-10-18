@@ -39,72 +39,71 @@ const PreSale: React.FC = () => {
   const [targetDate, setTargetDate] = useState<Date>(
     new Date(stageData[stageIndex].endDate)
   );
+  const fetchETHFor100USDT = async () => {
+    if (presaleContract && presaleContract.methods) {
+      try {
+        const tempTokenCount = await presaleContract.methods
+          .estimatedTokenAmountAvailableWithCoin(
+            ethers.parseUnits("100", 6).toString(),
+            TOKENS["USDT" as keyof typeof TOKENS]
+          )
+          .call();
+        // console.log("tempTokenCount:", tempTokenCount);
+        const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
+        // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
+        const tempETHFor100USDT = await presaleContract.methods
+          .estimatedEthAmountForTokenAmount(
+            ethers.parseUnits(tokenAmountFor100USDT, 18)
+          )
+          .call();
+        // console.log("tempETHFor100USDT:", tempETHFor100USDT);
+        const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
+        // console.log("expectedPayAmount:", expectedPayAmount);
+        setETHFor100USDT(
+          parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
+        );
+      } catch (error) {
+        console.error("Error fetching ETH price:", error);
+      }
+    }
+  };
+
+  const fetchFundsRaised = async () => {
+    if (presaleContract && presaleContract.methods) {
+      try {
+        const tempFundsRaised = await presaleContract.methods
+          .getFundsRaised()
+          .call();
+        setFundsRaised(parseFloat(tempFundsRaised));
+        // console.log("Funds Raised:", tempFundsRaised);
+      } catch (error) {
+        console.error("Error fetching funds raised:", error);
+      }
+    }
+  };
+
+  const fetchTokensAvailable = async () => {
+    if (presaleContract && presaleContract.methods) {
+      try {
+        const tempTokensAvailable = await presaleContract.methods
+          .tokensAvailable()
+          .call();
+        const formattedTokensAvailable = parseFloat(
+          ethers.formatUnits(tempTokensAvailable, 18)
+        ).toFixed(0);
+        setTokensAvailable(parseFloat(formattedTokensAvailable));
+        console.log("Remaining Token Amount:", formattedTokensAvailable);
+      } catch (error) {
+        console.error("Error fetching remaining token amount:", error);
+      }
+    }
+  };
 
   useEffect(() => {
-    async function fetchETHFor100USDT() {
-      if (presaleContract && presaleContract.methods) {
-        try {
-          const tempTokenCount = await presaleContract.methods
-            .estimatedTokenAmountAvailableWithCoin(
-              ethers.parseUnits("100", 6).toString(),
-              TOKENS["USDT" as keyof typeof TOKENS]
-            )
-            .call();
-          // console.log("tempTokenCount:", tempTokenCount);
-          const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
-          // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
-          const tempETHFor100USDT = await presaleContract.methods
-            .estimatedEthAmountForTokenAmount(
-              ethers.parseUnits(tokenAmountFor100USDT, 18)
-            )
-            .call();
-          // console.log("tempETHFor100USDT:", tempETHFor100USDT);
-          const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
-          // console.log("expectedPayAmount:", expectedPayAmount);
-          setETHFor100USDT(
-            parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
-          );
-        } catch (error) {
-          console.error("Error fetching ETH price:", error);
-        }
-      }
-    }
-
-    async function fetchFundsRaised() {
-      if (presaleContract && presaleContract.methods) {
-        try {
-          const tempFundsRaised = await presaleContract.methods
-            .getFundsRaised()
-            .call();
-          setFundsRaised(parseFloat(tempFundsRaised));
-          // console.log("Funds Raised:", tempFundsRaised);
-        } catch (error) {
-          console.error("Error fetching funds raised:", error);
-        }
-      }
-    }
-
-    async function fetchTokensAvailable() {
-      if (presaleContract && presaleContract.methods) {
-        try {
-          const tempTokensAvailable = await presaleContract.methods
-            .tokensAvailable()
-            .call();
-          const formattedTokensAvailable = parseFloat(
-            ethers.formatUnits(tempTokensAvailable, 18)
-          ).toFixed(0);
-          setTokensAvailable(parseFloat(formattedTokensAvailable));
-          console.log("Remaining Token Amount:", formattedTokensAvailable);
-        } catch (error) {
-          console.error("Error fetching remaining token amount:", error);
-        }
-      }
-    }
-
     fetchETHFor100USDT();
     fetchFundsRaised();
     fetchTokensAvailable();
-  }, [presaleContract]);
+  });
 
   useEffect(() => {
     if (tokensAvailable > 7e9) {
@@ -305,6 +304,8 @@ const PreSale: React.FC = () => {
   };
 
   const handleBuy = async () => {
+    setPayAmount(0);
+    setTokenAmount(0);
     try {
       switch (paymentType) {
         case "ETH":
@@ -342,9 +343,8 @@ const PreSale: React.FC = () => {
         const fetchedBalances = await getBalances(account);
         setBalances(fetchedBalances);
       }
-      // Reset input fields
-      setPayAmount(0);
-      setTokenAmount(0);
+      fetchFundsRaised();
+      fetchTokensAvailable();
     } catch (error) {
       console.error("Error during transaction:", error);
       setError("Transaction failed. Please try again.");
@@ -614,7 +614,9 @@ const PreSale: React.FC = () => {
                         <p className="text-sm mb-2">Loading...</p>
                       ) : (
                         <p className="text-sm mb-2">
-                          {parseFloat(parseFloat(claimablePICCOBalance).toFixed(0)).toLocaleString()}
+                          {parseFloat(
+                            parseFloat(claimablePICCOBalance).toFixed(0)
+                          ).toLocaleString()}
                         </p>
                       )}
                       {error && <p className="text-red-500">{error}</p>}
