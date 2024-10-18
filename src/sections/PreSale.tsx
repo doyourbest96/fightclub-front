@@ -614,7 +614,7 @@ const PreSale: React.FC = () => {
                         <p className="text-sm mb-2">Loading...</p>
                       ) : (
                         <p className="text-sm mb-2">
-                          {parseFloat(claimablePICCOBalance).toFixed(0)}
+                          {parseFloat(parseFloat(claimablePICCOBalance).toFixed(0)).toLocaleString()}
                         </p>
                       )}
                       {error && <p className="text-red-500">{error}</p>}
