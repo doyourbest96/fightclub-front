@@ -76,17 +76,17 @@ const PreSale: React.FC = () => {
           TOKENS["USDT" as keyof typeof TOKENS]
         )
         .call();
-      console.log("tempTokenCount:", tempTokenCount);
+      // console.log("tempTokenCount:", tempTokenCount);
       const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
-      console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
+      // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
       const tempETHFor100USDT = await presaleContract.methods
         .estimatedEthAmountForTokenAmount(
           ethers.parseUnits(tokenAmountFor100USDT, 18)
         )
         .call();
-      console.log("tempETHFor100USDT:", tempETHFor100USDT);
+      // console.log("tempETHFor100USDT:", tempETHFor100USDT);
       const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
-      console.log("expectedPayAmount:", expectedPayAmount);
+      // console.log("expectedPayAmount:", expectedPayAmount);
       setETHFor100USDT(parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6)));
     }
 
