@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import TrackImg from "@/components/trackImg";
+import dynamic from "next/dynamic";
 import { tokenomicsTableData } from "@/data/tokenomics.table";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 const TokenomicsTableMobile = () => {
   const [viewAll, setViewAll] = useState(false);

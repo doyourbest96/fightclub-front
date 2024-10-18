@@ -1,6 +1,10 @@
 import Link from "next/link";
-import TrackImg from "@/components/trackImg";
+import dynamic from "next/dynamic";
 import Stage from "./Stage";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 const TokenSaleS = () => {
   return (
@@ -24,8 +28,8 @@ const TokenSaleS = () => {
         until all FICCO coins sell out. FICCO coins bought during the first
         public sale can be claimed after TGE which will take place after
         conducting the second public sale. Unsold coins will be distributed
-        pro-rata to all participants of the public sale. Minimum and maximum
-        purchase amount per wallet: $100 / $5,000.
+        pro-rata to all participants of the public sale. Minimum purchase amount
+        per wallet: $100.
       </p>
       <Link
         href={"/assets/documents/whitepaper.pdf"}

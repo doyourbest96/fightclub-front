@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
-import TrackImg from "@/components/trackImg";
+import dynamic from "next/dynamic";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 interface FAQItem {
   question: string;

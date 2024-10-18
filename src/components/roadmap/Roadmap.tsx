@@ -1,7 +1,12 @@
-import TrackImg from "../trackImg";
+import dynamic from "next/dynamic";
+
 import RoadmapItem from "./RoadmapItem";
 import Image from "next/image";
 import { roadmapData } from "@/data/roadmap.data";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 const Roadmap = () => {
   return (

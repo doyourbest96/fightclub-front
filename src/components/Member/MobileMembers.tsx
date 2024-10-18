@@ -4,13 +4,13 @@ import Image from "next/image";
 import { FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
 import { CiLinkedin } from "react-icons/ci";
-import { coFounderData, advisorData, ambassadorData } from "@/data/member.data";
+import { teamMemberData, advisorData, ambassadorData } from "@/data/member.data";
 
 function CoFounderShowCase() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const renderCard = (index: number) => {
-    const member = coFounderData[index];
+    const member = teamMemberData[index];
     return (
       <div className="rounded-lg overflow-hidden">
         <div className="flex justify-center items-end">
@@ -45,7 +45,7 @@ function CoFounderShowCase() {
       <div className="max-w-sm mx-auto">
         {renderCard(currentIndex)}
         <div className="flex justify-center mt-4 space-x-2">
-          {Array.from({ length: coFounderData.length }).map((_, index) => (
+          {Array.from({ length: teamMemberData.length }).map((_, index) => (
             <button
               key={index}
               className={`w-5 h-5 rounded-full ${

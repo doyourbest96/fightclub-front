@@ -1,5 +1,9 @@
-import TrackImg from "@/components/trackImg";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 const FuelRevolution = () => {
   return (

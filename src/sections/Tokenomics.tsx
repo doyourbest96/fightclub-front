@@ -1,9 +1,13 @@
+import dynamic from "next/dynamic";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { tokenomicsData } from "@/data/tokenomics.data";
 import { tokenomicsOption } from "@/data/tokenomics.option";
-import TrackImg from "@/components/trackImg";
+
+const TrackImg = dynamic(() => import("@/components/trackImg"), {
+  ssr: false,
+});
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 

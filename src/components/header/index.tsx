@@ -64,6 +64,7 @@ const Header = () => {
                 width={383}
                 height={160}
                 className="w-full h-auto mb-12"
+                priority
               />
             </div>
             <div className="w-full max-w-[31rem] pr-2 sm:pr-8 flex flex-col justify-center items-center">
@@ -85,6 +86,7 @@ const Header = () => {
                   width={20}
                   height={20}
                   className="w-auto h-auto"
+                  priority
                 />
                 <span className="font-black">Whitepaper</span>
               </Link>
