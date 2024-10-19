@@ -14,6 +14,7 @@ import { stageData } from "@/data/stage.data";
 import { TimeDifference } from "@/types";
 import PreSaleProgress from "@/components/PreSale/PreSaleProgress";
 import TimeLeft from "@/components/PreSale/TimeLeft";
+import PhaseDisplay from "@/components/PreSale/PhaseDisplay";
 
 const PreSale: React.FC = () => {
   const { presaleContract, account } = useWeb3();
@@ -427,59 +428,8 @@ const PreSale: React.FC = () => {
           <h1 className="text-2xl font-revoluti font-bold mb-6">PRE SALE 1</h1>
           <PreSaleProgress hardcap={hardcap} fundsRaised={fundsRaised} />          
           <TimeLeft stageIndex={stageIndex} timeLeft={timeLeft} />
+          <PhaseDisplay phaseIndex={phaseIndex} tokensAvailable={tokensAvailable} />
           
-          <div className="mb-8">
-            <p
-              className={
-                phaseIndex === 0 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
-              }
-            >
-              {phaseIndex === 0
-                ? `Current price $0.00008 / ${(
-                    tokensAvailable - 7e9
-                  ).toLocaleString()} left`
-                : "Phase 1: $0.00008 / 0"}
-            </p>
-            <p
-              className={
-                phaseIndex === 1 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
-              }
-            >
-              {phaseIndex === 1
-                ? `Current price $0.0001 / ${(
-                    tokensAvailable - 3e9
-                  ).toLocaleString()} left`
-                : phaseIndex < 1
-                ? "Phase 2: $0.0001 / 4,000,000,000"
-                : "Phase 2: $0.0001 / 0"}
-            </p>
-            <p
-              className={
-                phaseIndex === 2 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
-              }
-            >
-              {phaseIndex === 2
-                ? `Current price $0.00012 / ${(
-                    tokensAvailable - 1e9
-                  ).toLocaleString()} left`
-                : phaseIndex < 2
-                ? "Phase 3: $0.00012 / 2,000,000,000"
-                : "Phase 3: $0.00012 / 0"}
-            </p>
-            <p
-              className={
-                phaseIndex === 3 ? "font-bold text-[#824b3d]" : "text-[#dbdbcf]"
-              }
-            >
-              {phaseIndex === 3
-                ? `Current price $0.00012 / ${(
-                    tokensAvailable - 1e9
-                  ).toLocaleString()} left`
-                : phaseIndex < 3
-                ? "Phase 4: $0.00014 / 1,000,000,000"
-                : "Phase 4: $0.00014 / 0"}
-            </p>
-          </div>
           {account === OWNER_ADDRESS ? (
             <>
               <h1 className="text-lg font-revoluti font-bold mb-6">
