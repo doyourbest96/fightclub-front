@@ -430,7 +430,7 @@ const PreSale: React.FC = () => {
           <TimeLeft stageIndex={stageIndex} timeLeft={timeLeft} />
           <PhaseDisplay phaseIndex={phaseIndex} tokensAvailable={tokensAvailable} />
           
-          {account === OWNER_ADDRESS ? (
+          {(OWNER_ADDRESS && account === OWNER_ADDRESS) ? (
             <>
               <h1 className="text-lg font-revoluti font-bold mb-6">
                 ----- WELCOME OWNER -----
