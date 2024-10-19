@@ -37,6 +37,9 @@ const PreSale: React.FC = () => {
   const [ownerAddress, setOwnerAddress] = useState<string>("");
   const [isSettingOwnerAddress, setIsSettingOwnerAddress] = useState(false);
   const [ownerAddressSetSuccess, setOwnerAddressSetSuccess] = useState(false);
+  const [claimTime, setClaimTime] = useState<number>(Date.now());
+  const [isSettingClaimTime, setIsSettingClaimTime] = useState(false);
+  const [claimTimeSetSuccess, setClaimTimeSetSuccess] = useState(false);
 
   const [fundsRaised, setFundsRaised] = useState<number>(0);
   const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
@@ -52,8 +55,6 @@ const PreSale: React.FC = () => {
     new Date(stageData[stageIndex].endDate)
   );
 
-  // const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ADDRESS;
-
   const fetchOwner = async () => {
     if (presaleContract && presaleContract.methods) {
       try {
@@ -63,7 +64,7 @@ const PreSale: React.FC = () => {
         console.error("Error fetching owner address:", error);
       }
     }
-  }
+  };
 
   const fetchETHFor100USDT = async () => {
     if (presaleContract && presaleContract.methods) {
@@ -154,7 +155,7 @@ const PreSale: React.FC = () => {
         setClaimableFICCOBalance("0");
       }
     }
-  }
+  };
 
   const fetchInformation = () => {
     fetchOwner();
@@ -430,6 +431,45 @@ const PreSale: React.FC = () => {
     }
   };
 
+  const handleSetClaimTime = async () => {
+    setIsSettingClaimTime(true);
+    setClaimTimeSetSuccess(false);
+    try {
+      const tx = await presaleContract.methods
+        .setClaimTime(claimTime)
+        .send({ from: account });
+      const events = tx.events;
+      if (events.ClaimTimeUpdated) {
+        console.log(
+          "Claim Time set successfully:",
+          events.ClaimTimeUpdated.returnValues.newClaimTime
+        );
+        setClaimTimeSetSuccess(true);
+        fetchInformation();
+      }
+    } catch (error) {
+      console.error("Error during set claim time:", error);
+    } finally {
+      setClaimTimeSetSuccess(false);
+    }
+  };
+
+  const handleWithdraw = async () => {
+    try {
+      await presaleContract.methods.withdraw().send({ from: account });
+    } catch (error) {
+      console.error("Error during withdraw:", error);
+    }
+  };
+
+  const handleRefund = async () => {
+    try {
+      await presaleContract.methods.refund().send({ from: account });
+    } catch (error) {
+      console.error("Error during refund:", error);
+    }
+  };
+
   return (
     <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-0 max-w-lg min-w-lg">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
@@ -450,8 +490,7 @@ const PreSale: React.FC = () => {
 
               <div className="px-4 grid grid-cols-2 gap-4 mb-4">
                 <button
-                  disabled
-                  onClick={() => alert("Withdraw Button Clicked")}
+                  onClick={handleWithdraw}
                   className="p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
                 >
                   <Image
@@ -464,8 +503,7 @@ const PreSale: React.FC = () => {
                   WITHDRAW
                 </button>
                 <button
-                  disabled
-                  onClick={() => alert("Refund Button Clicked")}
+                  onClick={handleRefund}
                   className="p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
                 >
                   <Image
@@ -511,16 +549,38 @@ const PreSale: React.FC = () => {
                 </div>
               </div>
 
-              <div className="w-full px-4 flex flex-row items-center gap-2 mb-4 text-left">
+              <div className="w-full px-4 mb-4 text-left">
                 <label className="flex-1 text-sm sm:font-bold">
                   Set Claim Time:
                 </label>
-                <input
-                  disabled
-                  type="datetime-local"
-                  defaultValue={new Date().toISOString().slice(0, 16)}
-                  className="bg-[#353535] rounded p-2 text-[#dbdbcf]"
-                />
+                <div className="w-full flex flex-row justify-center gap-2">
+                  <input
+                    type="datetime-local"
+                    value={new Date(claimTime).toISOString().slice(0, 16)}
+                    className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        setClaimTime(new Date(e.target.value).getTime());
+                      }
+                    }}
+                  />
+                  <button
+                    className="p-1 sm:p-2 lg:p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                    onClick={handleSetClaimTime}
+                    disabled={isSettingClaimTime}
+                  >
+                    <Image
+                      src={
+                        claimTimeSetSuccess
+                          ? "/assets/icons/setting-verify.svg"
+                          : "/assets/icons/setting.svg"
+                      }
+                      alt="icon"
+                      width={24}
+                      height={24}
+                    />
+                  </button>
+                </div>
               </div>
 
               <div className="w-full px-4 mb-4 text-left">
