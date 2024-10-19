@@ -106,24 +106,56 @@ const PreSale: React.FC = () => {
           ethers.formatUnits(tempTokensAvailable, 18)
         ).toFixed(0);
         setTokensAvailable(parseFloat(formattedTokensAvailable));
-        console.log("Remaining Token Amount:", formattedTokensAvailable);
+        // console.log("Remaining Token Amount:", formattedTokensAvailable);
       } catch (error) {
         console.error("Error fetching remaining token amount:", error);
       }
     }
   };
 
-  const fetchInformation = () => {
-      fetchETHFor100USDT();
-      fetchFundsRaised();
-      fetchTokensAvailable();
+  const fetchBalances = async () => {
+    if (account) {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const fetchedBalances = await getBalances(account);
+        setBalances(fetchedBalances);
+      } catch (err) {
+        setError(`Failed to fetch balances. Please try again. ${err}`);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const getClaimableBalance = async () => {
+    if (account && presaleContract) {
+      try {
+        const balance = await presaleContract.methods
+          .getTokenAmountForInvestor(account)
+          .call();
+        // console.log("Claimable FICCO Balance:", balance);
+        const formattedBalance = ethers.formatUnits(balance, 18);
+        setClaimableFICCOBalance(formattedBalance);
+      } catch (error) {
+        console.error("Error fetching claimable balance:", error);
+        setClaimableFICCOBalance("0");
+      }
+    }
   }
 
+  const fetchInformation = () => {
+    fetchETHFor100USDT();
+    fetchFundsRaised();
+    fetchTokensAvailable();
+
+    fetchBalances();
+    getClaimableBalance();
+  };
+
   useEffect(() => {
-    if (presaleContract && presaleContract.methods) {
-      fetchInformation();
-    }
-  });
+    fetchInformation();
+  }, [account, presaleContract]);
 
   useEffect(() => {
     if (tokensAvailable > 7e9) {
@@ -138,42 +170,6 @@ const PreSale: React.FC = () => {
       setPhaseIndex(4);
     }
   }, [tokensAvailable]);
-
-  useEffect(() => {
-    async function fetchBalances() {
-      if (account) {
-        setIsLoading(true);
-        setError(null);
-        try {
-          const fetchedBalances = await getBalances(account);
-          setBalances(fetchedBalances);
-        } catch (err) {
-          setError(`Failed to fetch balances. Please try again. ${err}`);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    async function getClaimableBalance() {
-      if (account && presaleContract) {
-        try {
-          const balance = await presaleContract.methods
-            .getTokenAmountForInvestor(account)
-            .call();
-          // console.log("Claimable FICCO Balance:", balance);
-          const formattedBalance = ethers.formatUnits(balance, 18);
-          setClaimableFICCOBalance(formattedBalance);
-        } catch (error) {
-          console.error("Error fetching claimable balance:", error);
-          setClaimableFICCOBalance("0");
-        }
-      }
-    }
-
-    fetchBalances();
-    getClaimableBalance();
-  }, [account, presaleContract]);
 
   useEffect(() => {
     setTargetDate(new Date(stageData[stageIndex].endDate)); // Specify your target date here
@@ -363,8 +359,7 @@ const PreSale: React.FC = () => {
         const fetchedBalances = await getBalances(account);
         setBalances(fetchedBalances);
       }
-      fetchFundsRaised();
-      fetchTokensAvailable();
+      fetchInformation();
     } catch (error) {
       console.error("Error during transaction:", error);
       setError("Transaction failed. Please try again.");
@@ -426,11 +421,14 @@ const PreSale: React.FC = () => {
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center py-6">
           <h1 className="text-2xl font-revoluti font-bold mb-6">PRE SALE 1</h1>
-          <PreSaleProgress hardcap={hardcap} fundsRaised={fundsRaised} />          
+          <PreSaleProgress hardcap={hardcap} fundsRaised={fundsRaised} />
           <TimeLeft stageIndex={stageIndex} timeLeft={timeLeft} />
-          <PhaseDisplay phaseIndex={phaseIndex} tokensAvailable={tokensAvailable} />
-          
-          {(OWNER_ADDRESS && account === OWNER_ADDRESS) ? (
+          <PhaseDisplay
+            phaseIndex={phaseIndex}
+            tokensAvailable={tokensAvailable}
+          />
+
+          {OWNER_ADDRESS && account === OWNER_ADDRESS ? (
             <>
               <h1 className="text-lg font-revoluti font-bold mb-6">
                 ----- WELCOME OWNER -----
