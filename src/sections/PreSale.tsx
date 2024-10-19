@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
-import { ethers } from "ethers";
+import { ethers, isAddress } from "ethers";
 
 import useWeb3 from "@/hooks/useWeb3";
 import { classNames } from "@/utils/classNames";
@@ -12,6 +12,8 @@ import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
 import { toBigInt } from "@/utils/toBigInt";
 import { stageData } from "@/data/stage.data";
 import { TimeDifference } from "@/types";
+import PreSaleProgress from "@/components/PreSale/PreSaleProgress";
+import TimeLeft from "@/components/PreSale/TimeLeft";
 
 const PreSale: React.FC = () => {
   const { presaleContract, account } = useWeb3();
@@ -26,6 +28,14 @@ const PreSale: React.FC = () => {
     minutes: 59,
     seconds: 59,
   });
+
+  const [walletAddress, setWalletAddress] = useState<string>("");
+  const [isSettingWallet, setIsSettingWallet] = useState(false);
+  const [walletSetSuccess, setWalletSetSuccess] = useState(false);
+  const [ownerAddress, setOwnerAddress] = useState<string>("");
+  const [isSettingOwnerAddress, setIsSettingOwnerAddress] = useState(false);
+  const [ownerAddressSetSuccess, setOwnerAddressSetSuccess] = useState(false);
+
   const [fundsRaised, setFundsRaised] = useState<number>(0);
   const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
   const [phaseIndex, setPhaseIndex] = useState<number>(0);
@@ -39,6 +49,9 @@ const PreSale: React.FC = () => {
   const [targetDate, setTargetDate] = useState<Date>(
     new Date(stageData[stageIndex].endDate)
   );
+
+  const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ADDRESS;
+
   const fetchETHFor100USDT = async () => {
     if (presaleContract && presaleContract.methods) {
       try {
@@ -99,10 +112,16 @@ const PreSale: React.FC = () => {
     }
   };
 
+  const fetchInformation = () => {
+      fetchETHFor100USDT();
+      fetchFundsRaised();
+      fetchTokensAvailable();
+  }
+
   useEffect(() => {
-    fetchETHFor100USDT();
-    fetchFundsRaised();
-    fetchTokensAvailable();
+    if (presaleContract && presaleContract.methods) {
+      fetchInformation();
+    }
   });
 
   useEffect(() => {
@@ -351,58 +370,64 @@ const PreSale: React.FC = () => {
     }
   };
 
+  const handleSetWalletAddress = async () => {
+    setIsSettingWallet(true);
+    setWalletSetSuccess(false);
+    try {
+      const tx = await presaleContract.methods
+        .setWallet(walletAddress)
+        .send({ from: account });
+
+      // Listen for the WalletUpdated event
+      const events = await tx.events;
+      if (events.WalletUpdated) {
+        console.log(
+          "Wallet address updated successfully:",
+          events.WalletUpdated.returnValues.wallet_
+        );
+        setWalletSetSuccess(true);
+      }
+    } catch (error) {
+      console.error("Error during set wallet address:", error);
+      // Handle the error (e.g., show an error message to the user)
+    } finally {
+      setIsSettingWallet(false);
+    }
+  };
+
+  const handleTransferOwnership = async () => {
+    setIsSettingOwnerAddress(true);
+    setOwnerAddressSetSuccess(false);
+    try {
+      const tx = await presaleContract.methods
+        .transferOwnership(ownerAddress)
+        .send({ from: account });
+
+      // Listen for the OwnershipTransferred event
+      const events = await tx.events;
+      if (events.OwnershipTransferred) {
+        console.log(
+          "Ownership transferred successfully:",
+          events.OwnershipTransferred.returnValues.newOwner
+        );
+        setOwnerAddressSetSuccess(true);
+      }
+    } catch (error) {
+      console.error("Error during set owner address:", error);
+      // Handle the error (e.g., show an error message to the user)
+    } finally {
+      setOwnerAddressSetSuccess(false);
+    }
+  };
+
   return (
     <div className="text-[#dbdbcf] flex items-center justify-center sm:px-8 md:px-12 lg:px-0 max-w-lg min-w-lg">
       <div className="border border-[#824B3D] rounded-lg shadow-lg w-full">
         <div className="w-full bg-[#131511] rounded-lg text-center py-6">
           <h1 className="text-2xl font-revoluti font-bold mb-6">PRE SALE 1</h1>
-          <div className="px-2 mb-6 items-center">
-            <div className="w-full bg-[#787871] border-[#824B3D] border-2 rounded-lg h-8">
-              <div
-                className="relative bg-[#824B3D] h-7 rounded-l-lg flex justify-end"
-                style={{ width: `${(fundsRaised / hardcap) * 100}%` }}
-              >
-                <div className="absolute top-10 transform translate-x-1/2">
-                  <div className="relative inline-block bg-[#e8e6d9] py-1 px-2 rounded">
-                    <div className="absolute left-1/2 -top-1 w-2 h-2 bg-[#e8e6d9] transform -translate-x-1/2 rotate-45"></div>
-                    <span className="text-base text-[#824B3D] font-bold font-revoluti">
-                      {"$" + fundsRaised.toLocaleString()}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-end mt-3 ">
-              <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
-                ${hardcap.toLocaleString()}
-              </span>
-            </div>
-          </div>
-
-          <div className="mb-6">
-            <p className="font-bold font-revoluti text-xl text-[#dbdbcf]">
-              {stageIndex === 0 ? "TIME UNTIL START" : "TIME LEFT"}
-            </p>
-          </div>
-          <div className="px-10 grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
-              <div className="text-2xl font-revoluti">{timeLeft.days}</div>
-              <div className="text-sm">days</div>
-            </div>
-            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
-              <div className="text-2xl font-revoluti">{timeLeft.hours}</div>
-              <div className="text-sm">hours</div>
-            </div>
-            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
-              <div className="text-2xl font-revoluti">{timeLeft.minutes}</div>
-              <div className="text-sm">minutes</div>
-            </div>
-            <div className="bg-[#212121] border border-orange-900 p-1 rounded">
-              <div className="text-2xl font-revoluti">{timeLeft.seconds}</div>
-              <div className="text-sm">seconds</div>
-            </div>
-          </div>
-
+          <PreSaleProgress hardcap={hardcap} fundsRaised={fundsRaised} />          
+          <TimeLeft stageIndex={stageIndex} timeLeft={timeLeft} />
+          
           <div className="mb-8">
             <p
               className={
@@ -455,178 +480,310 @@ const PreSale: React.FC = () => {
                 : "Phase 4: $0.00014 / 0"}
             </p>
           </div>
+          {account === OWNER_ADDRESS ? (
+            <>
+              <h1 className="text-lg font-revoluti font-bold mb-6">
+                ----- WELCOME OWNER -----
+              </h1>
 
-          <div className="px-4 grid grid-cols-2 gap-x-8 gap-y-4 mb-10">
-            <button
-              className={`bg-[#353535] border-2 ${
-                paymentType === "ETH" ? "border-orange-900" : "border-gray-600"
-              } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("ETH")}
-            >
-              <Image
-                src={"/assets/icons/ethereum.svg"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1.5"
-              />
-              Pay with ETH
-            </button>
-            <button
-              className={`bg-[#353535] border-2 ${
-                paymentType === "USDT" ? "border-orange-900" : "border-gray-600"
-              } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("USDT")}
-            >
-              <Image
-                src={"/assets/icons/usdt.svg"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1.5"
-              />
-              Pay with USDT
-            </button>
-            <button
-              className={`bg-[#353535] border-2 ${
-                paymentType === "DAI" ? "border-orange-900" : "border-gray-600"
-              }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("DAI")}
-            >
-              <Image
-                src={"/assets/icons/dai.svg"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1.5"
-              />
-              Pay with DAI
-            </button>
-            <button
-              className={`bg-[#353535] border-2 ${
-                paymentType === "USDC" ? "border-orange-900" : "border-gray-600"
-              }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
-              onClick={() => setPaymentType("USDC")}
-            >
-              <Image
-                src={"/assets/icons/usd-coin.svg"}
-                alt="icon"
-                width={24}
-                height={24}
-                className="mr-1.5"
-              />
-              Pay with USDC
-            </button>
-          </div>
-
-          <div className="px-4 grid grid-cols-2 gap-4 mb-6">
-            <div className="text-left">
-              <label className="relative flex flex-row justify-between text-sm mb-1 sm:font-bold">
-                <span>AMOUNT({paymentType})</span>
-                <span
-                  className={classNames(
-                    "absolute right-0 bottom-0 flex flex-col text-right",
-                    account === undefined ? "hidden" : ""
-                  )}
+              <div className="px-4 grid grid-cols-2 gap-4 mb-4">
+                <button
+                  disabled
+                  onClick={() => alert("Withdraw Button Clicked")}
+                  className="p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
                 >
-                  <span
-                    className="cursor-pointer hover:underline"
-                    onClick={handleMin}
-                  >
-                    MIN
-                  </span>
-                  {/* <span
-                    className="cursor-pointer hover:underline"
-                    onClick={handleMax}
-                  >
-                    MAX
-                  </span> */}
-                </span>
-              </label>
-              <input
-                type={"number"}
-                value={payAmount.toString()}
-                min={0}
-                // max={max}
-                step={paymentType === "ETH" ? 0.1 : 1}
-                onChange={handlePayAmountChange}
-                className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
-              />
-            </div>
-            <div className="text-left">
-              <label className="block text-sm mb-1 sm:font-bold">
-                GET AMOUNT(FICCO)
-              </label>
-              <input
-                type="number"
-                value={tokenAmount.toString()}
-                min={0}
-                step={1000000}
-                onChange={handleTokenAmountChange}
-                className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
-              />
-            </div>
-          </div>
+                  <Image
+                    src={"/assets/icons/withdraw.svg"}
+                    alt="icon"
+                    width={24}
+                    height={24}
+                    className="mr-1.5"
+                  />
+                  WITHDRAW
+                </button>
+                <button
+                  disabled
+                  onClick={() => alert("Refund Button Clicked")}
+                  className="p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
+                >
+                  <Image
+                    src={"/assets/icons/refund.svg"}
+                    alt="icon"
+                    width={24}
+                    height={24}
+                    className="mr-1.5"
+                  />
+                  REFUND
+                </button>
+              </div>
 
-          <ConnectButton.Custom>
-            {({ account, openAccountModal, openConnectModal }) => {
-              return (
-                <>
-                  <div className="px-4 w-full flex flex-row justify-center gap-4">
-                    <button
-                      className="max-w-[70%] w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 truncate"
-                      onClick={account ? openAccountModal : openConnectModal}
-                    >
-                      {account ? account.displayName : "CONNECT WALLET"}
-                    </button>
-                    {account && (
-                      <button
-                        className="w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 disabled:bg-[#333] disabled:cursor-not-allowed truncate"
-                        disabled={
-                          isLoading ||
-                          payAmount < min ||
-                          parseFloat(balances[paymentType]) == 0 ||
-                          parseFloat(balances[paymentType]) < payAmount
-                        }
-                        onClick={handleBuy}
-                      >
-                        BUY
-                      </button>
-                    )}
-                  </div>
-                  {account && (
+              <div className="w-full px-4 mb-4 text-left">
+                <label className="text-sm mb-3 sm:font-bold">
+                  Set Wallet Address:
+                </label>
+                <div className="w-full flex flex-row justify-center gap-2">
+                  <input
+                    type="text"
+                    maxLength={42}
+                    value={walletAddress}
+                    placeholder="ex: 0x90...d000"
+                    className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                    onChange={(e) => setWalletAddress(e.target.value)}
+                  />
+                  <button
+                    className="p-1 sm:p-2 lg:p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                    onClick={handleSetWalletAddress}
+                    disabled={isSettingWallet || !isAddress(walletAddress)}
+                  >
+                    <Image
+                      src={
+                        walletSetSuccess
+                          ? "/assets/icons/setting-verify.svg"
+                          : "/assets/icons/setting.svg"
+                      }
+                      alt="icon"
+                      width={24}
+                      height={24}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              <div className="w-full px-4 flex flex-row items-center gap-2 mb-4 text-left">
+                <label className="flex-1 text-sm sm:font-bold">
+                  Set Claim Time:
+                </label>
+                <input
+                  disabled
+                  type="datetime-local"
+                  defaultValue={new Date().toISOString().slice(0, 16)}
+                  className="bg-[#353535] rounded p-2 text-[#dbdbcf]"
+                />
+              </div>
+
+              <div className="w-full px-4 mb-4 text-left">
+                <label className="text-sm mb-3 sm:font-bold">
+                  Transfer OnwerShip:
+                </label>
+                <div className="w-full flex flex-row justify-center gap-2">
+                  <input
+                    type="text"
+                    maxLength={42}
+                    value={ownerAddress}
+                    placeholder="ex: 0x90...d000"
+                    className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                    onChange={(e) => setOwnerAddress(e.target.value)}
+                  />
+                  <button
+                    className="p-1 sm:p-2 lg:p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                    onClick={handleTransferOwnership}
+                    disabled={isSettingOwnerAddress || !isAddress(ownerAddress)}
+                  >
+                    <Image
+                      src={
+                        ownerAddressSetSuccess
+                          ? "/assets/icons/setting-verify.svg"
+                          : "/assets/icons/setting.svg"
+                      }
+                      alt="icon"
+                      width={24}
+                      height={24}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              <ConnectButton.Custom>
+                {({ account, openAccountModal }) => {
+                  return (
                     <>
-                      <p className="text-sm font-bold">
-                        Your current holdings:
-                      </p>
-                      {/* <p className="text-sm mb-2">{account.displayBalance}</p> */}
-                      {isLoading ? (
-                        <p className="text-sm mb-2">Loading...</p>
-                      ) : (
-                        <p className="text-sm mb-2">
-                          {formatBalance(balances[paymentType]) +
-                            " " +
-                            paymentType}
-                        </p>
-                      )}
-                      <p className="text-sm font-bold">Balance FICCO</p>
-                      {isLoading ? (
-                        <p className="text-sm mb-2">Loading...</p>
-                      ) : (
-                        <p className="text-sm mb-2">
-                          {parseFloat(
-                            parseFloat(claimablePICCOBalance).toFixed(0)
-                          ).toLocaleString()}
-                        </p>
-                      )}
-                      {error && <p className="text-red-500">{error}</p>}
+                      <button
+                        className="w-[70%] px-4 bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 truncate"
+                        onClick={openAccountModal}
+                      >
+                        {account ? account.displayName : "CONNECT WALLET"}
+                      </button>
                     </>
-                  )}
-                </>
-              );
-            }}
-          </ConnectButton.Custom>
+                  );
+                }}
+              </ConnectButton.Custom>
+            </>
+          ) : (
+            <>
+              <div className="px-4 grid grid-cols-2 gap-x-8 gap-y-4 mb-10">
+                <button
+                  className={`bg-[#353535] border-2 ${
+                    paymentType === "ETH"
+                      ? "border-orange-900"
+                      : "border-gray-600"
+                  } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  onClick={() => setPaymentType("ETH")}
+                >
+                  <Image
+                    src={"/assets/icons/ethereum.svg"}
+                    alt="icon"
+                    width={24}
+                    height={24}
+                    className="mr-1.5"
+                  />
+                  Pay with ETH
+                </button>
+                <button
+                  className={`bg-[#353535] border-2 ${
+                    paymentType === "USDT"
+                      ? "border-orange-900"
+                      : "border-gray-600"
+                  } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  onClick={() => setPaymentType("USDT")}
+                >
+                  <Image
+                    src={"/assets/icons/usdt.svg"}
+                    alt="icon"
+                    width={24}
+                    height={24}
+                    className="mr-1.5"
+                  />
+                  Pay with USDT
+                </button>
+                <button
+                  className={`bg-[#353535] border-2 ${
+                    paymentType === "DAI"
+                      ? "border-orange-900"
+                      : "border-gray-600"
+                  }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  onClick={() => setPaymentType("DAI")}
+                >
+                  <Image
+                    src={"/assets/icons/dai.svg"}
+                    alt="icon"
+                    width={24}
+                    height={24}
+                    className="mr-1.5"
+                  />
+                  Pay with DAI
+                </button>
+                <button
+                  className={`bg-[#353535] border-2 ${
+                    paymentType === "USDC"
+                      ? "border-orange-900"
+                      : "border-gray-600"
+                  }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  onClick={() => setPaymentType("USDC")}
+                >
+                  <Image
+                    src={"/assets/icons/usd-coin.svg"}
+                    alt="icon"
+                    width={24}
+                    height={24}
+                    className="mr-1.5"
+                  />
+                  Pay with USDC
+                </button>
+              </div>
+
+              <div className="px-4 grid grid-cols-2 gap-4 mb-6">
+                <div className="text-left">
+                  <label className="flex flex-row justify-between text-sm mb-1 sm:font-bold">
+                    <span>AMOUNT({paymentType})</span>
+                    <span
+                      className={classNames(
+                        "text-right cursor-pointer hover:underline",
+                        account === undefined ? "hidden" : ""
+                      )}
+                      onClick={handleMin}
+                    >
+                      MIN
+                    </span>
+                  </label>
+                  <input
+                    type={"number"}
+                    value={payAmount.toString()}
+                    min={0}
+                    // max={max}
+                    step={paymentType === "ETH" ? 0.1 : 1}
+                    onChange={handlePayAmountChange}
+                    className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                  />
+                </div>
+                <div className="text-left">
+                  <label className="block text-sm mb-1 sm:font-bold">
+                    GET AMOUNT(FICCO)
+                  </label>
+                  <input
+                    type="number"
+                    value={tokenAmount.toString()}
+                    min={0}
+                    step={1000000}
+                    onChange={handleTokenAmountChange}
+                    className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                  />
+                </div>
+              </div>
+
+              <ConnectButton.Custom>
+                {({ account, openAccountModal, openConnectModal }) => {
+                  return (
+                    <>
+                      <div className="px-4 w-full flex flex-row justify-center gap-4">
+                        <button
+                          className="max-w-[70%] w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 truncate"
+                          onClick={
+                            account ? openAccountModal : openConnectModal
+                          }
+                        >
+                          {account ? account.displayName : "CONNECT WALLET"}
+                        </button>
+                        {account && (
+                          <button
+                            className="w-full bg-[#824B3D] p-3 rounded font-bold mb-4 hover:bg-orange-800 disabled:bg-[#333] disabled:cursor-not-allowed truncate"
+                            disabled={
+                              isLoading ||
+                              payAmount < min ||
+                              parseFloat(balances[paymentType]) == 0 ||
+                              parseFloat(balances[paymentType]) < payAmount
+                            }
+                            onClick={handleBuy}
+                          >
+                            BUY
+                          </button>
+                        )}
+                      </div>
+                      {account && (
+                        <>
+                          <p className="text-sm font-bold">
+                            Your current holdings:
+                          </p>
+                          {/* <p className="text-sm mb-2">{account.displayBalance}</p> */}
+                          {isLoading ? (
+                            <p className="text-sm mb-2">Loading...</p>
+                          ) : (
+                            <p className="text-sm mb-2">
+                              {formatBalance(balances[paymentType]) +
+                                " " +
+                                paymentType}
+                            </p>
+                          )}
+                          <p className="text-sm font-bold">Balance FICCO</p>
+                          {isLoading ? (
+                            <p className="text-sm mb-2">Loading...</p>
+                          ) : (
+                            <p className="text-sm mb-2">
+                              {parseFloat(
+                                parseFloat(claimablePICCOBalance).toFixed(0)
+                              ).toLocaleString()}
+                            </p>
+                          )}
+                          {error && <p className="text-red-500">{error}</p>}
+                        </>
+                      )}
+                    </>
+                  );
+                }}
+              </ConnectButton.Custom>
+            </>
+          )}
         </div>
+
         <div className="flex flex-col items-center justify-between bg-[#353535] border-t border-orange-900 p-2 rounded-b-lg">
           <span className="text-xs font-bold">Contract address:</span>
           <div className="flex items-center gap-2 mt-1 justify-center w-[90%]">
