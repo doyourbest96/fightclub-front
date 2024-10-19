@@ -41,8 +41,8 @@ const PreSale: React.FC = () => {
   const [isSettingClaimTime, setIsSettingClaimTime] = useState(false);
   const [claimTimeSetSuccess, setClaimTimeSetSuccess] = useState(false);
 
-  const [startTime, setStartTime] = useState<number>(0);
-  const [remainingTime, setRemainingTime] = useState<number>(0);
+  // const [startTime, setStartTime] = useState<number>(0);
+  // const [remainingTime, setRemainingTime] = useState<number>(0);
 
   const [fundsRaised, setFundsRaised] = useState<number>(0);
   const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
@@ -69,27 +69,27 @@ const PreSale: React.FC = () => {
     }
   };
 
-  const fetchStartTime = async () => {
-    if (presaleContract && presaleContract.methods) {
-      try {
-        const fetchedStartTime = await presaleContract.methods.getStartTime().call();
-        setStartTime(fetchedStartTime);
-      } catch (error) {
-        console.error("Error fetching start time:", error);
-      }
-    }
-  };
+  // const fetchStartTime = async () => {
+  //   if (presaleContract && presaleContract.methods) {
+  //     try {
+  //       const fetchedStartTime = await presaleContract.methods.getStartTime().call();
+  //       setStartTime(fetchedStartTime);
+  //     } catch (error) {
+  //       console.error("Error fetching start time:", error);
+  //     }
+  //   }
+  // };
 
-  const fetchRemainingTime = async () => {
-    if (presaleContract && presaleContract.methods) {
-      try {
-        const fetchedRemainingTime = await presaleContract.methods.getRemainingTime().call();
-        setRemainingTime(fetchedRemainingTime);
-      } catch (error) {
-        console.error("Error fetching start time:", error);
-      }
-    }
-  };
+  // const fetchRemainingTime = async () => {
+  //   if (presaleContract && presaleContract.methods) {
+  //     try {
+  //       const fetchedRemainingTime = await presaleContract.methods.getRemainingTime().call();
+  //       setRemainingTime(fetchedRemainingTime);
+  //     } catch (error) {
+  //       console.error("Error fetching start time:", error);
+  //     }
+  //   }
+  // };
 
   const fetchETHFor100USDT = async () => {
     if (presaleContract && presaleContract.methods) {
