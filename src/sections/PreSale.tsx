@@ -41,6 +41,9 @@ const PreSale: React.FC = () => {
   const [isSettingClaimTime, setIsSettingClaimTime] = useState(false);
   const [claimTimeSetSuccess, setClaimTimeSetSuccess] = useState(false);
 
+  const [startTime, setStartTime] = useState<number>(0);
+  const [remainingTime, setRemainingTime] = useState<number>(0);
+
   const [fundsRaised, setFundsRaised] = useState<number>(0);
   const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
   const [phaseIndex, setPhaseIndex] = useState<number>(0);
@@ -62,6 +65,28 @@ const PreSale: React.FC = () => {
         setOwner(fetchedOwner);
       } catch (error) {
         console.error("Error fetching owner address:", error);
+      }
+    }
+  };
+
+  const fetchStartTime = async () => {
+    if (presaleContract && presaleContract.methods) {
+      try {
+        const fetchedStartTime = await presaleContract.methods.getStartTime().call();
+        setStartTime(fetchedStartTime);
+      } catch (error) {
+        console.error("Error fetching start time:", error);
+      }
+    }
+  };
+
+  const fetchRemainingTime = async () => {
+    if (presaleContract && presaleContract.methods) {
+      try {
+        const fetchedRemainingTime = await presaleContract.methods.getRemainingTime().call();
+        setRemainingTime(fetchedRemainingTime);
+      } catch (error) {
+        console.error("Error fetching start time:", error);
       }
     }
   };
@@ -101,7 +126,7 @@ const PreSale: React.FC = () => {
         const tempFundsRaised = await presaleContract.methods
           .getFundsRaised()
           .call();
-        setFundsRaised(parseFloat(tempFundsRaised));
+        setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
         // console.log("Funds Raised:", tempFundsRaised);
       } catch (error) {
         console.error("Error fetching funds raised:", error);
@@ -174,14 +199,12 @@ const PreSale: React.FC = () => {
   useEffect(() => {
     if (tokensAvailable > 7e9) {
       setPhaseIndex(0);
-    } else if (tokensAvailable > 5e9) {
-      setPhaseIndex(1);
     } else if (tokensAvailable > 3e9) {
-      setPhaseIndex(2);
+      setPhaseIndex(1);
     } else if (tokensAvailable > 1e9) {
-      setPhaseIndex(3);
+      setPhaseIndex(2);
     } else {
-      setPhaseIndex(4);
+      setPhaseIndex(3);
     }
   }, [tokensAvailable]);
 
