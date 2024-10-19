@@ -33,6 +33,7 @@ const PreSale: React.FC = () => {
   const [walletAddress, setWalletAddress] = useState<string>("");
   const [isSettingWallet, setIsSettingWallet] = useState(false);
   const [walletSetSuccess, setWalletSetSuccess] = useState(false);
+  const [owner, setOwner] = useState<string>("");
   const [ownerAddress, setOwnerAddress] = useState<string>("");
   const [isSettingOwnerAddress, setIsSettingOwnerAddress] = useState(false);
   const [ownerAddressSetSuccess, setOwnerAddressSetSuccess] = useState(false);
@@ -51,7 +52,18 @@ const PreSale: React.FC = () => {
     new Date(stageData[stageIndex].endDate)
   );
 
-  const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ADDRESS;
+  // const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ADDRESS;
+
+  const fetchOwner = async () => {
+    if (presaleContract && presaleContract.methods) {
+      try {
+        const fetchedOwner = await presaleContract.methods.getOwner().call();
+        setOwner(fetchedOwner);
+      } catch (error) {
+        console.error("Error fetching owner address:", error);
+      }
+    }
+  }
 
   const fetchETHFor100USDT = async () => {
     if (presaleContract && presaleContract.methods) {
@@ -145,6 +157,7 @@ const PreSale: React.FC = () => {
   }
 
   const fetchInformation = () => {
+    fetchOwner();
     fetchETHFor100USDT();
     fetchFundsRaised();
     fetchTokensAvailable();
@@ -375,11 +388,11 @@ const PreSale: React.FC = () => {
         .send({ from: account });
 
       // Listen for the WalletUpdated event
-      const events = await tx.events;
-      if (events.WalletUpdated) {
+      const events = tx.events;
+      if (events && events.WalletUpdated) {
         console.log(
           "Wallet address updated successfully:",
-          events.WalletUpdated.returnValues.wallet_
+          events.WalletUpdated.returnValues.newWallet
         );
         setWalletSetSuccess(true);
       }
@@ -400,13 +413,14 @@ const PreSale: React.FC = () => {
         .send({ from: account });
 
       // Listen for the OwnershipTransferred event
-      const events = await tx.events;
+      const events = tx.events;
       if (events.OwnershipTransferred) {
         console.log(
           "Ownership transferred successfully:",
           events.OwnershipTransferred.returnValues.newOwner
         );
         setOwnerAddressSetSuccess(true);
+        fetchInformation();
       }
     } catch (error) {
       console.error("Error during set owner address:", error);
@@ -428,7 +442,7 @@ const PreSale: React.FC = () => {
             tokensAvailable={tokensAvailable}
           />
 
-          {OWNER_ADDRESS && account === OWNER_ADDRESS ? (
+          {account === owner ? (
             <>
               <h1 className="text-lg font-revoluti font-bold mb-6">
                 ----- WELCOME OWNER -----
