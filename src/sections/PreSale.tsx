@@ -8,13 +8,17 @@ import { ethers, isAddress } from "ethers";
 import useWeb3 from "@/hooks/useWeb3";
 import { classNames } from "@/utils/classNames";
 import { getBalances, TOKENS } from "../utils/ethUtils";
-import { diffTimeFromNow } from "@/utils/diffTimeFromNow";
 import { toBigInt } from "@/utils/toBigInt";
-import { stageData } from "@/data/stage.data";
-import { TimeDifference } from "@/types";
 import PreSaleProgress from "@/components/PreSale/PreSaleProgress";
 import TimeLeft from "@/components/PreSale/TimeLeft";
 import PhaseDisplay from "@/components/PreSale/PhaseDisplay";
+
+enum PreSaleStage {
+  Ready,
+  Running,
+  Ended,
+  Claimable,
+}
 
 const PreSale: React.FC = () => {
   const { presaleContract, account } = useWeb3();
@@ -23,12 +27,7 @@ const PreSale: React.FC = () => {
     useState<string>("0");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [timeLeft, setTimeLeft] = useState<TimeDifference>({
-    days: 29,
-    hours: 23,
-    minutes: 59,
-    seconds: 59,
-  });
+  const [timeLeft, setTimeLeft] = useState<number>(0);
 
   const [walletAddress, setWalletAddress] = useState<string>("");
   const [isSettingWallet, setIsSettingWallet] = useState(false);
@@ -41,11 +40,15 @@ const PreSale: React.FC = () => {
   const [isSettingClaimTime, setIsSettingClaimTime] = useState(false);
   const [claimTimeSetSuccess, setClaimTimeSetSuccess] = useState(false);
 
-  // const [startTime, setStartTime] = useState<number>(0);
-  // const [remainingTime, setRemainingTime] = useState<number>(0);
+  const [preSaleStartTime, setPreSaleStartTime] = useState<number>(-1);
+  const [preSaleRemainingTime, setPreSaleRemainingTime] = useState<number>(-1);
+  const [preSaleClaimTime, setPreSaleClaimTime] = useState<number>(-1);
+  const [preSaleStage, setPreSaleStage] = useState<PreSaleStage>(
+    PreSaleStage.Ready
+  );
 
   const [fundsRaised, setFundsRaised] = useState<number>(0);
-  const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
+  const [tokensAvailable, setTokensAvailable] = useState<number>(1e12);
   const [phaseIndex, setPhaseIndex] = useState<number>(0);
   const [hardcap] = useState<number>(1020000);
   const [payAmount, setPayAmount] = useState<number>(0);
@@ -53,101 +56,103 @@ const PreSale: React.FC = () => {
   const [min, setMin] = useState<number>(0.05);
   const [ETHFor100USDT, setETHFor100USDT] = useState<number>(0.05);
   const [paymentType, setPaymentType] = useState<string>("ETH");
-  const [stageIndex, setStageIndex] = useState<number>(0);
-  const [targetDate, setTargetDate] = useState<Date>(
-    new Date(stageData[stageIndex].endDate)
-  );
 
   const fetchOwner = async () => {
-    if (presaleContract && presaleContract.methods) {
-      try {
-        const fetchedOwner = await presaleContract.methods.getOwner().call();
-        setOwner(fetchedOwner);
-      } catch (error) {
-        console.error("Error fetching owner address:", error);
-      }
+    try {
+      const fetchedOwner = await presaleContract.methods.getOwner().call();
+      setOwner(fetchedOwner);
+    } catch (error) {
+      console.error("Error fetching owner address:", error);
     }
   };
 
-  // const fetchStartTime = async () => {
-  //   if (presaleContract && presaleContract.methods) {
-  //     try {
-  //       const fetchedStartTime = await presaleContract.methods.getStartTime().call();
-  //       setStartTime(fetchedStartTime);
-  //     } catch (error) {
-  //       console.error("Error fetching start time:", error);
-  //     }
-  //   }
-  // };
+  const fetchPreSaleStartTime = async () => {
+    try {
+      const fetchedPreSaleStartTime = await presaleContract.methods
+        .getPresaleStartTime()
+        .call();
+      // console.log("fetchedPreSaleStartTime", fetchedPreSaleStartTime);
+      setPreSaleStartTime(parseFloat(fetchedPreSaleStartTime) * 1000);
+    } catch (error) {
+      console.error("Error fetching presale start time:", error);
+    }
+  };
 
-  // const fetchRemainingTime = async () => {
-  //   if (presaleContract && presaleContract.methods) {
-  //     try {
-  //       const fetchedRemainingTime = await presaleContract.methods.getRemainingTime().call();
-  //       setRemainingTime(fetchedRemainingTime);
-  //     } catch (error) {
-  //       console.error("Error fetching start time:", error);
-  //     }
-  //   }
-  // };
+  const fetchPreSaleRemainingTime = async () => {
+    try {
+      const fetchedPreSaleRemainingTime = await presaleContract.methods
+        .getRemainingTime()
+        .call();
+      // console.log("fetchedPreSaleRemainingTime", fetchedPreSaleRemainingTime);
+      setPreSaleRemainingTime(fetchedPreSaleRemainingTime);
+    } catch (error) {
+      console.error("Error fetching presale remaining time:", error);
+    }
+  };
+
+  const fetchPreSaleClaimTime = async () => {
+    try {
+      const fetchedPreSaleClaimTime = await presaleContract.methods
+        .claimTime()
+        .call();
+      // console.log("fetchedPreSaleClaimTime", fetchedPreSaleClaimTime);
+      setPreSaleClaimTime(fetchedPreSaleClaimTime);
+    } catch (error) {
+      console.error("Error fetching presale claim time:", error);
+    }
+  };
 
   const fetchETHFor100USDT = async () => {
-    if (presaleContract && presaleContract.methods) {
-      try {
-        const tempTokenCount = await presaleContract.methods
-          .estimatedTokenAmountAvailableWithCoin(
-            ethers.parseUnits("100", 6).toString(),
-            TOKENS["USDT" as keyof typeof TOKENS]
-          )
-          .call();
-        // console.log("tempTokenCount:", tempTokenCount);
-        const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
-        // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
-        const tempETHFor100USDT = await presaleContract.methods
-          .estimatedEthAmountForTokenAmount(
-            ethers.parseUnits(tokenAmountFor100USDT, 18)
-          )
-          .call();
-        // console.log("tempETHFor100USDT:", tempETHFor100USDT);
-        const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
-        // console.log("expectedPayAmount:", expectedPayAmount);
-        setETHFor100USDT(
-          parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
-        );
-      } catch (error) {
-        console.error("Error fetching ETH price:", error);
-      }
+    try {
+      const tempTokenCount = await presaleContract.methods
+        .estimatedTokenAmountAvailableWithCoin(
+          ethers.parseUnits("100", 6).toString(),
+          TOKENS["USDT" as keyof typeof TOKENS]
+        )
+        .call();
+      // console.log("tempTokenCount:", tempTokenCount);
+      const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
+      // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
+      const tempETHFor100USDT = await presaleContract.methods
+        .estimatedEthAmountForTokenAmount(
+          ethers.parseUnits(tokenAmountFor100USDT, 18)
+        )
+        .call();
+      // console.log("tempETHFor100USDT:", tempETHFor100USDT);
+      const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
+      // console.log("expectedPayAmount:", expectedPayAmount);
+      setETHFor100USDT(
+        parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
+      );
+    } catch (error) {
+      console.error("Error fetching ETH price:", error);
     }
   };
 
   const fetchFundsRaised = async () => {
-    if (presaleContract && presaleContract.methods) {
-      try {
-        const tempFundsRaised = await presaleContract.methods
-          .getFundsRaised()
-          .call();
-        setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
-        // console.log("Funds Raised:", tempFundsRaised);
-      } catch (error) {
-        console.error("Error fetching funds raised:", error);
-      }
+    try {
+      const tempFundsRaised = await presaleContract.methods
+        .getFundsRaised()
+        .call();
+      setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
+      // console.log("Funds Raised:", tempFundsRaised);
+    } catch (error) {
+      console.error("Error fetching funds raised:", error);
     }
   };
 
   const fetchTokensAvailable = async () => {
-    if (presaleContract && presaleContract.methods) {
-      try {
-        const tempTokensAvailable = await presaleContract.methods
-          .tokensAvailable()
-          .call();
-        const formattedTokensAvailable = parseFloat(
-          ethers.formatUnits(tempTokensAvailable, 18)
-        ).toFixed(0);
-        setTokensAvailable(parseFloat(formattedTokensAvailable));
-        // console.log("Remaining Token Amount:", formattedTokensAvailable);
-      } catch (error) {
-        console.error("Error fetching remaining token amount:", error);
-      }
+    try {
+      const tempTokensAvailable = await presaleContract.methods
+        .tokensAvailable()
+        .call();
+      const formattedTokensAvailable = parseFloat(
+        ethers.formatUnits(tempTokensAvailable, 18)
+      ).toFixed(0);
+      setTokensAvailable(parseFloat(formattedTokensAvailable));
+      // console.log("Remaining Token Amount:", formattedTokensAvailable);
+    } catch (error) {
+      console.error("Error fetching remaining token amount:", error);
     }
   };
 
@@ -167,22 +172,23 @@ const PreSale: React.FC = () => {
   };
 
   const getClaimableBalance = async () => {
-    if (account && presaleContract) {
-      try {
-        const balance = await presaleContract.methods
-          .getTokenAmountForInvestor(account)
-          .call();
-        // console.log("Claimable FICCO Balance:", balance);
-        const formattedBalance = ethers.formatUnits(balance, 18);
-        setClaimableFICCOBalance(formattedBalance);
-      } catch (error) {
-        console.error("Error fetching claimable balance:", error);
-        setClaimableFICCOBalance("0");
-      }
+    try {
+      const balance = await presaleContract.methods
+        .getTokenAmountForInvestor(account)
+        .call();
+      // console.log("Claimable FICCO Balance:", balance);
+      const formattedBalance = ethers.formatUnits(balance, 18);
+      setClaimableFICCOBalance(formattedBalance);
+    } catch (error) {
+      console.error("Error fetching claimable balance:", error);
+      setClaimableFICCOBalance("0");
     }
   };
 
   const fetchInformation = () => {
+    fetchPreSaleStartTime();
+    fetchPreSaleRemainingTime();
+    fetchPreSaleClaimTime();
     fetchOwner();
     fetchETHFor100USDT();
     fetchFundsRaised();
@@ -193,7 +199,13 @@ const PreSale: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchInformation();
+    const timer = setTimeout(() => {
+      if (presaleContract && presaleContract.methods) {
+        fetchInformation();
+      }
+    }, 100);
+
+    return () => clearInterval(timer);
   }, [account, presaleContract]);
 
   useEffect(() => {
@@ -203,50 +215,54 @@ const PreSale: React.FC = () => {
       setPhaseIndex(1);
     } else if (tokensAvailable > 1e9) {
       setPhaseIndex(2);
-    } else {
+    } else if (tokensAvailable > 0) {
       setPhaseIndex(3);
+    } else {
+      setPreSaleStage(PreSaleStage.Ended);
     }
   }, [tokensAvailable]);
 
   useEffect(() => {
-    setTargetDate(new Date(stageData[stageIndex].endDate)); // Specify your target date here
-  }, [stageIndex]);
+    if (
+      preSaleStartTime === -1 ||
+      preSaleRemainingTime === -1 ||
+      preSaleClaimTime === -1
+    )
+      return;
 
-  useEffect(() => {
-    const difference = diffTimeFromNow(targetDate);
-    if (difference.days === -1) setStageIndex(stageIndex + 1);
-    setTimeLeft(difference);
-  }, [stageIndex, targetDate]);
+    switch (preSaleStage) {
+      case PreSaleStage.Ready:
+        if (preSaleStartTime < new Date().getTime())
+          setPreSaleStage(PreSaleStage.Running);
+        setTimeLeft(preSaleStartTime - new Date().getTime() / 1000);
+        break;
+      case PreSaleStage.Running:
+        if (preSaleRemainingTime === 0) setPreSaleStage(PreSaleStage.Ended);
+        setTimeLeft(preSaleRemainingTime);
+        break;
+      case PreSaleStage.Ended:
+        if (preSaleClaimTime < new Date().getTime())
+          setPreSaleStage(PreSaleStage.Claimable);
+        setTimeLeft(preSaleClaimTime - new Date().getTime() / 1000);
+        break;
+      default:
+        break;
+    }
+  }, [preSaleStage, preSaleStartTime, preSaleRemainingTime, preSaleClaimTime]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prevTime) => {
-        if (prevTime.seconds > 0) {
-          return { ...prevTime, seconds: prevTime.seconds - 1 };
-        } else if (prevTime.minutes > 0) {
-          return { ...prevTime, minutes: prevTime.minutes - 1, seconds: 59 };
-        } else if (prevTime.hours > 0) {
-          return {
-            ...prevTime,
-            hours: prevTime.hours - 1,
-            minutes: 59,
-            seconds: 59,
-          };
-        } else if (prevTime.days > 0) {
-          return {
-            ...prevTime,
-            days: prevTime.days - 1,
-            hours: 23,
-            minutes: 59,
-            seconds: 59,
-          };
+      setTimeLeft((preValue) => {
+        if (preValue < 1) {
+          // fetchInformation();
+          return 0;
         }
-        return prevTime;
+        return preValue - 1;
       });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, []);
 
   useEffect(() => {
     if (paymentType === "ETH") {
@@ -459,7 +475,7 @@ const PreSale: React.FC = () => {
     setClaimTimeSetSuccess(false);
     try {
       const tx = await presaleContract.methods
-        .setClaimTime(claimTime)
+        .setClaimTime(claimTime / 1e3)
         .send({ from: account });
       const events = tx.events;
       if (events.ClaimTimeUpdated) {
@@ -499,7 +515,7 @@ const PreSale: React.FC = () => {
         <div className="w-full bg-[#131511] rounded-lg text-center py-6">
           <h1 className="text-2xl font-revoluti font-bold mb-6">PRE SALE 1</h1>
           <PreSaleProgress hardcap={hardcap} fundsRaised={fundsRaised} />
-          <TimeLeft stageIndex={stageIndex} timeLeft={timeLeft} />
+          <TimeLeft preSaleStage={preSaleStage} timeLeft={timeLeft} />
           <PhaseDisplay
             phaseIndex={phaseIndex}
             tokensAvailable={tokensAvailable}
@@ -514,7 +530,7 @@ const PreSale: React.FC = () => {
               <div className="px-4 grid grid-cols-2 gap-4 mb-4">
                 <button
                   onClick={handleWithdraw}
-                  className="p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
+                  className="p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
                 >
                   <Image
                     src={"/assets/icons/withdraw.svg"}
@@ -527,7 +543,7 @@ const PreSale: React.FC = () => {
                 </button>
                 <button
                   onClick={handleRefund}
-                  className="p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
+                  className="p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
                 >
                   <Image
                     src={"/assets/icons/refund.svg"}
@@ -554,7 +570,7 @@ const PreSale: React.FC = () => {
                     onChange={(e) => setWalletAddress(e.target.value)}
                   />
                   <button
-                    className="p-1 sm:p-2 lg:p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                    className="p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
                     onClick={handleSetWalletAddress}
                     disabled={isSettingWallet || !isAddress(walletAddress)}
                   >
@@ -588,7 +604,7 @@ const PreSale: React.FC = () => {
                     }}
                   />
                   <button
-                    className="p-1 sm:p-2 lg:p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                    className="p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
                     onClick={handleSetClaimTime}
                     disabled={isSettingClaimTime}
                   >
@@ -620,7 +636,7 @@ const PreSale: React.FC = () => {
                     onChange={(e) => setOwnerAddress(e.target.value)}
                   />
                   <button
-                    className="p-1 sm:p-2 lg:p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                    className="p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
                     onClick={handleTransferOwnership}
                     disabled={isSettingOwnerAddress || !isAddress(ownerAddress)}
                   >
@@ -661,7 +677,7 @@ const PreSale: React.FC = () => {
                     paymentType === "ETH"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  } p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                   onClick={() => setPaymentType("ETH")}
                 >
                   <Image
@@ -678,7 +694,7 @@ const PreSale: React.FC = () => {
                     paymentType === "USDT"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  } p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  } p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                   onClick={() => setPaymentType("USDT")}
                 >
                   <Image
@@ -695,7 +711,7 @@ const PreSale: React.FC = () => {
                     paymentType === "DAI"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                   onClick={() => setPaymentType("DAI")}
                 >
                   <Image
@@ -712,7 +728,7 @@ const PreSale: React.FC = () => {
                     paymentType === "USDC"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  }  p-1 sm:p-2 lg:p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold`}
                   onClick={() => setPaymentType("USDC")}
                 >
                   <Image
