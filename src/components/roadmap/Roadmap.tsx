@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 
 import RoadmapItem from "./RoadmapItem";
-import Image from "next/image";
 import { roadmapData } from "@/data/roadmap.data";
 
+const DynamicImage = dynamic(() => import("next/image"), { ssr: false });
 const TrackImg = dynamic(() => import("@/components/trackImg"), {
   ssr: false,
 });
@@ -22,14 +22,12 @@ const Roadmap = () => {
           </span>
         </div>
         <div className="lg:hidden absolute top-8 right-4 -z-10 w-40 h-full">
-          <Image
+          <DynamicImage
             src={"/assets/images/smart.png"}
             alt="smart"
             width={239}
             height={360}
-            // layout="fill"
-            // objectFit="cover"
-            className="h-auto" // To ensure the top part of the image is shown
+            className="h-auto"
           />
         </div>
       </div>
@@ -40,7 +38,7 @@ const Roadmap = () => {
           <RoadmapItem item={roadmapData[2]} />
         </div>
         <div className="w-1/4 flex justify-center items-center">
-          <Image
+          <DynamicImage
             src={"/assets/images/smart.png"}
             alt="smart"
             width={239}
