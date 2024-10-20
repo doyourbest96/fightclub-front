@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
 import { CiLinkedin } from "react-icons/ci";
 import { teamMemberData, advisorData, ambassadorData } from "@/data/member.data";
+
+const DynamicImage = dynamic(() => import("next/image"), { ssr: false });
 
 function CoFounderShowCase() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,7 +16,7 @@ function CoFounderShowCase() {
     return (
       <div className="rounded-lg overflow-hidden">
         <div className="flex justify-center items-end">
-          <Image
+          <DynamicImage
             src={member.imageSrc}
             alt="avatar"
             width={140}
@@ -69,7 +71,7 @@ function AdvisorShowCase() {
     return (
       <div className="rounded-lg overflow-hidden">
         <div className="flex justify-center items-end">
-          <Image
+          <DynamicImage
             src={member.iconSrc}
             alt="avatar"
             width={140}
@@ -115,7 +117,7 @@ function AmbassadorShowCase() {
     return (
       <div className="rounded-lg overflow-hidden text-[#dbdbcf]">
         <div className="flex justify-center items-end">
-          <Image
+          <DynamicImage
             src={member.iconSrc}
             alt="avatar"
             width={140}
