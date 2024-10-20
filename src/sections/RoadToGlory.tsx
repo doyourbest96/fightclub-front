@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { gloryData } from "@/data/glory.data";
 import GloryItem from "@/components/RoadToGlory/GloryItem";
 
+const DynamicImage = dynamic(() => import("next/image"), { ssr: false });
 const TrackImg = dynamic(() => import("@/components/trackImg"), {
   ssr: false,
 });
@@ -33,7 +33,7 @@ export default function RoadToGlory() {
         <div className="flex flex-row justify-center items-center gap-2">
           <GloryItem item={gloryData[2]} />
           <div className="relative max-w-64 w-full h-64 flex justify-center">
-            <Image
+            <DynamicImage
               src={"/assets/images/glory.png"}
               alt="glory"
               width={280}
@@ -92,9 +92,7 @@ export default function RoadToGlory() {
               </p>
               {item.features.map((feature, idx) => (
                 <p key={idx}>
-                  <span className="font-roboto-bold">
-                    {feature.title}
-                  </span>
+                  <span className="font-roboto-bold">{feature.title}</span>
                   <span className="font-helvetica">{" " + feature.desc}</span>
                 </p>
               ))}
