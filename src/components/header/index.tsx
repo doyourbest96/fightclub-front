@@ -1,11 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Logo from "@/components/Logo/Logo";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
+
+const DynamicImage = dynamic(() => import("next/image"), { ssr: false });
 
 const navigation = [
   { name: "about", href: "#about" },
@@ -57,8 +60,8 @@ const Header = () => {
         </div>
         <div className="relative w-full lg:pl-12">
           <div className="max-w-[516px] mx-1 md:mx-8 flex flex-col items-center text-center w-full font-light">
-            <div className="w-full mt-8">
-              <Image
+            <div className="w-full min-h-52 mt-8">
+              <DynamicImage
                 src="/assets/images/mark.png"
                 alt="mark"
                 width={383}

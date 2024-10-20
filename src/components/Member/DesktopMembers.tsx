@@ -1,8 +1,10 @@
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { teamMemberData, placeholderData } from "@/data/member.data";
+
+const DynamicImage = dynamic(() => import("next/image"), { ssr: false });
 
 export default function DesktopMembers() {
   return (
@@ -12,7 +14,7 @@ export default function DesktopMembers() {
           {teamMemberData.map((member, index) => (
             <div key={index} className="rounded-lg overflow-hidden">
               <div className="flex justify-center items-end">
-                <Image
+                <DynamicImage
                   src={member.imageSrc}
                   alt="avatar"
                   width={160}
@@ -43,7 +45,7 @@ export default function DesktopMembers() {
           {placeholderData.map((placeholder, index) => (
             <div key={index} className="rounded-lg overflow-hidden">
               <div className="flex justify-center items-end">
-                <Image
+                <DynamicImage
                   src={placeholder.iconSrc}
                   alt="avatar"
                   width={160}
