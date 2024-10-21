@@ -12,6 +12,8 @@ import { toBigInt } from "@/utils/toBigInt";
 import PreSaleProgress from "@/components/PreSale/PreSaleProgress";
 import TimeLeft from "@/components/PreSale/TimeLeft";
 import PhaseDisplay from "@/components/PreSale/PhaseDisplay";
+import PaymentTypeSelector from "@/components/PreSale/PaymentTypeSelector";
+import { ToastContainer, toast } from "react-toastify";
 
 enum PreSaleStage {
   Ready,
@@ -332,7 +334,25 @@ const PreSale: React.FC = () => {
           console.log("txDAI =>>>>>>>>>>", txDAI);
           break;
       }
+
+      const balance = await presaleContract.methods
+        .getTokenAmountForInvestor(account)
+        .call();
+      const formattedBalance = ethers.formatUnits(balance, 18);
+      const tempFundsRaised = await presaleContract.methods
+        .getFundsRaised()
+        .call();
+      const tempTokensAvailable = await presaleContract.methods
+        .tokensAvailable()
+        .call();
+      const formattedTokensAvailable = parseFloat(
+        ethers.formatUnits(tempTokensAvailable, 18)
+      ).toFixed(0);
+
       fetchBalances();
+      setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
+      setTokensAvailable(parseFloat(formattedTokensAvailable));
+      setClaimableFICCOBalance(formattedBalance);
     } catch (error) {
       console.error("Error during transaction:", error);
       setError("Transaction failed. Please try again.");
@@ -345,6 +365,12 @@ const PreSale: React.FC = () => {
         .claim(account)
         .send({ from: account });
       console.log("tx =>>>>>>>>>>", tx);
+
+      const balance = await presaleContract.methods
+        .getTokenAmountForInvestor(account)
+        .call();
+      const formattedBalance = ethers.formatUnits(balance, 18);
+      setClaimableFICCOBalance(formattedBalance);
     } catch (error) {
       console.error("Error during transaction:", error);
       setError("Transaction failed. Please try again.");
@@ -352,6 +378,10 @@ const PreSale: React.FC = () => {
   };
 
   const handleSetWalletAddress = async () => {
+    if (!isAddress(walletAddress)) {
+      toast.error("Invalid wallet address");
+      return;
+    }
     setIsSettingWallet(true);
     setWalletSetSuccess(false);
     try {
@@ -361,7 +391,7 @@ const PreSale: React.FC = () => {
 
       const events = tx.events;
       if (events && events.WalletUpdated) {
-        console.log(
+        toast.success(
           "Wallet address updated successfully:",
           events.WalletUpdated.returnValues.newWallet
         );
@@ -375,6 +405,10 @@ const PreSale: React.FC = () => {
   };
 
   const handleTransferOwnership = async () => {
+    if (!isAddress(ownerAddress)) {
+      toast.error("This address is not valid");
+      return;
+    }
     setIsSettingOwnerAddress(true);
     setOwnerAddressSetSuccess(false);
     try {
@@ -384,7 +418,7 @@ const PreSale: React.FC = () => {
 
       const events = tx.events;
       if (events.OwnershipTransferred) {
-        console.log(
+        toast.success(
           "Ownership transferred successfully:",
           events.OwnershipTransferred.returnValues.newOwner
         );
@@ -406,7 +440,7 @@ const PreSale: React.FC = () => {
         .send({ from: account });
       const events = tx.events;
       if (events.ClaimTimeUpdated) {
-        console.log(
+        toast.success(
           "Claim Time set successfully:",
           events.ClaimTimeUpdated.returnValues.newClaimTime
         );
@@ -433,6 +467,14 @@ const PreSale: React.FC = () => {
     } catch (error) {
       console.error("Error during refund:", error);
     }
+  };
+
+  const handlePaymentTypeChange = (type: string) => {
+    if (preSaleStage !== PreSaleStage.Running) {
+      toast.error("Invalid time for buying the token.");
+      return;
+    }
+    setPaymentType(type);
   };
 
   return (
@@ -501,9 +543,7 @@ const PreSale: React.FC = () => {
                     className="p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
                     onClick={handleSetWalletAddress}
                     disabled={
-                      isSettingWallet ||
-                      !isAddress(walletAddress) ||
-                      preSaleStage < PreSaleStage.Ended
+                      isSettingWallet || preSaleStage < PreSaleStage.Ended
                     }
                   >
                     <Image
@@ -571,7 +611,7 @@ const PreSale: React.FC = () => {
                   <button
                     className="p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
                     onClick={handleTransferOwnership}
-                    disabled={isSettingOwnerAddress || !isAddress(ownerAddress)}
+                    disabled={isSettingOwnerAddress}
                   >
                     <Image
                       src={
@@ -604,80 +644,10 @@ const PreSale: React.FC = () => {
             </>
           ) : (
             <>
-              <div className="px-4 grid grid-cols-2 gap-x-8 gap-y-4 mb-10">
-                <button
-                  className={`bg-[#353535] border-2 ${
-                    paymentType === "ETH"
-                      ? "border-orange-900"
-                      : "border-gray-600"
-                  } p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
-                  onClick={() => setPaymentType("ETH")}
-                  disabled={preSaleStage !== PreSaleStage.Running}
-                >
-                  <Image
-                    src={"/assets/icons/ethereum.svg"}
-                    alt="icon"
-                    width={24}
-                    height={24}
-                    className="mr-1.5"
-                  />
-                  Pay with ETH
-                </button>
-                <button
-                  className={`bg-[#353535] border-2 ${
-                    paymentType === "USDT"
-                      ? "border-orange-900"
-                      : "border-gray-600"
-                  } p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
-                  onClick={() => setPaymentType("USDT")}
-                  disabled={preSaleStage !== PreSaleStage.Running}
-                >
-                  <Image
-                    src={"/assets/icons/usdt.svg"}
-                    alt="icon"
-                    width={24}
-                    height={24}
-                    className="mr-1.5"
-                  />
-                  Pay with USDT
-                </button>
-                <button
-                  className={`bg-[#353535] border-2 ${
-                    paymentType === "DAI"
-                      ? "border-orange-900"
-                      : "border-gray-600"
-                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
-                  onClick={() => setPaymentType("DAI")}
-                  disabled={preSaleStage !== PreSaleStage.Running}
-                >
-                  <Image
-                    src={"/assets/icons/dai.svg"}
-                    alt="icon"
-                    width={24}
-                    height={24}
-                    className="mr-1.5"
-                  />
-                  Pay with DAI
-                </button>
-                <button
-                  className={`bg-[#353535] border-2 ${
-                    paymentType === "USDC"
-                      ? "border-orange-900"
-                      : "border-gray-600"
-                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
-                  onClick={() => setPaymentType("USDC")}
-                  disabled={preSaleStage !== PreSaleStage.Running}
-                >
-                  <Image
-                    src={"/assets/icons/usd-coin.svg"}
-                    alt="icon"
-                    width={24}
-                    height={24}
-                    className="mr-1.5"
-                  />
-                  Pay with USDC
-                </button>
-              </div>
+              <PaymentTypeSelector
+                paymentType={paymentType}
+                handlePaymentTypeChange={handlePaymentTypeChange}
+              />
 
               <div className="px-4 grid grid-cols-2 gap-4 mb-6">
                 <div className="text-left">
@@ -813,6 +783,7 @@ const PreSale: React.FC = () => {
             </button> */}
           </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
