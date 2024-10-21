@@ -304,6 +304,8 @@ const PreSale: React.FC = () => {
   const handlePayAmountChange = async (
     e: React.ChangeEvent<HTMLInputElement> | { target: { value: string } }
   ) => {
+    if (preSaleStage !== PreSaleStage.Running) return;
+
     const value = e.target.value;
     const regex = /^\d*\.?\d{0,6}$/;
     if (!regex.test(value)) {
@@ -347,6 +349,8 @@ const PreSale: React.FC = () => {
   const handleTokenAmountChange = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
+    if (preSaleStage !== PreSaleStage.Running) return;
+    
     const value = e.target.value;
     const regex = /^\d*\.?\d{0,6}$/;
     if (!regex.test(value)) {
@@ -697,8 +701,9 @@ const PreSale: React.FC = () => {
                     paymentType === "ETH"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  } p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  } p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
                   onClick={() => setPaymentType("ETH")}
+                  disabled={preSaleStage !== PreSaleStage.Running}
                 >
                   <Image
                     src={"/assets/icons/ethereum.svg"}
@@ -714,8 +719,9 @@ const PreSale: React.FC = () => {
                     paymentType === "USDT"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  } p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  } p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
                   onClick={() => setPaymentType("USDT")}
+                  disabled={preSaleStage !== PreSaleStage.Running}
                 >
                   <Image
                     src={"/assets/icons/usdt.svg"}
@@ -731,8 +737,9 @@ const PreSale: React.FC = () => {
                     paymentType === "DAI"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
                   onClick={() => setPaymentType("DAI")}
+                  disabled={preSaleStage !== PreSaleStage.Running}
                 >
                   <Image
                     src={"/assets/icons/dai.svg"}
@@ -748,8 +755,9 @@ const PreSale: React.FC = () => {
                     paymentType === "USDC"
                       ? "border-orange-900"
                       : "border-gray-600"
-                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold`}
+                  }  p-2 justify-center rounded-md flex items-center text-sm font-bold disabled:cursor-not-allowed`}
                   onClick={() => setPaymentType("USDC")}
+                  disabled={preSaleStage !== PreSaleStage.Running}
                 >
                   <Image
                     src={"/assets/icons/usd-coin.svg"}
@@ -766,15 +774,17 @@ const PreSale: React.FC = () => {
                 <div className="text-left">
                   <label className="flex flex-row justify-between text-sm mb-1 sm:font-bold">
                     <span>AMOUNT({paymentType})</span>
-                    <span
-                      className={classNames(
-                        "text-right cursor-pointer hover:underline",
-                        account === undefined ? "hidden" : ""
-                      )}
-                      onClick={handleMin}
-                    >
-                      MIN
-                    </span>
+                    {preSaleStage === PreSaleStage.Running && (
+                      <span
+                        className={classNames(
+                          "text-right cursor-pointer hover:underline",
+                          account === undefined ? "hidden" : ""
+                        )}
+                        onClick={handleMin}
+                      >
+                        MIN
+                      </span>
+                    )}
                   </label>
                   <input
                     type={"number"}
@@ -784,6 +794,7 @@ const PreSale: React.FC = () => {
                     step={paymentType === "ETH" ? 0.1 : 1}
                     onChange={handlePayAmountChange}
                     className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                    disabled={preSaleStage !== PreSaleStage.Running}
                   />
                 </div>
                 <div className="text-left">
@@ -797,6 +808,7 @@ const PreSale: React.FC = () => {
                     step={1000000}
                     onChange={handleTokenAmountChange}
                     className="bg-[#353535] rounded p-2 text-[#dbdbcf] w-full"
+                    disabled={preSaleStage !== PreSaleStage.Running}
                   />
                 </div>
               </div>
