@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import { ethers, isAddress } from "ethers";
@@ -25,7 +25,7 @@ const PreSale: React.FC = () => {
   const [balances, setBalances] = useState<{ [key: string]: string }>({});
   const [claimablePICCOBalance, setClaimableFICCOBalance] =
     useState<string>("0");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
 
@@ -57,116 +57,7 @@ const PreSale: React.FC = () => {
   const [ETHFor100USDT, setETHFor100USDT] = useState<number>(0.05);
   const [paymentType, setPaymentType] = useState<string>("ETH");
 
-  // const isInitialRendering = useRef(true);
-
-  // useEffect(() => {
-  //    if (isInitialRendering.current) {
-  //     isInitialRendering.current = false;
-  //     return;
-  //   }
-  //   //
-  // }, []);
-
-  const fetchOwner = async () => {
-    try {
-      const fetchedOwner = await presaleContract.methods.getOwner().call();
-      setOwner(fetchedOwner);
-    } catch (error) {
-      console.error("Error fetching owner address:", error);
-    }
-  };
-
-  const fetchPreSaleStartTime = async () => {
-    try {
-      const fetchedPreSaleStartTime = await presaleContract.methods
-        .getPresaleStartTime()
-        .call();
-      // console.log("fetchedPreSaleStartTime", fetchedPreSaleStartTime);
-      setPreSaleStartTime(parseFloat(fetchedPreSaleStartTime));
-    } catch (error) {
-      console.error("Error fetching presale start time:", error);
-    }
-  };
-
-  const fetchPreSaleRemainingTime = async () => {
-    try {
-      const fetchedPreSaleRemainingTime = await presaleContract.methods
-        .getRemainingTime()
-        .call();
-      // console.log("fetchedPreSaleRemainingTime", fetchedPreSaleRemainingTime);
-      setPreSaleRemainingTime(parseFloat(fetchedPreSaleRemainingTime));
-    } catch (error) {
-      console.error("Error fetching presale remaining time:", error);
-    }
-  };
-
-  const fetchPreSaleClaimTime = async () => {
-    try {
-      const fetchedPreSaleClaimTime = await presaleContract.methods
-        .claimTime()
-        .call();
-      // console.log("fetchedPreSaleClaimTime", fetchedPreSaleClaimTime);
-      setPreSaleClaimTime(parseFloat(fetchedPreSaleClaimTime));
-    } catch (error) {
-      console.error("Error fetching presale claim time:", error);
-    }
-  };
-
-  const fetchETHFor100USDT = async () => {
-    try {
-      const tempTokenCount = await presaleContract.methods
-        .estimatedTokenAmountAvailableWithCoin(
-          ethers.parseUnits("100", 6).toString(),
-          TOKENS["USDT" as keyof typeof TOKENS]
-        )
-        .call();
-      // console.log("tempTokenCount:", tempTokenCount);
-      const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
-      // console.log("tokenAmountFor100USDT:", tokenAmountFor100USDT);
-      const tempETHFor100USDT = await presaleContract.methods
-        .estimatedEthAmountForTokenAmount(
-          ethers.parseUnits(tokenAmountFor100USDT, 18)
-        )
-        .call();
-      // console.log("tempETHFor100USDT:", tempETHFor100USDT);
-      const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
-      // console.log("expectedPayAmount:", expectedPayAmount);
-      setETHFor100USDT(
-        parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
-      );
-    } catch (error) {
-      console.error("Error fetching ETH price:", error);
-    }
-  };
-
-  const fetchFundsRaised = async () => {
-    try {
-      const tempFundsRaised = await presaleContract.methods
-        .getFundsRaised()
-        .call();
-      setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
-      // console.log("Funds Raised:", tempFundsRaised);
-    } catch (error) {
-      console.error("Error fetching funds raised:", error);
-    }
-  };
-
-  const fetchTokensAvailable = async () => {
-    try {
-      const tempTokensAvailable = await presaleContract.methods
-        .tokensAvailable()
-        .call();
-      const formattedTokensAvailable = parseFloat(
-        ethers.formatUnits(tempTokensAvailable, 18)
-      ).toFixed(0);
-      setTokensAvailable(parseFloat(formattedTokensAvailable));
-      // console.log("Remaining Token Amount:", formattedTokensAvailable);
-    } catch (error) {
-      console.error("Error fetching remaining token amount:", error);
-    }
-  };
-
-  const fetchBalances = async () => {
+  const fetchBalances = useCallback(async () => {
     if (account) {
       setIsLoading(true);
       setError(null);
@@ -179,49 +70,63 @@ const PreSale: React.FC = () => {
         setIsLoading(false);
       }
     }
-  };
+  }, [account]);
 
-  const getClaimableBalance = async () => {
-    try {
-      if (account) {
+  useEffect(() => {
+    async function fetchPresaleContract() {
+      if (account && presaleContract && presaleContract.methods) {
+        const fetchedOwner = await presaleContract.methods.getOwner().call();
+        const fetchedPreSaleStartTime = await presaleContract.methods
+          .getPresaleStartTime()
+          .call();
+        const fetchedPreSaleRemainingTime = await presaleContract.methods
+          .getRemainingTime()
+          .call();
+        const fetchedPreSaleClaimTime = await presaleContract.methods
+          .claimTime()
+          .call();
+        const tempTokenCount = await presaleContract.methods
+          .estimatedTokenAmountAvailableWithCoin(
+            ethers.parseUnits("100", 6).toString(),
+            TOKENS["USDT" as keyof typeof TOKENS]
+          )
+          .call();
+        const tokenAmountFor100USDT = ethers.formatUnits(tempTokenCount, 18);
+        const tempETHFor100USDT = await presaleContract.methods
+          .estimatedEthAmountForTokenAmount(
+            ethers.parseUnits(tokenAmountFor100USDT, 18)
+          )
+          .call();
+        const expectedPayAmount = ethers.formatUnits(tempETHFor100USDT, 18);
+        const tempFundsRaised = await presaleContract.methods
+          .getFundsRaised()
+          .call();
+        const tempTokensAvailable = await presaleContract.methods
+          .tokensAvailable()
+          .call();
+        const formattedTokensAvailable = parseFloat(
+          ethers.formatUnits(tempTokensAvailable, 18)
+        ).toFixed(0);
         const balance = await presaleContract.methods
           .getTokenAmountForInvestor(account)
           .call();
-        // console.log("Claimable FICCO Balance:", balance);
         const formattedBalance = ethers.formatUnits(balance, 18);
+
+        setOwner(fetchedOwner);
+        setPreSaleStartTime(parseFloat(fetchedPreSaleStartTime));
+        setPreSaleRemainingTime(parseFloat(fetchedPreSaleRemainingTime));
+        setPreSaleClaimTime(parseFloat(fetchedPreSaleClaimTime));
+        setETHFor100USDT(
+          parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
+        );
+        setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
+        setTokensAvailable(parseFloat(formattedTokensAvailable));
+        fetchBalances();
         setClaimableFICCOBalance(formattedBalance);
-        // console.log("Claimable FICCO Balance:", claimablePICCOBalance);
       }
-    } catch (error) {
-      console.error("Error fetching claimable balance:", error);
-      setClaimableFICCOBalance("0");
     }
-  };
-
-  const fetchInformation = () => {
-    fetchPreSaleStartTime();
-    fetchPreSaleRemainingTime();
-    fetchPreSaleClaimTime();
-    fetchOwner();
-    fetchETHFor100USDT();
-    fetchFundsRaised();
-    fetchTokensAvailable();
-
-    fetchBalances();
-    getClaimableBalance();
-
-    setError(null);
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (presaleContract && presaleContract.methods) {
-        fetchInformation();
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [account, presaleContract]);
+    fetchPresaleContract();
+  }, [account, presaleContract, fetchBalances]);
 
   useEffect(() => {
     if (tokensAvailable > 7e9) {
@@ -271,7 +176,6 @@ const PreSale: React.FC = () => {
     const timer = setInterval(() => {
       setTimeLeft((preValue) => {
         if (preValue < 1 && preSaleStage !== PreSaleStage.Claimable) {
-          fetchInformation();
           return 0;
         }
         return preValue - 1;
@@ -428,12 +332,7 @@ const PreSale: React.FC = () => {
           console.log("txDAI =>>>>>>>>>>", txDAI);
           break;
       }
-      // Update balances after successful transaction
-      if (account) {
-        const fetchedBalances = await getBalances(account);
-        setBalances(fetchedBalances);
-      }
-      fetchInformation();
+      fetchBalances();
     } catch (error) {
       console.error("Error during transaction:", error);
       setError("Transaction failed. Please try again.");
@@ -446,7 +345,6 @@ const PreSale: React.FC = () => {
         .claim(account)
         .send({ from: account });
       console.log("tx =>>>>>>>>>>", tx);
-      fetchInformation();
     } catch (error) {
       console.error("Error during transaction:", error);
       setError("Transaction failed. Please try again.");
@@ -461,7 +359,6 @@ const PreSale: React.FC = () => {
         .setWallet(walletAddress)
         .send({ from: account });
 
-      // Listen for the WalletUpdated event
       const events = tx.events;
       if (events && events.WalletUpdated) {
         console.log(
@@ -472,7 +369,6 @@ const PreSale: React.FC = () => {
       }
     } catch (error) {
       console.error("Error during set wallet address:", error);
-      // Handle the error (e.g., show an error message to the user)
     } finally {
       setIsSettingWallet(false);
     }
@@ -486,7 +382,6 @@ const PreSale: React.FC = () => {
         .transferOwnership(ownerAddress)
         .send({ from: account });
 
-      // Listen for the OwnershipTransferred event
       const events = tx.events;
       if (events.OwnershipTransferred) {
         console.log(
@@ -494,11 +389,9 @@ const PreSale: React.FC = () => {
           events.OwnershipTransferred.returnValues.newOwner
         );
         setOwnerAddressSetSuccess(true);
-        fetchInformation();
       }
     } catch (error) {
       console.error("Error during set owner address:", error);
-      // Handle the error (e.g., show an error message to the user)
     } finally {
       setOwnerAddressSetSuccess(false);
     }
@@ -518,7 +411,6 @@ const PreSale: React.FC = () => {
           events.ClaimTimeUpdated.returnValues.newClaimTime
         );
         setClaimTimeSetSuccess(true);
-        fetchInformation();
       }
     } catch (error) {
       console.error("Error during set claim time:", error);
