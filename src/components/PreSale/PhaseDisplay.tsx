@@ -37,10 +37,10 @@ const PhaseDisplay: React.FC<PhaseDisplayProps> = ({
                 tokensAvailable - phase.totalTokens
               ).toLocaleString()} left`
             : phaseIndex < index
-            ? `Phase ${phase.phaseNumber}: $${
+            ? `Phase ${phase.phaseNumber + 1}: $${
                 phase.price
               } / ${phase.phaseTokens.toLocaleString()}`
-            : `Phase ${phase.phaseNumber}: $${phase.price} / 0`}
+            : `Phase ${phase.phaseNumber + 1}: $${phase.price} / 0`}
         </p>
       ))}
     </div>
