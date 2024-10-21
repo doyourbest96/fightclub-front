@@ -25,8 +25,7 @@ const PreSaleProgress = ({
         </div>
         <div className="flex justify-end mt-3 ">
           <span className="text-base font-bold font-revoluti text-[#dbdbcf]">
-            $
-            {(fundsRaised / hardcap) * 100 < 60 ? hardcap.toLocaleString() : ""}
+            {(fundsRaised / hardcap) * 100 < 50 ? "$" + hardcap.toLocaleString() : "|"}
           </span>
         </div>
       </div>

@@ -57,6 +57,16 @@ const PreSale: React.FC = () => {
   const [ETHFor100USDT, setETHFor100USDT] = useState<number>(0.05);
   const [paymentType, setPaymentType] = useState<string>("ETH");
 
+  // const isInitialRendering = useRef(true);
+
+  // useEffect(() => {
+  //    if (isInitialRendering.current) {
+  //     isInitialRendering.current = false;
+  //     return;
+  //   }
+  //   //
+  // }, []);
+
   const fetchOwner = async () => {
     try {
       const fetchedOwner = await presaleContract.methods.getOwner().call();
@@ -72,7 +82,7 @@ const PreSale: React.FC = () => {
         .getPresaleStartTime()
         .call();
       // console.log("fetchedPreSaleStartTime", fetchedPreSaleStartTime);
-      setPreSaleStartTime(parseFloat(fetchedPreSaleStartTime) * 1000);
+      setPreSaleStartTime(parseFloat(fetchedPreSaleStartTime));
     } catch (error) {
       console.error("Error fetching presale start time:", error);
     }
@@ -84,7 +94,7 @@ const PreSale: React.FC = () => {
         .getRemainingTime()
         .call();
       // console.log("fetchedPreSaleRemainingTime", fetchedPreSaleRemainingTime);
-      setPreSaleRemainingTime(fetchedPreSaleRemainingTime);
+      setPreSaleRemainingTime(parseFloat(fetchedPreSaleRemainingTime));
     } catch (error) {
       console.error("Error fetching presale remaining time:", error);
     }
@@ -96,7 +106,7 @@ const PreSale: React.FC = () => {
         .claimTime()
         .call();
       // console.log("fetchedPreSaleClaimTime", fetchedPreSaleClaimTime);
-      setPreSaleClaimTime(fetchedPreSaleClaimTime);
+      setPreSaleClaimTime(parseFloat(fetchedPreSaleClaimTime));
     } catch (error) {
       console.error("Error fetching presale claim time:", error);
     }
@@ -196,6 +206,8 @@ const PreSale: React.FC = () => {
 
     fetchBalances();
     getClaimableBalance();
+
+    setError(null);
   };
 
   useEffect(() => {
@@ -203,7 +215,7 @@ const PreSale: React.FC = () => {
       if (presaleContract && presaleContract.methods) {
         fetchInformation();
       }
-    }, 100);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, [account, presaleContract]);
@@ -232,7 +244,7 @@ const PreSale: React.FC = () => {
 
     switch (preSaleStage) {
       case PreSaleStage.Ready:
-        if (preSaleStartTime < new Date().getTime())
+        if (preSaleStartTime < new Date().getTime() / 1000)
           setPreSaleStage(PreSaleStage.Running);
         setTimeLeft(preSaleStartTime - new Date().getTime() / 1000);
         break;
@@ -241,20 +253,22 @@ const PreSale: React.FC = () => {
         setTimeLeft(preSaleRemainingTime);
         break;
       case PreSaleStage.Ended:
-        if (preSaleClaimTime < new Date().getTime())
+        if (preSaleClaimTime < new Date().getTime() / 1000)
           setPreSaleStage(PreSaleStage.Claimable);
         setTimeLeft(preSaleClaimTime - new Date().getTime() / 1000);
         break;
       default:
         break;
     }
+    console.log("preSaleStage:", preSaleStage);
+    console.log("preSaleStartTime:", preSaleStartTime);
   }, [preSaleStage, preSaleStartTime, preSaleRemainingTime, preSaleClaimTime]);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((preValue) => {
-        if (preValue < 1) {
-          // fetchInformation();
+        if (preValue < 1 && preSaleStage !== PreSaleStage.Claimable) {
+          fetchInformation();
           return 0;
         }
         return preValue - 1;
@@ -475,7 +489,7 @@ const PreSale: React.FC = () => {
     setClaimTimeSetSuccess(false);
     try {
       const tx = await presaleContract.methods
-        .setClaimTime(claimTime / 1e3)
+        .setClaimTime(Math.floor(claimTime / 1e3))
         .send({ from: account });
       const events = tx.events;
       if (events.ClaimTimeUpdated) {
@@ -530,7 +544,8 @@ const PreSale: React.FC = () => {
               <div className="px-4 grid grid-cols-2 gap-4 mb-4">
                 <button
                   onClick={handleWithdraw}
-                  className="p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
+                  className="p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                  disabled={preSaleStage < PreSaleStage.Ended}
                 >
                   <Image
                     src={"/assets/icons/withdraw.svg"}
@@ -543,7 +558,8 @@ const PreSale: React.FC = () => {
                 </button>
                 <button
                   onClick={handleRefund}
-                  className="p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900"
+                  className="p-2 justify-center rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
+                  disabled={preSaleStage < PreSaleStage.Ended}
                 >
                   <Image
                     src={"/assets/icons/refund.svg"}
@@ -572,7 +588,11 @@ const PreSale: React.FC = () => {
                   <button
                     className="p-2 rounded-md flex items-center text-sm font-bold bg-[#353535] border-2 border-gray-600 hover:border-orange-900 disabled:cursor-not-allowed"
                     onClick={handleSetWalletAddress}
-                    disabled={isSettingWallet || !isAddress(walletAddress)}
+                    disabled={
+                      isSettingWallet ||
+                      !isAddress(walletAddress) ||
+                      preSaleStage < PreSaleStage.Ended
+                    }
                   >
                     <Image
                       src={

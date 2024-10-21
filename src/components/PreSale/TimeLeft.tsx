@@ -21,25 +21,25 @@ const TimeLeft = ({
       <div className="px-10 grid grid-cols-4 gap-4 mb-6">
         <div className="bg-[#212121] border border-orange-900 p-1 rounded">
           <div className="text-2xl font-revoluti">
-            {Math.floor(timeLeft / 86400) % 30}
+            {preSaleStage === 3 ? "-" : Math.floor(timeLeft / 86400) % 30}
           </div>
           <div className="text-sm">days</div>
         </div>
         <div className="bg-[#212121] border border-orange-900 p-1 rounded">
           <div className="text-2xl font-revoluti">
-            {Math.floor(timeLeft / 3600) % 24}
+            {preSaleStage === 3 ? "-" : Math.floor(timeLeft / 3600) % 24}
           </div>
           <div className="text-sm">hours</div>
         </div>
         <div className="bg-[#212121] border border-orange-900 p-1 rounded">
           <div className="text-2xl font-revoluti">
-            {Math.floor(timeLeft / 60) % 60}
+            {preSaleStage === 3 ? "-" : Math.floor(timeLeft / 60) % 60}
           </div>
           <div className="text-sm">minutes</div>
         </div>
         <div className="bg-[#212121] border border-orange-900 p-1 rounded">
           <div className="text-2xl font-revoluti">
-            {Math.floor(timeLeft) % 60}
+            {preSaleStage === 3 ? "-" : Math.floor(timeLeft) % 60}
           </div>
           <div className="text-sm">seconds</div>
         </div>
