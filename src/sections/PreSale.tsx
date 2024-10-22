@@ -50,7 +50,7 @@ const PreSale: React.FC = () => {
   );
 
   const [fundsRaised, setFundsRaised] = useState<number>(0);
-  const [tokensAvailable, setTokensAvailable] = useState<number>(1e12);
+  const [tokensAvailable, setTokensAvailable] = useState<number>(1e10);
   const [phaseIndex, setPhaseIndex] = useState<number>(0);
   const [hardcap] = useState<number>(1020000);
   const [payAmount, setPayAmount] = useState<number>(0);
@@ -76,7 +76,7 @@ const PreSale: React.FC = () => {
 
   useEffect(() => {
     async function fetchPresaleContract() {
-      if (account && presaleContract && presaleContract.methods) {
+      if (presaleContract && presaleContract.methods && presaleContract._address) {
         const fetchedOwner = await presaleContract.methods.getOwner().call();
         const fetchedPreSaleStartTime = await presaleContract.methods
           .getPresaleStartTime()
@@ -109,10 +109,13 @@ const PreSale: React.FC = () => {
         const formattedTokensAvailable = parseFloat(
           ethers.formatUnits(tempTokensAvailable, 18)
         ).toFixed(0);
-        const balance = await presaleContract.methods
-          .getTokenAmountForInvestor(account)
-          .call();
-        const formattedBalance = ethers.formatUnits(balance, 18);
+        if (account) {
+          const balance = await presaleContract.methods
+            .getTokenAmountForInvestor(account)
+            .call();
+          const formattedBalance = ethers.formatUnits(balance, 18);
+          setClaimableFICCOBalance(formattedBalance);
+        }
 
         setOwner(fetchedOwner);
         setPreSaleStartTime(parseFloat(fetchedPreSaleStartTime));
@@ -124,7 +127,6 @@ const PreSale: React.FC = () => {
         setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
         setTokensAvailable(parseFloat(formattedTokensAvailable));
         fetchBalances();
-        setClaimableFICCOBalance(formattedBalance);
       }
     }
     fetchPresaleContract();
