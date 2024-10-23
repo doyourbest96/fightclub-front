@@ -14,9 +14,7 @@ const PreSaleFooter = () => {
         <span className="text-xs">{FiccoTokenContractAddress.sepolia}</span>
         <button
           className="px-2 py-0.5 text-xs rounded-md bg-[#824B3D] hover:bg-orange-800"
-          onClick={() =>
-            copyToClipboard("0x5384545c3190474713bdc48c3371fdbccd2b8e9")
-          }
+          onClick={() => copyToClipboard(FiccoTokenContractAddress.sepolia)}
         >
           COPY
         </button>
