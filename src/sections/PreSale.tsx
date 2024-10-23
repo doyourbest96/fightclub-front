@@ -424,6 +424,7 @@ const PreSale: React.FC = () => {
           "Ownership transferred successfully:",
           events.OwnershipTransferred.returnValues.newOwner
         );
+        setOwner(ownerAddress);
         setOwnerAddressSetSuccess(true);
       }
     } catch (error) {
