@@ -40,17 +40,13 @@ export default function RoadToGlory() {
               height={280}
             />
             <div className="absolute -left-1/4 -right-1/4 -top-1/2 -bottom-1/2 -z-20">
-              <div className="w-full h-full flex flex-col border-[#dbdbcf]">
-                <div className="w-full h-full flex flex-row border-b">
-                  <span className="w-full h-full border-r"></span>
-                  <span className="w-full h-full border-r"></span>
-                  <span className="w-full h-full"></span>
-                </div>
-                <div className="w-full h-full flex flex-row">
-                  <span className="w-full h-full border-r"></span>
-                  <span className="w-full h-full border-r"></span>
-                  <span className="w-full h-full"></span>
-                </div>
+              <div className="w-full h-full grid grid-cols-3 grid-rows-2 border-[#dbdbcf]">
+                <span className="border-r border-b" />
+                <span className="border-r border-b" />
+                <span className="border-b" />
+                <span className="border-r" />
+                <span className="border-r" />
+                <span></span>
               </div>
             </div>
           </div>
