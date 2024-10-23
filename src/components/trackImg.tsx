@@ -9,9 +9,10 @@ const TrackImg = ({ ...others }) => {
         <Image
           className="w-full h-full"
           src={"/assets/images/track.png"}
+          alt="track image"
           width={180}
           height={180}
-          alt="track image"
+          priority
         />
       </div>
     </>
