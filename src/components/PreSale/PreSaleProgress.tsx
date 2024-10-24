@@ -17,7 +17,7 @@ const PreSaleProgress = ({
               <div className="relative inline-block bg-[#e8e6d9] py-1 px-2 rounded">
                 <div className="absolute left-1/2 -top-1 w-2 h-2 bg-[#e8e6d9] transform -translate-x-1/2 rotate-45"></div>
                 <span className="text-base text-[#824B3D] font-bold font-revoluti">
-                  {"$" + fundsRaised.toLocaleString()}
+                  {"$" + Math.floor(fundsRaised).toLocaleString()}
                 </span>
               </div>
             </div>
