@@ -29,7 +29,6 @@ const PreSale: React.FC = () => {
   const [claimablePICCOBalance, setClaimableFICCOBalance] =
     useState<string>("0");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
 
   const [walletAddress, setWalletAddress] = useState<string>("");
@@ -45,7 +44,8 @@ const PreSale: React.FC = () => {
 
   const [preSaleStartTime, setPreSaleStartTime] = useState<number>(-1);
   const [preSaleRemainingTime, setPreSaleRemainingTime] = useState<number>(-1);
-  const [preSaleClaimTime, setPreSaleClaimTime] = useState<number>(-1);
+  const [preSaleClaimTime, setPreSaleClaimTime] =
+    useState<number>(864000000000000);
   const [preSaleStage, setPreSaleStage] = useState<PreSaleStage>(
     PreSaleStage.Ready
   );
@@ -63,12 +63,12 @@ const PreSale: React.FC = () => {
   const fetchBalances = useCallback(async () => {
     if (account) {
       setIsLoading(true);
-      setError(null);
       try {
         const fetchedBalances = await getBalances(account);
         setBalances(fetchedBalances);
       } catch (err) {
-        setError(`Failed to fetch balances. Please try again. ${err}`);
+        console.log(`Failed to fetch balances. Please try again. ${err}`);
+        toast.error("Failed to fetch balances. Please try again.");
       } finally {
         setIsLoading(false);
       }
@@ -77,16 +77,20 @@ const PreSale: React.FC = () => {
 
   useEffect(() => {
     async function fetchPresaleContract() {
-      if (presaleContract && presaleContract.methods && presaleContract._address) {
+      if (
+        presaleContract &&
+        presaleContract.methods &&
+        presaleContract._address
+      ) {
         const fetchedOwner = await presaleContract.methods.getOwner().call();
         const fetchedPreSaleStartTime = await presaleContract.methods
-          .getPresaleStartTime()
+          .getRemainingTimeForPresaleStart()
           .call();
         const fetchedPreSaleRemainingTime = await presaleContract.methods
-          .getRemainingTime()
+          .getRemainingTimeForPresaleEnd()
           .call();
         const fetchedPreSaleClaimTime = await presaleContract.methods
-          .claimTime()
+          .getRemainingTimeForClaimStart()
           .call();
         const tempTokenCount = await presaleContract.methods
           .estimatedTokenAmountAvailableWithCoin(
@@ -150,25 +154,19 @@ const PreSale: React.FC = () => {
   useEffect(() => {
     if (
       preSaleStartTime === -1 ||
-      preSaleRemainingTime === -1 ||
-      preSaleClaimTime === -1
+      preSaleRemainingTime === -1
     )
       return;
 
     switch (preSaleStage) {
       case PreSaleStage.Ready:
-        if (preSaleStartTime < new Date().getTime() / 1000)
-          setPreSaleStage(PreSaleStage.Running);
-        setTimeLeft(preSaleStartTime - new Date().getTime() / 1000);
+        setTimeLeft(preSaleStartTime);
         break;
       case PreSaleStage.Running:
-        if (preSaleRemainingTime === 0) setPreSaleStage(PreSaleStage.Ended);
         setTimeLeft(preSaleRemainingTime);
         break;
       case PreSaleStage.Ended:
-        if (preSaleClaimTime < new Date().getTime() / 1000)
-          setPreSaleStage(PreSaleStage.Claimable);
-        setTimeLeft(preSaleClaimTime - new Date().getTime() / 1000);
+        setTimeLeft(preSaleClaimTime);
         break;
       default:
         break;
@@ -176,7 +174,12 @@ const PreSale: React.FC = () => {
 
     const timer = setInterval(() => {
       setTimeLeft((preValue) => {
-        if (preValue < 1 && preSaleStage !== PreSaleStage.Claimable) {
+        if (
+          preValue < 1 &&
+          (preSaleStage < PreSaleStage.Claimable ||
+            preSaleClaimTime !== 864000000000000)
+        ) {
+          setPreSaleStage(preSaleStage + 1);
           return 0;
         }
         return preValue - 1;
@@ -249,6 +252,7 @@ const PreSale: React.FC = () => {
         }
       } catch (error) {
         console.error("Error fetching token amount:", error);
+        toast.error("Error fetching token amount");
         setTokenAmount(0);
       }
     }
@@ -293,6 +297,7 @@ const PreSale: React.FC = () => {
         }
       } catch (error) {
         console.error("Error fetching pay amount:", error);
+        toast.error("Error fetching pay amount");
         setPayAmount(0);
       }
     }
@@ -354,7 +359,7 @@ const PreSale: React.FC = () => {
       setClaimableFICCOBalance(formattedBalance);
     } catch (error) {
       console.error("Error during transaction:", error);
-      setError("Transaction failed. Please try again.");
+      toast.error("Transaction failed. Please try again.");
     }
   };
 
@@ -372,7 +377,7 @@ const PreSale: React.FC = () => {
       setClaimableFICCOBalance(formattedBalance);
     } catch (error) {
       console.error("Error during transaction:", error);
-      setError("Transaction failed. Please try again.");
+      toast.error("Transaction failed. Please try again.");
     }
   };
 
@@ -398,6 +403,7 @@ const PreSale: React.FC = () => {
       }
     } catch (error) {
       console.error("Error during set wallet address:", error);
+      toast.error("Transaction failed. Please try again.");
     } finally {
       setIsSettingWallet(false);
     }
@@ -426,6 +432,7 @@ const PreSale: React.FC = () => {
       }
     } catch (error) {
       console.error("Error during set owner address:", error);
+      toast.error("Transaction failed. Please try again.");
     } finally {
       setOwnerAddressSetSuccess(false);
     }
@@ -448,6 +455,7 @@ const PreSale: React.FC = () => {
       }
     } catch (error) {
       console.error("Error during set claim time:", error);
+      toast.error("Transaction failed. Please try again.");
     } finally {
       setClaimTimeSetSuccess(false);
     }
@@ -458,6 +466,7 @@ const PreSale: React.FC = () => {
       await presaleContract.methods.withdraw().send({ from: account });
     } catch (error) {
       console.error("Error during withdraw:", error);
+      toast.error("Transaction failed. Please try again.");
     }
   };
 
@@ -466,6 +475,7 @@ const PreSale: React.FC = () => {
       await presaleContract.methods.refund().send({ from: account });
     } catch (error) {
       console.error("Error during refund:", error);
+      toast.error("Transaction failed. Please try again.");
     }
   };
 
@@ -758,7 +768,6 @@ const PreSale: React.FC = () => {
                               ).toLocaleString()}
                             </p>
                           )}
-                          {error && <p className="text-red-500">{error}</p>}
                         </>
                       )}
                     </>
