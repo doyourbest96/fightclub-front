@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { toast } from "react-toastify";
 
 const ERC20_ABI = [
   "function balanceOf(address owner) view returns (uint256)",
@@ -43,6 +44,7 @@ export async function getBalances(
     return balances;
   } catch (error) {
     console.error("Error fetching balances:", error);
+    toast.error("Error fetching balances");
     return {};
   }
 }
