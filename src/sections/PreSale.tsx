@@ -113,7 +113,7 @@ const PreSale: React.FC = () => {
           .call();
         const formattedTokensAvailable = parseFloat(
           ethers.formatUnits(tempTokensAvailable, 18)
-        ).toFixed(0);
+        );
         if (account) {
           const balance = await presaleContract.methods
             .getTokenAmountForInvestor(account)
@@ -131,7 +131,7 @@ const PreSale: React.FC = () => {
           parseFloat((parseFloat(expectedPayAmount) + 5e-7).toFixed(6))
         );
         setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
-        setTokensAvailable(parseFloat(formattedTokensAvailable));
+        setTokensAvailable(Math.floor(formattedTokensAvailable));
       }
     }
     fetchPresaleContract();
@@ -349,11 +349,11 @@ const PreSale: React.FC = () => {
         .call();
       const formattedTokensAvailable = parseFloat(
         ethers.formatUnits(tempTokensAvailable, 18)
-      ).toFixed(0);
+      );
 
       fetchBalances();
       setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
-      setTokensAvailable(parseFloat(formattedTokensAvailable));
+      setTokensAvailable(Math.floor(formattedTokensAvailable));
       setClaimableFICCOBalance(formattedBalance);
     } catch (error) {
       console.error("Error during transaction:", error);
