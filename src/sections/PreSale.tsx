@@ -116,6 +116,7 @@ const PreSale: React.FC = () => {
             .call();
           const formattedBalance = ethers.formatUnits(balance, 18);
           setClaimableFICCOBalance(formattedBalance);
+          fetchBalances();
         }
 
         setOwner(fetchedOwner);
@@ -127,7 +128,6 @@ const PreSale: React.FC = () => {
         );
         setFundsRaised(parseFloat(tempFundsRaised) / 1e6);
         setTokensAvailable(parseFloat(formattedTokensAvailable));
-        fetchBalances();
       }
     }
     fetchPresaleContract();
@@ -173,11 +173,7 @@ const PreSale: React.FC = () => {
       default:
         break;
     }
-    // console.log("preSaleStage:", preSaleStage);
-    // console.log("preSaleStartTime:", preSaleStartTime);
-  }, [preSaleStage, preSaleStartTime, preSaleRemainingTime, preSaleClaimTime]);
 
-  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((preValue) => {
         if (preValue < 1 && preSaleStage !== PreSaleStage.Claimable) {
@@ -188,7 +184,7 @@ const PreSale: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [preSaleStage]);
+  }, [preSaleStage, preSaleStartTime, preSaleRemainingTime, preSaleClaimTime]);
 
   useEffect(() => {
     if (paymentType === "ETH") {
