@@ -152,11 +152,7 @@ const PreSale: React.FC = () => {
   }, [tokensAvailable]);
 
   useEffect(() => {
-    if (
-      preSaleStartTime === -1 ||
-      preSaleRemainingTime === -1
-    )
-      return;
+    if (preSaleStartTime === -1 || preSaleRemainingTime === -1) return;
 
     switch (preSaleStage) {
       case PreSaleStage.Ready:
@@ -173,17 +169,19 @@ const PreSale: React.FC = () => {
     }
 
     const timer = setInterval(() => {
-      setTimeLeft((preValue) => {
-        if (
-          preValue < 1 &&
-          (preSaleStage < PreSaleStage.Claimable ||
-            preSaleClaimTime !== 864000000000000)
-        ) {
-          setPreSaleStage(preSaleStage + 1);
-          return 0;
-        }
-        return preValue - 1;
-      });
+      if (
+        preSaleStage < PreSaleStage.Ended ||
+        preSaleClaimTime !== 864000000000000
+      ) {
+        setTimeLeft((preValue) => {
+          if (preValue < 1) {
+            if (preSaleStage < PreSaleStage.Claimable)
+              setPreSaleStage(preSaleStage + 1);
+            return 0;
+          }
+          return preValue - 1;
+        });
+      }
     }, 1000);
 
     return () => clearInterval(timer);
