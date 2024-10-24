@@ -5,10 +5,10 @@ export const defaultRPC = {
 
 export const FiccoTokenContractAddress = {
   mainnet: "",
-  sepolia: "0x050108f19b9b83b3f7B40DC3BF6E52d1f6F3c85d",
+  sepolia: "0xfe9E65d75E2A3543c09eE5295c40A3385f16DccE",
 };
 
 export const PresaleContractAddress = {
   mainnet: "",
-  sepolia: "0x8913A334eB4f5dc7c34c5aa47e0b7F7da7529e8E",
+  sepolia: "0x899D3df469B07a3E5DFCcEF587fb217591f70c84",
 };
