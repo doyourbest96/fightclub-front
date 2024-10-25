@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import { ethers, isAddress } from "ethers";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import useWeb3 from "@/hooks/useWeb3";
 import { classNames } from "@/utils/classNames";
@@ -777,7 +777,6 @@ const PreSale: React.FC = () => {
         </div>
 
         <PreSaleFooter />
-        <ToastContainer />
       </div>
     </div>
   );
