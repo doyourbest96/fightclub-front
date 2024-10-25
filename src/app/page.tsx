@@ -17,6 +17,7 @@ import Members from "@/sections/Members";
 import Faq from "@/sections/Faq";
 import Footer from "@/sections/Footer";
 import Bander2 from "@/sections/Bander2";
+import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   return (
@@ -63,6 +64,19 @@ export default function Home() {
           <Bander2 />
           <Faq />
           <Footer />
+
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </div>
       </div>
     </div>
