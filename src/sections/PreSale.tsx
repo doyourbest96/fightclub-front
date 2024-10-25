@@ -155,14 +155,14 @@ const PreSale: React.FC = () => {
     if (preSaleStartTime === -1 || preSaleRemainingTime === -1) return;
 
     switch (preSaleStage) {
-      case PreSaleStage.Ready:
-        setTimeLeft(preSaleStartTime);
+      case PreSaleStage.Ended:
+        setTimeLeft(preSaleClaimTime);
         break;
       case PreSaleStage.Running:
         setTimeLeft(preSaleRemainingTime);
         break;
-      case PreSaleStage.Ended:
-        setTimeLeft(preSaleClaimTime);
+      case PreSaleStage.Ready:
+        setTimeLeft(preSaleStartTime);
         break;
       default:
         break;
