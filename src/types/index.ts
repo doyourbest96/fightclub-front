@@ -82,6 +82,11 @@ export type Step = {
   icon: string;
 };
 
+export type FAQItemProps = {
+  question: string;
+  answer: string;
+};
+
 export type Web3ContextType = {
   account?: Address;
   chainId?: number;
